@@ -186,3 +186,40 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* FLUID TYPOGRAPHY */
+.fluid-xs {
+  @apply text-[clamp(0.75rem,_0.3vw_+_0.6rem,_0.875rem)] leading-[1.25]; /* ~12px–14px */
+}
+
+.fluid-sm {
+  @apply text-[clamp(0.875rem,_0.4vw_+_0.7rem,_1rem)] leading-[1.4]; /* ~14px–16px */
+}
+
+.fluid-base {
+  @apply text-[clamp(1rem,_0.5vw_+_0.8rem,_1.25rem)] leading-[1.6]; /* ~16px–20px */
+}
+
+.fluid-lg {
+  @apply text-[clamp(1.25rem,_0.6vw_+_1rem,_1.75rem)] leading-[1.6]; /* ~20px–28px */
+}
+
+.fluid-xl {
+  @apply text-[clamp(1.5rem,_0.8vw_+_1.2rem,_2.25rem)] leading-[1.4]; /* ~24px–36px */
+}
+
+.fluid-2xl {
+  @apply text-[clamp(2rem,_1vw_+_1.5rem,_3rem)] leading-[1.3]; /* ~32px–48px */
+}
+
+.fluid-3xl {
+  @apply text-[clamp(2.5rem,_1.2vw_+_1.75rem,_3.75rem)] leading-[1.2]; /* ~40px–60px */
+}
+
+.fluid-4xl {
+  @apply text-[clamp(3rem,_1.5vw_+_2rem,_4.5rem)] leading-[1.15]; /* ~48px–72px */
+}
+
+.fluid-5xl {
+  @apply text-[clamp(3.5rem,_2vw_+_2.25rem,_6rem)] leading-[1.1]; /* ~56px–96px */
+}
