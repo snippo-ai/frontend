@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -17,8 +18,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full bg-background" suppressHydrationWarning>
-      <body className={`${font.className} h-full antialiased`}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${font.className} antialiased`}
+        suppressHydrationWarning
+      >
+        {children}
+        <Toaster theme="light" richColors />
+      </body>
     </html>
   );
 }
