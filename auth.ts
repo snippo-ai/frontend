@@ -17,12 +17,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             "Content-Type": "application/json",
           },
         });
-        const data = await response.json();
+        const { data } = await response.json();
+        const user = { ...data.user, token: data.token };
 
         if (response.status <= 301) {
-          return {
-            ...data.data,
-          };
+          return user;
         }
 
         return null;
