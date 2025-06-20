@@ -19,6 +19,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         });
         const { data } = await response.json();
         const user = { ...data.user, token: data.token };
+        console.log({ user });
 
         if (response.status <= 301) {
           return user;
@@ -30,5 +31,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
   pages: {
     signIn: "/login",
+  },
+  callbacks: {
+    jwt({ token, user }) {
+      console.log("jwt :: ", { user });
+      if (user) {
+        // User is available during sign-in
+        token.id = user.id;
+        token.token = user.token;
+      }
+      return token;
+    },
+    session({ session, token }) {
+      console.log("session :: ", { session, token });
+      session.user.id = token.id as string;
+      session.user.token = token.token as string;
+      return session;
+    },
   },
 });

@@ -1,18 +1,21 @@
-import React from "react";
+import { auth } from "@/auth";
 import Logo from "@/components/shared/logo";
 import Typography from "@/components/shared/typography";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
 } from "@/components/ui/card";
-import Image from "next/image";
 import { features, pricing, testimonials } from "@/lib/mocks/home-page";
+import Image from "next/image";
 
-const HomePage = () => {
+const HomePage = async () => {
+  const session = await auth();
+  console.log({ session });
+
   return (
     <main className="min-h-screen w-full bg-background text-foreground flex flex-col items-center">
       {/* Hero Section */}

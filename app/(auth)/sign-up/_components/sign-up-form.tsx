@@ -17,7 +17,7 @@ import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { GithubIcon } from "lucide-react";
 import Link from "next/link";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -36,8 +36,22 @@ const SignUpForm = ({ className = "", ...props }) => {
     setLoading(false);
     if (state?.error) toast.error(state.error);
     else if (state?.success) {
-      toast.success("Account created!");
-      router.push("/login");
+      // Check onboarding status
+      fetch("http://localhost:8080/api/user/onboarding")
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.onboardingComplete) {
+            toast.success("Account created!");
+            router.push("/dashboard");
+          } else {
+            toast.success("Account created!");
+            router.push("/onboarding");
+          }
+        })
+        .catch(() => {
+          toast.error("Could not check onboarding status");
+          router.push("/dashboard");
+        });
     }
   }, [state, router]);
 
@@ -82,7 +96,7 @@ const SignUpForm = ({ className = "", ...props }) => {
                   <Input
                     id="firstName"
                     name="firstName"
-                    placeholder="Let’s keep it casual"
+                    placeholder="Let's keep it casual"
                     defaultValue={state?.values?.firstName ?? ""}
                     required
                   />

@@ -1,16 +1,18 @@
-import React, { useMemo } from "react";
+import { signOut } from "@/auth";
 import Logo from "@/components/shared/logo";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   NavigationMenu,
-  NavigationMenuList,
   NavigationMenuItem,
   NavigationMenuLink,
+  NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
-import Link from "next/link";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { Menu } from "lucide-react";
+import { Session } from "next-auth";
+import Link from "next/link";
+import React, { useMemo } from "react";
 
 // Navigation links
 const useNavLinks = () =>
@@ -37,39 +39,63 @@ const NavLink = ({ href, label }: { href: string; label: string }) => (
 );
 
 // Auth Buttons (Login/Signup)
-const AuthButtons = ({ fullWidth = false }: { fullWidth?: boolean }) => (
-  <>
-    <Link
-      href="/login"
-      className={cn(
-        buttonVariants({
-          variant: "ghost",
-          size: "sm",
-          className: `px-4 ${fullWidth ? "w-full" : ""}`,
-        })
-      )}
-      aria-label="Login to your account"
+const AuthButtons = ({
+  session,
+  fullWidth = false,
+}: {
+  session: Session | null;
+  fullWidth?: boolean;
+}) =>
+  session ? (
+    <form
+      action={async () => {
+        "use server";
+        await signOut();
+      }}
     >
-      Login
-    </Link>
-    <Link
-      href="/sign-up"
-      className={cn(
-        buttonVariants({
-          variant: "default",
-          size: "sm",
-          className: `px-4 shadow ${fullWidth ? "w-full" : ""}`,
-        })
-      )}
-      aria-label="Create a new account"
-    >
-      Sign Up
-    </Link>
-  </>
-);
+      <Button
+        type="submit"
+        variant="outline"
+        size="sm"
+        className={`px-4 ${fullWidth ? "w-full" : ""}`}
+        aria-label="Logout from your account"
+      >
+        Sign Out
+      </Button>
+    </form>
+  ) : (
+    <>
+      <Link
+        href="/login"
+        className={cn(
+          buttonVariants({
+            variant: "ghost",
+            size: "sm",
+            className: `px-4 ${fullWidth ? "w-full" : ""}`,
+          })
+        )}
+        aria-label="Login to your account"
+      >
+        Login
+      </Link>
+      <Link
+        href="/sign-up"
+        className={cn(
+          buttonVariants({
+            variant: "default",
+            size: "sm",
+            className: `px-4 shadow ${fullWidth ? "w-full" : ""}`,
+          })
+        )}
+        aria-label="Create a new account"
+      >
+        Sign Up
+      </Link>
+    </>
+  );
 
 // Main Header
-const Header: React.FC = () => {
+const Header: React.FC<{ session: Session | null }> = ({ session }) => {
   const navLinks = useNavLinks();
 
   return (
@@ -94,7 +120,7 @@ const Header: React.FC = () => {
 
         {/* Desktop Auth Buttons */}
         <div className="hidden lg:flex gap-2 mr-2">
-          <AuthButtons />
+          <AuthButtons session={session} />
         </div>
 
         {/* Mobile Sheet Navigation */}
@@ -139,7 +165,7 @@ const Header: React.FC = () => {
               </nav>
 
               <div className="flex flex-col gap-2 mt-6">
-                <AuthButtons fullWidth />
+                <AuthButtons session={session} fullWidth />
               </div>
             </SheetContent>
           </Sheet>

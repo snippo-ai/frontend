@@ -14,13 +14,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { GithubIcon } from "lucide-react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 type LoginFormProps = React.ComponentProps<"div"> & { redirectTo?: string };
 
 const LoginForm: React.FC<LoginFormProps> = ({ className = "", ...props }) => {
+  const router = useRouter();
   const [state, formAction] = useActionState(login, null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -28,9 +29,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ className = "", ...props }) => {
     setLoading(false);
     if (state?.error) toast.error(state.error);
     else if (state?.success) {
-      toast.success("Login Success!");
-      redirect("/dashboard");
+      router.push("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   return (
@@ -70,7 +71,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ className = "", ...props }) => {
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="johndoe@example.com"
+                    placeholder="Should contain valid email"
                     required
                   />
                 </div>
@@ -88,6 +89,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ className = "", ...props }) => {
                     id="password"
                     name="password"
                     type="password"
+                    placeholder="Should contain valid password"
                     required
                   />
                 </div>

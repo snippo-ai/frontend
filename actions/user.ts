@@ -39,6 +39,16 @@ const signUp = async (
     return { error: data?.message || "Something went wrong", values };
   }
 
+  const loginResponse = await signIn("credentials", {
+    email,
+    password,
+    redirect: false,
+  });
+
+  if (loginResponse?.error) {
+    return { error: loginResponse.error };
+  }
+
   return { success: true };
 };
 
@@ -65,19 +75,20 @@ const login = async (
       redirect: false,
     });
 
-    console.log({ response });
-
     if (response.error) {
       return { error: response.error };
     }
 
     return { success: true };
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    if (error.type === "CredentialsSignin") {
+  } catch (error: unknown) {
+    if (
+      typeof error === "object" &&
+      error !== null &&
+      "type" in error &&
+      (error as { type?: string }).type === "CredentialsSignin"
+    ) {
       return { error: "Incorrect email or password" };
     }
-
     return { error: "Something went wrong" };
   }
 };
