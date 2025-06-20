@@ -1,5 +1,7 @@
 "use client";
 
+import { login } from "@/actions/user";
+import Spinner from "@/components/shared/spinner";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,24 +12,38 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
 import { GithubIcon } from "lucide-react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { useActionState, useEffect, useState } from "react";
+import { toast } from "sonner";
 
 type LoginFormProps = React.ComponentProps<"div"> & { redirectTo?: string };
 
 const LoginForm: React.FC<LoginFormProps> = ({ className = "", ...props }) => {
+  const [state, formAction] = useActionState(login, null);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    setLoading(false);
+    if (state?.error) toast.error(state.error);
+    else if (state?.success) {
+      toast.success("Login Success!");
+      redirect("/dashboard");
+    }
+  }, [state]);
+
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={className} {...props}>
       <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-fluid-lg">Welcome back</CardTitle>
           <CardDescription>Login with your account to continue</CardDescription>
         </CardHeader>
-        <CardContent> 
-          <form autoComplete="off">
+        <CardContent>
+          <form action={formAction} autoComplete="off">
             <div className="grid gap-6 max-w-full">
-              <div className="flex items-center justify-center w-full gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Button variant="outline">
                   <GithubIcon className="size-5" />
                   Github
@@ -75,15 +91,19 @@ const LoginForm: React.FC<LoginFormProps> = ({ className = "", ...props }) => {
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full">
-                  Login
+                <Button
+                  type="submit"
+                  className="w-full"
+                  onClick={() => setLoading(true)}
+                >
+                  {loading ? <Spinner /> : "Login"}
                 </Button>
               </div>
               <div className="text-center text-fluid-xs">
                 Don&apos;t have an account?{" "}
                 <Link
                   href="/sign-up"
-                  className="hover:underline hover:underline-offset-4"
+                  className="text-primary hover:underline hover:underline-offset-4"
                 >
                   Sign Up
                 </Link>
@@ -92,11 +112,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ className = "", ...props }) => {
           </form>
         </CardContent>
       </Card>
-      <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-fluid-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-        By clicking continue, you agree to our{" "}
-        <Link href="/terms-of-service">Terms of Service</Link> and{" "}
-        <Link href="/privacy-policy">Privacy Policy</Link>.
-      </div>
     </div>
   );
 };

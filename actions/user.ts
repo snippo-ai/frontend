@@ -1,5 +1,7 @@
 "use server";
 
+import { signIn } from "@/auth";
+
 export type PreviousStateType = {
   success?: boolean;
   error?: string | null;
@@ -40,4 +42,44 @@ const signUp = async (
   return { success: true };
 };
 
-export { signUp };
+const login = async (
+  previousState: {
+    success?: boolean;
+    error?: string | null;
+  } | null,
+  formData: FormData
+): Promise<{
+  success?: boolean;
+  error?: string | null;
+}> => {
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
+
+  if (!email || !password) {
+    return { error: "Please fill out all required fields." };
+  }
+  try {
+    const response = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+
+    console.log({ response });
+
+    if (response.error) {
+      return { error: response.error };
+    }
+
+    return { success: true };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    if (error.type === "CredentialsSignin") {
+      return { error: "Incorrect email or password" };
+    }
+
+    return { error: "Something went wrong" };
+  }
+};
+
+export { login, signUp };

@@ -10,7 +10,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       authorize: async (credentials) => {
         const { email, password } = credentials;
-        console.log({ email, password });
         const response = await fetch("http://localhost:8080/auth/login", {
           method: "POST",
           body: JSON.stringify({ email, password }),
@@ -18,10 +17,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             "Content-Type": "application/json",
           },
         });
-        const user = await response.json();
+        const data = await response.json();
 
         if (response.status <= 301) {
-          return user;
+          return {
+            ...data.data,
+          };
         }
 
         return null;
