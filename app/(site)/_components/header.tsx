@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import Logo from "@/components/shared/logo";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuList,
@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 // Navigation links
 const useNavLinks = () =>
@@ -37,26 +39,32 @@ const NavLink = ({ href, label }: { href: string; label: string }) => (
 // Auth Buttons (Login/Signup)
 const AuthButtons = ({ fullWidth = false }: { fullWidth?: boolean }) => (
   <>
-    <Button
-      variant="ghost"
-      size="sm"
-      className={`rounded-full px-4 ${fullWidth ? "w-full" : ""}`}
-      asChild
+    <Link
+      href="/login"
+      className={cn(
+        buttonVariants({
+          variant: "ghost",
+          size: "sm",
+          className: `px-4 ${fullWidth ? "w-full" : ""}`,
+        })
+      )}
+      aria-label="Login to your account"
     >
-      <a href="/login" aria-label="Login to your account">
-        Login
-      </a>
-    </Button>
-    <Button
-      variant="default"
-      size="sm"
-      className={`rounded-full px-4 shadow ${fullWidth ? "w-full" : ""}`}
-      asChild
+      Login
+    </Link>
+    <Link
+      href="/sign-up"
+      className={cn(
+        buttonVariants({
+          variant: "default",
+          size: "sm",
+          className: `px-4 shadow ${fullWidth ? "w-full" : ""}`,
+        })
+      )}
+      aria-label="Create a new account"
     >
-      <a href="/sign-up" aria-label="Create a new account">
-        Sign Up
-      </a>
-    </Button>
+      Sign Up
+    </Link>
   </>
 );
 
