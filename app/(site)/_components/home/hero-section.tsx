@@ -1,5 +1,6 @@
 "use client";
 
+import { Container } from "@/components/shared/container";
 import Typography from "@/components/shared/typography";
 import { Button } from "@/components/ui/button";
 import {
@@ -48,7 +49,7 @@ const HeroSection = () => {
       </div>
 
       {/* Main content container */}
-      <div className="relative z-10 max-w-7xl px-4 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <Container className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Section - Content */}
         <div className="text-left">
           {/* Main heading with gradient text */}
@@ -266,7 +267,7 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
 
       <style jsx>{`
         @keyframes float {
