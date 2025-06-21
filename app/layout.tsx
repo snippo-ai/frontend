@@ -1,4 +1,5 @@
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/lib/providers/theme-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -23,8 +24,10 @@ export default function RootLayout({
         className={`${font.className} antialiased`}
         suppressHydrationWarning
       >
-        {children}
-        <Toaster theme="light" richColors />
+        <ThemeProvider>
+          {children}
+          <Toaster theme="dark" richColors />
+        </ThemeProvider>
       </body>
     </html>
   );

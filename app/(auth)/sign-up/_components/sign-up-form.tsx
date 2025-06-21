@@ -5,17 +5,10 @@
 import { PreviousStateType, signUp } from "@/actions/user";
 import Spinner from "@/components/shared/spinner";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import { GithubIcon } from "lucide-react";
+import { ArrowRight, Lock, Mail, Sparkles, User } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useActionState, useEffect, useState } from "react";
@@ -56,111 +49,153 @@ const SignUpForm = ({ className = "", ...props }) => {
   }, [state, router]);
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card className="shadow-xl">
-        <CardHeader className="text-center">
-          <CardTitle className="text-fluid-xl">Welcome to Snippo AI</CardTitle>
-          <CardDescription>
-            Sign up with your GitHub or Google account
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form action={formAction} autoComplete="off">
-            <div className="grid gap-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Button variant="outline" className="w-full">
-                  <GithubIcon className="size-5" />
-                  Github
-                </Button>
-                <Button variant="outline" className="w-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                      d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  Google
-                </Button>
-              </div>
+    <div className={cn("space-y-6", className)} {...props}>
+      <div className="text-center mb-8">
+        <div className="flex items-center justify-center mb-3">
+          <Sparkles className="size-6 text-primary mr-2" />
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+            Join Snippo AI
+          </h1>
+        </div>
+        <p className="text-muted-foreground text-fluid-sm text-pretty">
+          Start your journey with the future of AI-powered development
+        </p>
+      </div>
 
-              <div className="relative text-center text-fluid-xs text-muted-foreground">
-                <span className="bg-card relative z-10 px-2">
-                  Or sign up with email
-                </span>
-                <div className="absolute inset-0 top-1/2 border-t border-border z-0"></div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="grid gap-3">
-                  <Label htmlFor="firstName">First Name</Label>
-                  <Input
-                    id="firstName"
-                    name="firstName"
-                    placeholder="Let's keep it casual"
-                    defaultValue={state?.values?.firstName ?? ""}
-                    required
-                  />
-                </div>
-                <div className="grid gap-3">
-                  <Label htmlFor="lastName">Last Name</Label>
-                  <Input
-                    id="lastName"
-                    name="lastName"
-                    placeholder="If you're feeling fancy"
-                    defaultValue={state?.values?.lastName ?? ""}
-                  />
-                </div>
-              </div>
-
-              <div className="grid gap-3">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="Your inbox deserves good things"
-                  defaultValue={state?.values?.email ?? ""}
-                  required
-                />
-              </div>
-
-              <div className="grid gap-3">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder="Something secure, like prod creds"
-                  required
-                />
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full"
-                onClick={() => setLoading(true)}
-              >
-                {loading ? <Spinner /> : "Create Account"}
-              </Button>
-
-              <div className="text-center text-muted-foreground text-fluid-xs">
-                Already have an account?{" "}
-                <Link
-                  href="/login"
-                  className="text-primary hover:underline hover:underline-offset-4"
-                >
-                  Login
-                </Link>
-              </div>
+      <form action={formAction} autoComplete="off" className="space-y-6">
+        {/* Name fields */}
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label
+              htmlFor="firstName"
+              className="text-sm font-medium text-foreground"
+            >
+              First name
+            </Label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 size-4 text-muted-foreground" />
+              <Input
+                id="firstName"
+                name="firstName"
+                placeholder="John"
+                defaultValue={state?.values?.firstName ?? ""}
+                className="pl-10 h-12 bg-card/30 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
+                required
+              />
             </div>
-          </form>
-        </CardContent>
-      </Card>
+          </div>
+          <div className="space-y-2">
+            <Label
+              htmlFor="lastName"
+              className="text-sm font-medium text-foreground"
+            >
+              Last name
+            </Label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 size-4 text-muted-foreground" />
+              <Input
+                id="lastName"
+                name="lastName"
+                placeholder="Doe"
+                defaultValue={state?.values?.lastName ?? ""}
+                className="pl-10 h-12 bg-card/30 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
+              />
+            </div>
+          </div>
+        </div>
 
-      <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-fluid-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-        By clicking continue, you agree to our{" "}
-        <Link href="/terms-of-service">Terms of Service</Link> and{" "}
-        <Link href="/privacy-policy">Privacy Policy</Link>.
+        {/* Email field */}
+        <div className="space-y-2">
+          <Label
+            htmlFor="email"
+            className="text-sm font-medium text-foreground"
+          >
+            Email address
+          </Label>
+          <div className="relative">
+            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 size-4 text-muted-foreground" />
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="john@example.com"
+              defaultValue={state?.values?.email ?? ""}
+              className="pl-10 h-12 bg-card/30 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
+              required
+            />
+          </div>
+        </div>
+
+        {/* Password field */}
+        <div className="space-y-2">
+          <Label
+            htmlFor="password"
+            className="text-sm font-medium text-foreground"
+          >
+            Password
+          </Label>
+          <div className="relative">
+            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 size-4 text-muted-foreground" />
+            <Input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Create a strong password"
+              className="pl-10 h-12 bg-card/30 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
+              required
+            />
+          </div>
+        </div>
+
+        {/* Submit button */}
+        <Button
+          type="submit"
+          className="w-full h-12 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-medium transition-all duration-300 group"
+          onClick={() => setLoading(true)}
+        >
+          {loading ? (
+            <Spinner className="size-5" />
+          ) : (
+            <>
+              Create account
+              <ArrowRight className="ml-2 size-4 group-hover:translate-x-1 transition-transform" />
+            </>
+          )}
+        </Button>
+
+        {/* Login link */}
+        <div className="text-center">
+          <p className="text-sm text-muted-foreground">
+            Already have an account?{" "}
+            <Link
+              href="/login"
+              className="text-primary hover:text-primary/80 font-medium underline-offset-4 hover:underline transition-colors"
+            >
+              Sign in
+            </Link>
+          </p>
+        </div>
+      </form>
+
+      {/* Terms and privacy */}
+      <div className="text-center">
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          By creating an account, you agree to our{" "}
+          <Link
+            href="/terms-of-service"
+            className="text-primary hover:text-primary/80 underline underline-offset-4 transition-colors"
+          >
+            Terms of Service
+          </Link>{" "}
+          and{" "}
+          <Link
+            href="/privacy-policy"
+            className="text-primary hover:text-primary/80 underline underline-offset-4 transition-colors"
+          >
+            Privacy Policy
+          </Link>
+          .
+        </p>
       </div>
     </div>
   );
