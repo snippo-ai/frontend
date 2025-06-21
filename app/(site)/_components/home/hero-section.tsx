@@ -57,14 +57,14 @@ const HeroSection = () => {
             <Typography
               as="h1"
               fluidSize="4xl"
-              className="font-bold mb-4 bg-gradient-to-r from-chart-3 via-primary to-chart-2 bg-clip-text text-transparent animate-fade-in-up"
+              className="font-bold mb-4 text-foreground"
             >
               Supercharge Your
             </Typography>
             <Typography
               as="h1"
               fluidSize="4xl"
-              className="font-bold bg-gradient-to-r from-primary via-chart-2 to-chart-3 bg-clip-text text-transparent animate-fade-in-up delay-200"
+              className="font-bold bg-gradient-to-r from-primary via-chart-2 to-chart-5 bg-clip-text text-transparent  delay-200"
             >
               Coding Workflow
             </Typography>
@@ -73,20 +73,20 @@ const HeroSection = () => {
           {/* Subtitle with enhanced styling */}
           <Typography
             as="p"
-            fluidSize="xl"
-            className="mb-8 text-muted-foreground animate-fade-in-up delay-300"
+            fluidSize="lg"
+            className="mb-8 text-muted-foreground  delay-300"
           >
             The modern, AI-powered code snippet manager for developers.
-            <span className="text-primary font-semibold"> Organize</span>,
+            <span className="text-chart-1 font-semibold"> Organize</span>,
             <span className="text-chart-2 font-semibold"> search</span>, and
             <span className="text-chart-3 font-semibold"> share</span> code with
             ease.
           </Typography>
 
           {/* Feature highlights */}
-          <div className="flex flex-wrap gap-4 mb-8 animate-fade-in-up delay-400">
+          <div className="flex flex-wrap gap-4 mb-8  delay-400">
             {[
-              { icon: Sparkles, text: "AI-Powered", color: "text-primary" },
+              { icon: Sparkles, text: "AI-Powered", color: "text-chart-1" },
               { icon: Code, text: "Smart Search", color: "text-chart-2" },
               { icon: Zap, text: "Lightning Fast", color: "text-chart-3" },
             ].map((feature, index) => (
@@ -105,7 +105,7 @@ const HeroSection = () => {
           </div>
 
           {/* CTA Button with enhanced styling */}
-          <div className="relative group animate-fade-in-up delay-500">
+          <div className="relative group  delay-500">
             <Button
               size="lg"
               className="relative px-10 py-6 text-xl font-semibold bg-gradient-to-r from-primary to-chart-2 hover:from-primary/90 hover:to-chart-2/90 border-0 shadow-2xl hover:shadow-primary/25 transition-all duration-300 transform hover:scale-105 group"
@@ -117,11 +117,7 @@ const HeroSection = () => {
           </div>
 
           {/* Trust indicators */}
-          <div className="mt-8 flex flex-wrap items-center gap-6 text-muted-foreground animate-fade-in-up delay-600">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-chart-1 rounded-full animate-pulse"></div>
-              <span className="text-sm">Trusted by 10K+ developers</span>
-            </div>
+          <div className="mt-8 flex flex-wrap items-center gap-6 text-muted-foreground  delay-600">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-chart-2 rounded-full animate-pulse delay-500"></div>
               <span className="text-sm">99.9% uptime</span>
@@ -134,7 +130,7 @@ const HeroSection = () => {
         </div>
 
         {/* Right Section - Creative Illustration */}
-        <div className="relative flex items-center justify-center animate-fade-in-up delay-300">
+        <div className="relative flex items-center justify-center  delay-300">
           <div className="relative w-full max-w-lg">
             {/* Enhanced main illustration container */}
             <div className="relative bg-gradient-to-br from-card/95 via-background/90 to-card/95 backdrop-blur-xl rounded-3xl border border-border/60 p-8 shadow-2xl hover:shadow-primary/10 transition-all duration-500">
@@ -152,7 +148,7 @@ const HeroSection = () => {
               </div>
 
               {/* Floating code blocks with enhanced styling */}
-              <div className="absolute -top-6 -left-6 bg-gradient-to-r from-primary to-chart-5 rounded-xl p-4 shadow-xl animate-float-slow border border-primary/20 backdrop-blur-sm">
+              <div className="absolute -top-6 -left-6 bg-gradient-to-r from-chart-5 to-chart-4 rounded-xl p-4 shadow-xl animate-float-slow border border-primary/20 backdrop-blur-sm">
                 <div className="flex items-center gap-3 text-primary-foreground">
                   <div className="p-1.5 bg-white/20 rounded-lg">
                     <Code className="w-4 h-4" />
@@ -167,7 +163,7 @@ const HeroSection = () => {
                 <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-primary rounded-full animate-pulse"></div>
               </div>
 
-              <div className="absolute -top-4 -right-4 bg-gradient-to-r from-primary to-chart-5 rounded-xl p-4 shadow-xl animate-float-slow delay-1000 border border-chart-2/20 backdrop-blur-sm">
+              <div className="absolute -top-4 -right-4 bg-gradient-to-r from-chart-5 to-chart-4 rounded-xl p-4 shadow-xl animate-float-slow delay-1000 border border-chart-2/20 backdrop-blur-sm">
                 <div className="flex items-center gap-3 text-primary-foreground">
                   <div className="p-1.5 bg-white/20 rounded-lg">
                     <FileText className="w-4 h-4" />
@@ -180,7 +176,7 @@ const HeroSection = () => {
                 <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-chart-2 rounded-full animate-pulse delay-500"></div>
               </div>
 
-              <div className="absolute -bottom-6 left-1/4 bg-gradient-to-r from-primary to-chart-5 rounded-xl p-4 shadow-xl animate-float-slow delay-500 border border-chart-3/20 backdrop-blur-sm">
+              <div className="absolute -bottom-6 left-1/4 bg-gradient-to-r from-chart-5 to-chart-4 rounded-xl p-4 shadow-xl animate-float-slow delay-500 border border-chart-3/20 backdrop-blur-sm">
                 <div className="flex items-center gap-3 text-primary-foreground">
                   <div className="p-1.5 bg-white/20 rounded-lg">
                     <Share2 className="w-4 h-4" />
@@ -498,9 +494,6 @@ const HeroSection = () => {
         }
         .animate-float-slow {
           animation: float-slow 4s ease-in-out infinite;
-        }
-        .animate-fade-in-up {
-          animation: fade-in-up 0.8s ease-out forwards;
         }
         .animate-orbit {
           animation: orbit 8s linear infinite;

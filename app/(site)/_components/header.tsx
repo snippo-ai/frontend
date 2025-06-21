@@ -47,56 +47,65 @@ const AuthButtons = ({
   fullWidth?: boolean;
 }) =>
   session ? (
-    <form
-      action={async () => {
-        "use server";
-        await signOut();
-      }}
-    >
-      <Button
-        type="submit"
-        variant="outline"
-        size="sm"
-        className={`px-4 border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white ${
-          fullWidth ? "w-full" : ""
-        }`}
-        aria-label="Logout from your account"
+    <>
+      <Link
+        href="/dashboard"
+        className={cn(
+          buttonVariants({
+            variant: "ghost",
+            size: "sm",
+            className: `px-4 ${fullWidth ? "w-full" : ""}`,
+          })
+        )}
+        aria-label="Go to your dashboard"
       >
-        Sign Out
-      </Button>
-    </form>
+        Dashboard
+      </Link>
+      <form
+        action={async () => {
+          "use server";
+          await signOut();
+        }}
+      >
+        <Button
+          type="submit"
+          variant="default"
+          size="sm"
+          className={`px-4 ${fullWidth ? "w-full" : ""}`}
+          aria-label="Logout from your account"
+        >
+          Sign Out
+        </Button>
+      </form>
+    </>
   ) : (
     <>
       <Link
         href="/login"
         className={cn(
           buttonVariants({
-            variant: "ghost",
+            variant: "default",
             size: "sm",
-            className: `px-4 text-gray-300 hover:text-white hover:bg-gray-800/50 ${
-              fullWidth ? "w-full" : ""
-            }`,
+            className: `px-4 ${fullWidth ? "w-full" : ""}`,
           })
         )}
         aria-label="Login to your account"
       >
         Login
       </Link>
-      <Link
+      {/* <Link
         href="/sign-up"
         className={cn(
           buttonVariants({
             variant: "default",
             size: "sm",
-            className: `px-4 shadow bg-gradient-to-r from-primary to-chart-2 hover:from-primary/90 hover:to-chart-2/90 ${
-              fullWidth ? "w-full" : ""
-            }`,
+            className: `px-4 ${fullWidth ? "w-full" : ""}`,
           })
         )}
         aria-label="Create a new account"
       >
         Sign Up
-      </Link>
+      </Link> */}
     </>
   );
 
@@ -106,7 +115,7 @@ const Header: React.FC<{ session: Session | null }> = ({ session }) => {
 
   return (
     <header
-      className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 flex items-center gap-6 px-6 py-2.5 bg-gray-900/95 backdrop-blur-xl shadow-xl rounded-full max-w-2xl w-full mx-auto border border-gray-700/60"
+      className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 flex items-center gap-6 px-6 py-2.5 bg-background backdrop-blur-xl shadow-xl rounded-full max-w-2xl w-full mx-auto border border-border"
       role="banner"
       aria-label="Primary site header"
     >
@@ -135,7 +144,7 @@ const Header: React.FC<{ session: Session | null }> = ({ session }) => {
             <Button
               variant="ghost"
               size="icon"
-              className="rounded-full text-gray-300 hover:text-white hover:bg-gray-800/50"
+              className="rounded-full text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--primary)]/20"
               aria-label="Open mobile menu"
             >
               <Menu className="size-6" />
@@ -145,12 +154,14 @@ const Header: React.FC<{ session: Session | null }> = ({ session }) => {
 
           <SheetContent
             side="right"
-            className="p-6 flex flex-col gap-6 w-64 bg-gray-900 border-l border-gray-700"
+            className="p-6 flex flex-col gap-6 w-64 bg-[var(--background)] border-l border-[var(--border)]"
             aria-label="Mobile navigation panel"
           >
             <div className="flex items-center gap-2 mb-4">
               <Logo iconSize={28} hideLabel />
-              <span className="font-bold text-lg text-white">Menu</span>
+              <span className="font-bold text-lg text-[var(--foreground)]">
+                Menu
+              </span>
             </div>
 
             <nav
@@ -161,7 +172,7 @@ const Header: React.FC<{ session: Session | null }> = ({ session }) => {
                 <a
                   key={href}
                   href={href}
-                  className="text-base font-medium rounded-md px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 focus:bg-gray-800 focus:outline-none transition-colors"
+                  className="text-base font-medium rounded-md px-3 py-2 text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--primary)]/20 focus:bg-[var(--primary)]/20 focus:outline-none transition-colors"
                   aria-label={`Navigate to ${label}`}
                 >
                   {label}
