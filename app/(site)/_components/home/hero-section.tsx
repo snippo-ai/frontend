@@ -16,7 +16,7 @@ import {
 
 const HeroSection = () => {
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-card to-background dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-8">
+    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 pt-8">
       {/* Animated background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
@@ -57,14 +57,14 @@ const HeroSection = () => {
             <Typography
               as="h1"
               fluidSize="4xl"
-              className="font-bold mb-4 bg-gradient-to-r from-chart-3 via-primary to-chart-2 dark:from-white dark:via-primary dark:to-chart-2 bg-clip-text text-transparent animate-fade-in-up"
+              className="font-bold mb-4 bg-gradient-to-r from-chart-3 via-primary to-chart-2 bg-clip-text text-transparent animate-fade-in-up"
             >
               Supercharge Your
             </Typography>
             <Typography
               as="h1"
               fluidSize="4xl"
-              className="font-bold bg-gradient-to-r from-primary via-chart-2 to-chart-3 dark:from-primary dark:via-chart-2 dark:to-chart-3 bg-clip-text text-transparent animate-fade-in-up delay-200"
+              className="font-bold bg-gradient-to-r from-primary via-chart-2 to-chart-3 bg-clip-text text-transparent animate-fade-in-up delay-200"
             >
               Coding Workflow
             </Typography>
@@ -74,7 +74,7 @@ const HeroSection = () => {
           <Typography
             as="p"
             fluidSize="xl"
-            className="mb-8 text-muted-foreground dark:text-gray-300 animate-fade-in-up delay-300"
+            className="mb-8 text-gray-300 animate-fade-in-up delay-300"
           >
             The modern, AI-powered code snippet manager for developers.
             <span className="text-primary font-semibold"> Organize</span>,
@@ -92,14 +92,12 @@ const HeroSection = () => {
             ].map((feature, index) => (
               <div
                 key={index}
-                className="flex items-center gap-2 px-4 py-2 bg-card/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-full border border-border dark:border-gray-700 hover:bg-card/80 dark:hover:bg-gray-800/80 transition-all duration-300 group"
+                className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 backdrop-blur-sm rounded-full border border-gray-700 hover:bg-gray-800/80 transition-all duration-300 group"
               >
                 <feature.icon
                   className={`w-5 h-5 ${feature.color} group-hover:scale-110 transition-transform`}
                 />
-                <span className="text-foreground dark:text-white font-medium">
-                  {feature.text}
-                </span>
+                <span className="text-white font-medium">{feature.text}</span>
               </div>
             ))}
           </div>
@@ -117,7 +115,7 @@ const HeroSection = () => {
           </div>
 
           {/* Trust indicators */}
-          <div className="mt-8 flex flex-wrap items-center gap-6 text-muted-foreground dark:text-gray-400 animate-fade-in-up delay-600">
+          <div className="mt-8 flex flex-wrap items-center gap-6 text-gray-400 animate-fade-in-up delay-600">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-chart-1 rounded-full animate-pulse"></div>
               <span className="text-sm">Trusted by 10K+ developers</span>
@@ -136,44 +134,93 @@ const HeroSection = () => {
         {/* Right Section - Creative Illustration */}
         <div className="relative flex items-center justify-center animate-fade-in-up delay-300">
           <div className="relative w-full max-w-lg">
-            {/* Main illustration container */}
-            <div className="relative bg-gradient-to-br from-card/50 to-background/50 dark:from-gray-800/50 dark:to-gray-900/50 backdrop-blur-sm rounded-2xl border border-border dark:border-gray-700 p-8 shadow-2xl">
-              {/* Floating code blocks */}
-              <div className="absolute -top-4 -left-4 bg-gradient-to-r from-primary to-chart-2 rounded-lg p-3 shadow-lg animate-float-slow">
-                <div className="flex items-center gap-2 text-primary-foreground text-sm">
-                  <Code className="w-4 h-4" />
-                  <span className="font-mono">React Hook</span>
+            {/* Enhanced main illustration container */}
+            <div className="relative bg-gradient-to-br from-gray-800/95 via-gray-900/90 to-gray-800/95 backdrop-blur-xl rounded-3xl border border-gray-700/60 p-8 shadow-2xl hover:shadow-primary/10 transition-all duration-500">
+              {/* Animated background grid */}
+              <div className="absolute inset-0 rounded-3xl overflow-hidden opacity-20">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-chart-2/10"></div>
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `radial-gradient(circle at 25% 25%, hsl(var(--primary)/0.1) 1px, transparent 1px),
+                                   radial-gradient(circle at 75% 75%, hsl(var(--chart-2)/0.1) 1px, transparent 1px)`,
+                    backgroundSize: "40px 40px",
+                  }}
+                ></div>
+              </div>
+
+              {/* Floating code blocks with enhanced styling */}
+              <div className="absolute -top-6 -left-6 bg-gradient-to-r from-primary via-primary/90 to-chart-2 rounded-xl p-4 shadow-xl animate-float-slow border border-primary/20 backdrop-blur-sm">
+                <div className="flex items-center gap-3 text-primary-foreground">
+                  <div className="p-1.5 bg-white/20 rounded-lg">
+                    <Code className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="font-mono text-sm font-semibold">
+                      React Hook
+                    </div>
+                    <div className="text-xs opacity-80">Custom Logic</div>
+                  </div>
+                </div>
+                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-primary rounded-full animate-pulse"></div>
+              </div>
+
+              <div className="absolute -top-4 -right-4 bg-gradient-to-r from-chart-2 via-chart-2/90 to-chart-3 rounded-xl p-4 shadow-xl animate-float-slow delay-1000 border border-chart-2/20 backdrop-blur-sm">
+                <div className="flex items-center gap-3 text-primary-foreground">
+                  <div className="p-1.5 bg-white/20 rounded-lg">
+                    <FileText className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="font-mono text-sm font-semibold">Utils</div>
+                    <div className="text-xs opacity-80">Helper Functions</div>
+                  </div>
+                </div>
+                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-chart-2 rounded-full animate-pulse delay-500"></div>
+              </div>
+
+              <div className="absolute -bottom-6 left-1/4 bg-gradient-to-r from-chart-3 via-chart-3/90 to-chart-4 rounded-xl p-4 shadow-xl animate-float-slow delay-500 border border-chart-3/20 backdrop-blur-sm">
+                <div className="flex items-center gap-3 text-primary-foreground">
+                  <div className="p-1.5 bg-white/20 rounded-lg">
+                    <Share2 className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="font-mono text-sm font-semibold">API</div>
+                    <div className="text-xs opacity-80">Endpoints</div>
+                  </div>
+                </div>
+                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-chart-3 rounded-full animate-pulse delay-1000"></div>
+              </div>
+
+              {/* Central AI brain with enhanced neural network */}
+              <div className="relative flex items-center justify-center mb-8">
+                {/* Outer glow rings */}
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-chart-2/30 to-chart-3/30 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-chart-2/20 to-chart-3/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
+
+                {/* Main brain container */}
+                <div className="relative bg-gradient-to-br from-primary via-primary/90 to-chart-2 rounded-full p-8 shadow-2xl border border-primary/30 backdrop-blur-sm hover:scale-105 transition-transform duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-full"></div>
+                  <Brain className="w-16 h-16 text-primary-foreground animate-pulse relative z-10" />
+
+                  {/* Orbiting particles around brain */}
+                  <div className="absolute inset-0 animate-orbit">
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-chart-2 rounded-full animate-pulse"></div>
+                  </div>
+                  <div
+                    className="absolute inset-0 animate-orbit-reverse"
+                    style={{ animationDuration: "6s" }}
+                  >
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-chart-3 rounded-full animate-pulse delay-1000"></div>
+                  </div>
                 </div>
               </div>
 
-              <div className="absolute -top-2 -right-2 bg-gradient-to-r from-chart-2 to-chart-3 rounded-lg p-3 shadow-lg animate-float-slow delay-1000">
-                <div className="flex items-center gap-2 text-primary-foreground text-sm">
-                  <FileText className="w-4 h-4" />
-                  <span className="font-mono">Utils</span>
-                </div>
-              </div>
-
-              <div className="absolute -bottom-4 left-1/4 bg-gradient-to-r from-chart-3 to-chart-4 rounded-lg p-3 shadow-lg animate-float-slow delay-500">
-                <div className="flex items-center gap-2 text-primary-foreground text-sm">
-                  <Share2 className="w-4 h-4" />
-                  <span className="font-mono">API</span>
-                </div>
-              </div>
-
-              {/* Central AI brain with neural network */}
-              <div className="relative flex items-center justify-center mb-6">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-chart-2/20 rounded-full blur-2xl animate-pulse"></div>
-                <div className="relative bg-gradient-to-r from-primary to-chart-2 rounded-full p-6 shadow-xl">
-                  <Brain className="w-12 h-12 text-primary-foreground animate-pulse" />
-                </div>
-              </div>
-
-              {/* Neural network connections */}
+              {/* Enhanced neural network connections */}
               <div className="absolute inset-0 pointer-events-none">
-                <svg className="w-full h-full" viewBox="0 0 300 200">
+                <svg className="w-full h-full" viewBox="0 0 300 250">
                   <defs>
                     <linearGradient
-                      id="connectionGradient"
+                      id="connectionGradient1"
                       x1="0%"
                       y1="0%"
                       x2="100%"
@@ -182,87 +229,219 @@ const HeroSection = () => {
                       <stop
                         offset="0%"
                         stopColor="hsl(var(--primary))"
-                        stopOpacity="0.6"
+                        stopOpacity="0.8"
                       />
                       <stop
                         offset="100%"
                         stopColor="hsl(var(--chart-2))"
-                        stopOpacity="0.6"
+                        stopOpacity="0.8"
+                      />
+                    </linearGradient>
+                    <linearGradient
+                      id="connectionGradient2"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="100%"
+                    >
+                      <stop
+                        offset="0%"
+                        stopColor="hsl(var(--chart-2))"
+                        stopOpacity="0.8"
+                      />
+                      <stop
+                        offset="100%"
+                        stopColor="hsl(var(--chart-3))"
+                        stopOpacity="0.8"
+                      />
+                    </linearGradient>
+                    <linearGradient
+                      id="connectionGradient3"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="100%"
+                    >
+                      <stop
+                        offset="0%"
+                        stopColor="hsl(var(--chart-3))"
+                        stopOpacity="0.8"
+                      />
+                      <stop
+                        offset="100%"
+                        stopColor="hsl(var(--primary))"
+                        stopOpacity="0.8"
                       />
                     </linearGradient>
                   </defs>
+
+                  {/* Animated connection paths */}
                   <path
                     d="M 50 50 Q 150 25 250 50"
-                    stroke="url(#connectionGradient)"
-                    strokeWidth="2"
+                    stroke="url(#connectionGradient1)"
+                    strokeWidth="3"
                     fill="none"
                     className="animate-pulse"
+                    strokeDasharray="5,5"
                   />
                   <path
-                    d="M 50 150 Q 150 175 250 150"
-                    stroke="url(#connectionGradient)"
-                    strokeWidth="2"
+                    d="M 50 200 Q 150 225 250 200"
+                    stroke="url(#connectionGradient2)"
+                    strokeWidth="3"
                     fill="none"
                     className="animate-pulse delay-500"
+                    strokeDasharray="5,5"
                   />
                   <path
-                    d="M 50 50 Q 150 100 50 150"
-                    stroke="url(#connectionGradient)"
-                    strokeWidth="2"
+                    d="M 50 50 Q 150 125 50 200"
+                    stroke="url(#connectionGradient3)"
+                    strokeWidth="3"
                     fill="none"
                     className="animate-pulse delay-1000"
+                    strokeDasharray="5,5"
                   />
                   <path
-                    d="M 250 50 Q 150 100 250 150"
-                    stroke="url(#connectionGradient)"
-                    strokeWidth="2"
+                    d="M 250 50 Q 150 125 250 200"
+                    stroke="url(#connectionGradient1)"
+                    strokeWidth="3"
                     fill="none"
                     className="animate-pulse delay-1500"
+                    strokeDasharray="5,5"
+                  />
+
+                  {/* Connection nodes */}
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="4"
+                    fill="hsl(var(--primary))"
+                    className="animate-pulse"
+                  />
+                  <circle
+                    cx="250"
+                    cy="50"
+                    r="4"
+                    fill="hsl(var(--chart-2))"
+                    className="animate-pulse delay-200"
+                  />
+                  <circle
+                    cx="50"
+                    cy="200"
+                    r="4"
+                    fill="hsl(var(--chart-3))"
+                    className="animate-pulse delay-400"
+                  />
+                  <circle
+                    cx="250"
+                    cy="200"
+                    r="4"
+                    fill="hsl(var(--primary))"
+                    className="animate-pulse delay-600"
+                  />
+                  <circle
+                    cx="150"
+                    cy="125"
+                    r="6"
+                    fill="hsl(var(--chart-2))"
+                    className="animate-pulse delay-800"
                   />
                 </svg>
               </div>
 
-              {/* Search functionality representation */}
-              <div className="relative bg-card/80 dark:bg-gray-800/80 rounded-lg p-4 border border-border dark:border-gray-700">
-                <div className="flex items-center gap-3 mb-3">
-                  <Search className="w-5 h-5 text-primary" />
-                  <div className="flex-1 h-2 bg-muted dark:bg-gray-600 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-primary to-chart-2 rounded-full animate-pulse"
-                      style={{ width: "60%" }}
-                    ></div>
+              {/* Enhanced search functionality representation */}
+              <div className="relative bg-gradient-to-br from-gray-800/95 via-gray-900/90 to-gray-800/95 rounded-xl p-6 border border-gray-700/60 backdrop-blur-sm shadow-lg">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="p-2 bg-gradient-to-r from-primary to-chart-2 rounded-lg">
+                    <Search className="w-5 h-5 text-primary-foreground" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="h-3 bg-gray-600 rounded-full overflow-hidden mb-2">
+                      <div
+                        className="h-full bg-gradient-to-r from-primary to-chart-2 rounded-full animate-pulse"
+                        style={{ width: "70%" }}
+                      ></div>
+                    </div>
+                    <div className="text-xs text-gray-400">
+                      AI-powered search...
+                    </div>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <div className="h-3 bg-muted dark:bg-gray-600 rounded animate-pulse"></div>
-                  <div
-                    className="h-3 bg-muted dark:bg-gray-600 rounded animate-pulse delay-200"
-                    style={{ width: "80%" }}
-                  ></div>
-                  <div
-                    className="h-3 bg-muted dark:bg-gray-600 rounded animate-pulse delay-400"
-                    style={{ width: "70%" }}
-                  ></div>
+
+                {/* Search results preview */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 p-2 bg-gray-700/80 rounded-lg hover:bg-gray-700 transition-colors">
+                    <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                    <div className="flex-1">
+                      <div className="h-3 bg-gray-600 rounded animate-pulse"></div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-2 bg-gray-700/80 rounded-lg hover:bg-gray-700 transition-colors">
+                    <div className="w-2 h-2 bg-chart-2 rounded-full animate-pulse delay-200"></div>
+                    <div className="flex-1">
+                      <div
+                        className="h-3 bg-gray-600 rounded animate-pulse delay-200"
+                        style={{ width: "85%" }}
+                      ></div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-2 bg-gray-700/80 rounded-lg hover:bg-gray-700 transition-colors">
+                    <div className="w-2 h-2 bg-chart-3 rounded-full animate-pulse delay-400"></div>
+                    <div className="flex-1">
+                      <div
+                        className="h-3 bg-gray-600 rounded animate-pulse delay-400"
+                        style={{ width: "75%" }}
+                      ></div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Floating code snippets */}
-              <div className="absolute -right-8 top-1/4 opacity-80 animate-float-slow">
-                <pre className="text-xs text-muted-foreground dark:text-gray-400 font-mono bg-card/80 dark:bg-gray-800/80 p-2 rounded border border-border dark:border-gray-700">
-                  {`const snippet = {
+              {/* Enhanced floating code snippets */}
+              <div className="absolute -right-10 top-1/4 opacity-90 animate-float-slow">
+                <div className="bg-gradient-to-br from-gray-800/98 to-gray-900/98 p-3 rounded-lg border border-gray-700/60 backdrop-blur-sm shadow-lg">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <span className="text-xs font-mono text-gray-400">
+                      snippet.ts
+                    </span>
+                  </div>
+                  <pre className="text-xs text-gray-400 font-mono">
+                    {`const snippet = {
   name: "useAuth",
   language: "tsx",
   tags: ["react", "auth"]
 }`}
-                </pre>
+                  </pre>
+                </div>
               </div>
 
-              <div className="absolute -left-8 bottom-1/4 opacity-80 animate-float-slow delay-1000">
-                <pre className="text-xs text-muted-foreground dark:text-gray-400 font-mono bg-card/80 dark:bg-gray-800/80 p-2 rounded border border-border dark:border-gray-700">
-                  {`function createSnippet() {
+              <div className="absolute -left-10 bottom-1/4 opacity-90 animate-float-slow delay-1000">
+                <div className="bg-gradient-to-br from-gray-800/98 to-gray-900/98 p-3 rounded-lg border border-gray-700/60 backdrop-blur-sm shadow-lg">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-2 h-2 bg-chart-2 rounded-full"></div>
+                    <span className="text-xs font-mono text-gray-400">
+                      utils.js
+                    </span>
+                  </div>
+                  <pre className="text-xs text-gray-400 font-mono">
+                    {`function createSnippet() {
   return "✨ Magic ✨"
 }`}
-                </pre>
+                  </pre>
+                </div>
+              </div>
+
+              {/* Additional floating elements */}
+              <div className="absolute top-1/2 -right-16 opacity-60 animate-float-slow delay-1500">
+                <div className="w-8 h-8 bg-gradient-to-r from-primary to-chart-2 rounded-full flex items-center justify-center">
+                  <Sparkles className="w-4 h-4 text-primary-foreground" />
+                </div>
+              </div>
+
+              <div className="absolute bottom-1/2 -left-16 opacity-60 animate-float-slow delay-2000">
+                <div className="w-8 h-8 bg-gradient-to-r from-chart-2 to-chart-3 rounded-full flex items-center justify-center">
+                  <Zap className="w-4 h-4 text-primary-foreground" />
+                </div>
               </div>
             </div>
           </div>
@@ -306,6 +485,14 @@ const HeroSection = () => {
             transform: rotate(360deg) translateX(60px) rotate(-360deg);
           }
         }
+        @keyframes orbit-reverse {
+          0% {
+            transform: rotate(0deg) translateX(40px) rotate(0deg);
+          }
+          100% {
+            transform: rotate(-360deg) translateX(40px) rotate(360deg);
+          }
+        }
         .animate-float {
           animation: float 3s ease-in-out infinite;
         }
@@ -317,6 +504,9 @@ const HeroSection = () => {
         }
         .animate-orbit {
           animation: orbit 8s linear infinite;
+        }
+        .animate-orbit-reverse {
+          animation: orbit-reverse 6s linear infinite;
         }
         .delay-200 {
           animation-delay: 0.2s;
@@ -333,11 +523,17 @@ const HeroSection = () => {
         .delay-600 {
           animation-delay: 0.6s;
         }
+        .delay-800 {
+          animation-delay: 0.8s;
+        }
         .delay-1000 {
           animation-delay: 1s;
         }
         .delay-1500 {
           animation-delay: 1.5s;
+        }
+        .delay-2000 {
+          animation-delay: 2s;
         }
       `}</style>
     </section>
