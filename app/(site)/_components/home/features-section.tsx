@@ -21,7 +21,10 @@ const floatingDecor = [
 
 const FeaturesSection = () => {
   return (
-    <Container maxWidth="6xl" className="relative py-20">
+    <Container
+      maxWidth="6xl"
+      className="relative py-12 sm:py-16 md:py-20 px-2 sm:px-6 md:px-8"
+    >
       {/* Floating decorative elements (decorative only, aria-hidden) */}
       <div
         className="absolute inset-0 pointer-events-none z-0"
@@ -50,7 +53,7 @@ const FeaturesSection = () => {
         </SectionHeading>
         {/* Minimal divider below heading */}
         <div
-          className="w-24 h-1.5 mx-auto mb-10 rounded-full bg-gradient-to-r from-primary via-chart-2 to-chart-3 shadow-lg animate-scale-in"
+          className="w-20 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-primary via-chart-2 to-chart-3 shadow-lg animate-scale-in sm:w-28 sm:h-1.5 md:w-32 md:mb-10"
           style={{
             boxShadow: "0 2px 16px 0 rgba(80,120,255,0.15)",
             filter: "drop-shadow(0 0 8px var(--primary))",
@@ -60,10 +63,10 @@ const FeaturesSection = () => {
         />
         {/* Subtle radial gradient background behind grid */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
-          <div className="w-3/4 h-3/4 rounded-full bg-gradient-to-br from-primary/30 via-chart-2/30 to-transparent blur-2xl" />
+          <div className="w-3/4 h-3/4 sm:w-2/3 sm:h-2/3 md:w-1/2 md:h-1/2 rounded-full bg-gradient-to-br from-primary/30 via-chart-2/30 to-transparent blur-2xl" />
         </div>
         {/* Features Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {features.map((feature, idx) => {
             const Icon = feature.icon;
             return (
