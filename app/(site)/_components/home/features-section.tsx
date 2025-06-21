@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { features } from "@/lib/mocks/home-page";
 
+// Floating decorative elements config
 const floatingDecor = [
   { className: "top-4 left-8 bg-primary/30", delay: "delay-0" },
   { className: "top-1/2 right-10 bg-chart-2/30", delay: "delay-300" },
@@ -21,76 +22,105 @@ const floatingDecor = [
 const FeaturesSection = () => {
   return (
     <Container maxWidth="6xl" className="relative py-20">
-      {/* Floating decorative elements */}
-      <div className="absolute inset-0 pointer-events-none z-0">
+      {/* Floating decorative elements (decorative only, aria-hidden) */}
+      <div
+        className="absolute inset-0 pointer-events-none z-0"
+        aria-hidden="true"
+      >
         {floatingDecor.map((d, i) => (
           <div
-            key={i}
+            key={d.className + d.delay}
             className={`absolute w-8 h-8 rounded-full blur-2xl animate-float-slow ${d.className} ${d.delay}`}
             style={{ animationDuration: `${4 + i}s` }}
           />
         ))}
       </div>
-      {/* Section Heading */}
-      <SectionHeading
-        as="h2"
-        subtitle="Everything you need to supercharge your coding workflow."
+      {/* Section Heading with aria-labelledby for accessibility */}
+      <section
+        className="relative z-10"
+        role="region"
+        aria-labelledby="features-heading"
       >
-        <span>
+        <SectionHeading
+          as="h2"
+          id="features-heading"
+          subtitle="Unlock productivity, collaboration, and code quality with Snippo's powerful toolkit."
+        >
           Powerful Features
-          {/* <Zap className="size-6 text-primary animate-float-slow delay-500" /> */}
-        </span>
-      </SectionHeading>
-      {/* Features Grid */}
-      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-        {features.map((feature, idx) => (
-          <Card
-            key={feature.title}
-            className="group items-center text-center border border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/80 backdrop-blur-md shadow-md hover:shadow-lg hover:-translate-y-1 hover:border-primary/70 transition-all duration-200 flex flex-col px-0 pt-0 pb-4 relative overflow-hidden"
-            style={{
-              ...(typeof window !== "undefined" &&
-              window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? {
-                    background: "rgba(24,24,27,0.92)",
-                    boxShadow: "0 4px 32px 0 rgba(30,64,175,0.10)",
-                  }
-                : {}),
-            }}
-          >
-            {/* Accent bar */}
-            <span
-              className={`block w-full h-1 ${
-                ["bg-chart-1", "bg-chart-2", "bg-chart-3", "bg-chart-5"][
-                  idx % 4
-                ]
-              } rounded-t-xl mb-4`}
-            />
-            <CardHeader className="w-full flex flex-col items-center justify-center gap-2 px-4 md:px-8 mt-6 mb-2">
-              <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 shadow-sm mb-2">
-                {(() => {
-                  const Icon = feature.icon;
-                  return (
+        </SectionHeading>
+        {/* Minimal divider below heading */}
+        <div
+          className="w-24 h-1.5 mx-auto mb-10 rounded-full bg-gradient-to-r from-primary via-chart-2 to-chart-3 shadow-lg animate-scale-in"
+          style={{
+            boxShadow: "0 2px 16px 0 rgba(80,120,255,0.15)",
+            filter: "drop-shadow(0 0 8px var(--primary))",
+            animation: "scale-in 0.7s cubic-bezier(0.4,0,0.2,1)",
+          }}
+          aria-hidden="true"
+        />
+        {/* Subtle radial gradient background behind grid */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
+          <div className="w-3/4 h-3/4 rounded-full bg-gradient-to-br from-primary/30 via-chart-2/30 to-transparent blur-2xl" />
+        </div>
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          {features.map((feature, idx) => {
+            const Icon = feature.icon;
+            return (
+              <Card
+                key={feature.title}
+                className="group items-center text-center border border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/80 backdrop-blur-md shadow-md hover:shadow-lg hover:-translate-y-1 hover:border-primary/70 transition-all duration-200 flex flex-col px-0 pt-0 pb-4 relative overflow-hidden"
+                style={{
+                  ...(typeof window !== "undefined" &&
+                  window.matchMedia("(prefers-color-scheme: dark)").matches
+                    ? {
+                        background: "rgba(24,24,27,0.92)",
+                        boxShadow: "0 4px 32px 0 rgba(30,64,175,0.10)",
+                      }
+                    : {}),
+                }}
+                role="listitem"
+                aria-label={feature.title}
+              >
+                {/* Animated dot at top-right for modern touch */}
+                <span
+                  className="absolute top-3 right-4 w-2 h-2 rounded-full bg-primary/70 animate-pulse"
+                  aria-hidden="true"
+                />
+                {/* Accent bar for visual separation */}
+                <span
+                  className={`block w-full h-1 ${
+                    ["bg-chart-1", "bg-chart-2", "bg-chart-3", "bg-chart-5"][
+                      idx % 4
+                    ]
+                  } rounded-t-xl mb-4`}
+                  aria-hidden="true"
+                />
+                <CardHeader className="w-full flex flex-col items-center justify-center gap-2 px-4 md:px-8 mt-6 mb-2">
+                  <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 shadow-sm mb-2">
                     <Icon
                       size={36}
                       aria-label={feature.title}
+                      role="img"
+                      focusable={false}
                       className="drop-shadow-sm"
                     />
-                  );
-                })()}
-              </span>
-              <CardTitle className="text-base font-semibold text-foreground dark:text-white mt-1">
-                {feature.title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="px-4">
-              <CardDescription className="text-sm text-muted-foreground min-h-[44px]">
-                {feature.desc}
-              </CardDescription>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-      {/* Animations */}
+                  </span>
+                  <CardTitle className="text-base font-semibold text-foreground dark:text-white mt-1">
+                    {feature.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="px-4">
+                  <CardDescription className="text-sm text-muted-foreground min-h-[44px]">
+                    {feature.desc}
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+      </section>
+      {/* Animations for floating elements */}
       <style jsx>{`
         @keyframes float-slow {
           0%,
@@ -104,18 +134,6 @@ const FeaturesSection = () => {
         .animate-float-slow {
           animation: float-slow 4s ease-in-out infinite;
         }
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px) rotate(0deg);
-          }
-          50% {
-            transform: translateY(-20px) rotate(180deg);
-          }
-        }
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
         .delay-0 {
           animation-delay: 0s;
         }
@@ -127,6 +145,16 @@ const FeaturesSection = () => {
         }
         .delay-700 {
           animation-delay: 0.7s;
+        }
+        @keyframes scale-in {
+          0% {
+            transform: scaleX(0.6);
+            opacity: 0;
+          }
+          100% {
+            transform: scaleX(1);
+            opacity: 1;
+          }
         }
       `}</style>
     </Container>
