@@ -1,21 +1,23 @@
+import { Code2, FileText, Globe, Layout } from "lucide-react";
+
 export const features = [
   {
-    icon: "/file.svg",
-    title: "Code Snippet Management",
+    icon: FileText,
+    title: "Snippet Management",
     desc: "Organize, search, and share your code snippets with ease.",
   },
   {
-    icon: "/globe.svg",
+    icon: Globe,
     title: "Cloud Sync",
     desc: "Access your snippets anywhere, anytime, on any device.",
   },
   {
-    icon: "/window.svg",
+    icon: Layout,
     title: "Syntax Highlighting",
     desc: "Beautiful, language-aware code display for every snippet.",
   },
   {
-    icon: "/next.svg",
+    icon: Code2,
     title: "Next.js & TypeScript",
     desc: "Built for modern web developers with best-in-class tech.",
   },
