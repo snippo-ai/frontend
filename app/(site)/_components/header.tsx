@@ -100,76 +100,74 @@ const Header: React.FC<{ session: Session | null }> = ({ session }) => {
 
   return (
     <header
-      className="w-full flex justify-center mt-6 px-4"
+      className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 flex items-center gap-6 px-6 py-2.5 bg-background dark:bg-zinc-900 shadow-lg rounded-full max-w-2xl w-full mx-auto border border-border"
       role="banner"
       aria-label="Primary site header"
     >
-      <div className="flex items-center gap-6 px-6 py-2.5 bg-white/90 dark:bg-zinc-900/90 shadow-lg rounded-full max-w-2xl w-full mx-auto border border-zinc-200 dark:border-zinc-800 backdrop-blur supports-[backdrop-filter]:bg-white/80 transition-all">
-        <Logo iconSize={32} hideLabel className="ml-2" />
+      <Logo iconSize={32} hideLabel className="ml-2" />
 
-        {/* Desktop Navigation */}
-        <nav className="flex-1 hidden lg:block" aria-label="Primary navigation">
-          <NavigationMenu>
-            <NavigationMenuList>
-              {navLinks.map((link) => (
-                <NavLink key={link.href} {...link} />
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
-        </nav>
+      {/* Desktop Navigation */}
+      <nav className="flex-1 hidden lg:block" aria-label="Primary navigation">
+        <NavigationMenu>
+          <NavigationMenuList>
+            {navLinks.map((link) => (
+              <NavLink key={link.href} {...link} />
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
+      </nav>
 
-        {/* Desktop Auth Buttons */}
-        <div className="hidden lg:flex gap-2 mr-2">
-          <AuthButtons session={session} />
-        </div>
+      {/* Desktop Auth Buttons */}
+      <div className="hidden lg:flex gap-2 mr-2">
+        <AuthButtons session={session} />
+      </div>
 
-        {/* Mobile Sheet Navigation */}
-        <div className="lg:hidden flex items-center ml-auto">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full"
-                aria-label="Open mobile menu"
-              >
-                <Menu className="size-6" />
-                <span className="sr-only">Open menu</span>
-              </Button>
-            </SheetTrigger>
-
-            <SheetContent
-              side="right"
-              className="p-6 flex flex-col gap-6 w-64"
-              aria-label="Mobile navigation panel"
+      {/* Mobile Sheet Navigation */}
+      <div className="lg:hidden flex items-center ml-auto">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full"
+              aria-label="Open mobile menu"
             >
-              <div className="flex items-center gap-2 mb-4">
-                <Logo iconSize={28} hideLabel />
-                <span className="font-bold text-lg">Menu</span>
-              </div>
+              <Menu className="size-6" />
+              <span className="sr-only">Open menu</span>
+            </Button>
+          </SheetTrigger>
 
-              <nav
-                className="flex flex-col gap-4"
-                aria-label="Mobile navigation links"
-              >
-                {navLinks.map(({ href, label }) => (
-                  <a
-                    key={href}
-                    href={href}
-                    className="text-base font-medium rounded-md px-3 py-2 hover:bg-accent focus:bg-accent focus:outline-none transition-colors"
-                    aria-label={`Navigate to ${label}`}
-                  >
-                    {label}
-                  </a>
-                ))}
-              </nav>
+          <SheetContent
+            side="right"
+            className="p-6 flex flex-col gap-6 w-64"
+            aria-label="Mobile navigation panel"
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <Logo iconSize={28} hideLabel />
+              <span className="font-bold text-lg">Menu</span>
+            </div>
 
-              <div className="flex flex-col gap-2 mt-6">
-                <AuthButtons session={session} fullWidth />
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
+            <nav
+              className="flex flex-col gap-4"
+              aria-label="Mobile navigation links"
+            >
+              {navLinks.map(({ href, label }) => (
+                <a
+                  key={href}
+                  href={href}
+                  className="text-base font-medium rounded-md px-3 py-2 hover:bg-accent focus:bg-accent focus:outline-none transition-colors"
+                  aria-label={`Navigate to ${label}`}
+                >
+                  {label}
+                </a>
+              ))}
+            </nav>
+
+            <div className="flex flex-col gap-2 mt-6">
+              <AuthButtons session={session} fullWidth />
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
   );
