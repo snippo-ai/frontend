@@ -84,20 +84,20 @@ const HeroSection = () => {
           </Typography>
 
           {/* Feature highlights */}
-          <div className="flex flex-wrap gap-4 mb-8  delay-400">
+          <div className="flex flex-wrap gap-4 mb-8">
             {[
-              { icon: Sparkles, text: "AI-Powered", color: "text-chart-1" },
-              { icon: Code, text: "Smart Search", color: "text-chart-2" },
-              { icon: Zap, text: "Lightning Fast", color: "text-chart-3" },
+              { icon: Sparkles, text: "AI-Powered", color: "text-zinc-400" },
+              { icon: Code, text: "Smart Search", color: "text-zinc-400" },
+              { icon: Zap, text: "Lightning Fast", color: "text-zinc-400" },
             ].map((feature, index) => (
               <div
                 key={index}
                 className="flex items-center gap-2 px-4 py-2 bg-card/50 backdrop-blur-sm rounded-full border border-border hover:bg-card/80 transition-all duration-300 group"
               >
                 <feature.icon
-                  className={`w-5 h-5 ${feature.color} group-hover:scale-110 transition-transform`}
+                  className={`size-4 ${feature.color} group-hover:scale-110 transition-transform`}
                 />
-                <span className="text-foreground font-medium">
+                <span className="text-fluid-xs font-medium text-zinc-400">
                   {feature.text}
                 </span>
               </div>
@@ -105,14 +105,14 @@ const HeroSection = () => {
           </div>
 
           {/* CTA Button with enhanced styling */}
-          <div className="relative group  delay-500">
+          <div className="relative">
             <Button
               size="lg"
-              className="relative px-10 py-6 text-xl font-semibold bg-gradient-to-r from-primary to-chart-2 hover:from-primary/90 hover:to-chart-2/90 border-0 shadow-2xl hover:shadow-primary/25 transition-all duration-300 transform hover:scale-105 group"
+              className="relative px-12 py-6 text-fluid-base font-semibold bg-gradient-to-br from-primary to-chart-2 border-0 shadow-2xl hover:shadow-primary/25 transition-200 group w-fit rounded-xl"
             >
-              <Sparkles className="w-5 h-5 mr-2 animate-pulse" />
-              Get Started Free
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              {/* <Sparkles className="size-6 mr-2" /> */}
+              Get Started
+              <ArrowRight className="size-6 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
 
