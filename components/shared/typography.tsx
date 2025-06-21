@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { ElementType, HTMLAttributes } from "react";
 
-type FluidSize =
+export type FluidSize =
   | "xs"
   | "sm"
   | "base"
