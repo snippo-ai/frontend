@@ -16,7 +16,7 @@ import {
 
 const HeroSection = () => {
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 pt-8">
+    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-8">
       {/* Animated background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
@@ -74,7 +74,7 @@ const HeroSection = () => {
           <Typography
             as="p"
             fluidSize="xl"
-            className="mb-8 text-gray-300 animate-fade-in-up delay-300"
+            className="mb-8 text-muted-foreground animate-fade-in-up delay-300"
           >
             The modern, AI-powered code snippet manager for developers.
             <span className="text-primary font-semibold"> Organize</span>,
@@ -92,12 +92,14 @@ const HeroSection = () => {
             ].map((feature, index) => (
               <div
                 key={index}
-                className="flex items-center gap-2 px-4 py-2 bg-gray-800/50 backdrop-blur-sm rounded-full border border-gray-700 hover:bg-gray-800/80 transition-all duration-300 group"
+                className="flex items-center gap-2 px-4 py-2 bg-card/50 backdrop-blur-sm rounded-full border border-border hover:bg-card/80 transition-all duration-300 group"
               >
                 <feature.icon
                   className={`w-5 h-5 ${feature.color} group-hover:scale-110 transition-transform`}
                 />
-                <span className="text-white font-medium">{feature.text}</span>
+                <span className="text-foreground font-medium">
+                  {feature.text}
+                </span>
               </div>
             ))}
           </div>
@@ -115,7 +117,7 @@ const HeroSection = () => {
           </div>
 
           {/* Trust indicators */}
-          <div className="mt-8 flex flex-wrap items-center gap-6 text-gray-400 animate-fade-in-up delay-600">
+          <div className="mt-8 flex flex-wrap items-center gap-6 text-muted-foreground animate-fade-in-up delay-600">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-chart-1 rounded-full animate-pulse"></div>
               <span className="text-sm">Trusted by 10K+ developers</span>
@@ -135,7 +137,7 @@ const HeroSection = () => {
         <div className="relative flex items-center justify-center animate-fade-in-up delay-300">
           <div className="relative w-full max-w-lg">
             {/* Enhanced main illustration container */}
-            <div className="relative bg-gradient-to-br from-gray-800/95 via-gray-900/90 to-gray-800/95 backdrop-blur-xl rounded-3xl border border-gray-700/60 p-8 shadow-2xl hover:shadow-primary/10 transition-all duration-500">
+            <div className="relative bg-gradient-to-br from-card/95 via-background/90 to-card/95 backdrop-blur-xl rounded-3xl border border-border/60 p-8 shadow-2xl hover:shadow-primary/10 transition-all duration-500">
               {/* Animated background grid */}
               <div className="absolute inset-0 rounded-3xl overflow-hidden opacity-20">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-chart-2/10"></div>
@@ -349,19 +351,19 @@ const HeroSection = () => {
               </div>
 
               {/* Enhanced search functionality representation */}
-              <div className="relative bg-gradient-to-br from-gray-800/95 via-gray-900/90 to-gray-800/95 rounded-xl p-6 border border-gray-700/60 backdrop-blur-sm shadow-lg">
+              <div className="relative bg-gradient-to-br from-card/95 via-background/90 to-card/95 rounded-xl p-6 border border-border/60 backdrop-blur-sm shadow-lg">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="p-2 bg-gradient-to-r from-primary to-chart-2 rounded-lg">
                     <Search className="w-5 h-5 text-primary-foreground" />
                   </div>
                   <div className="flex-1">
-                    <div className="h-3 bg-gray-600 rounded-full overflow-hidden mb-2">
+                    <div className="h-3 bg-muted rounded-full overflow-hidden mb-2">
                       <div
                         className="h-full bg-gradient-to-r from-primary to-chart-2 rounded-full animate-pulse"
                         style={{ width: "70%" }}
                       ></div>
                     </div>
-                    <div className="text-xs text-gray-400">
+                    <div className="text-xs text-muted-foreground">
                       AI-powered search...
                     </div>
                   </div>
@@ -369,26 +371,26 @@ const HeroSection = () => {
 
                 {/* Search results preview */}
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3 p-2 bg-gray-700/80 rounded-lg hover:bg-gray-700 transition-colors">
+                  <div className="flex items-center gap-3 p-2 bg-muted/80 rounded-lg hover:bg-muted transition-colors">
                     <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
                     <div className="flex-1">
-                      <div className="h-3 bg-gray-600 rounded animate-pulse"></div>
+                      <div className="h-3 bg-muted-foreground/20 rounded animate-pulse"></div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-2 bg-gray-700/80 rounded-lg hover:bg-gray-700 transition-colors">
+                  <div className="flex items-center gap-3 p-2 bg-muted/80 rounded-lg hover:bg-muted transition-colors">
                     <div className="w-2 h-2 bg-chart-2 rounded-full animate-pulse delay-200"></div>
                     <div className="flex-1">
                       <div
-                        className="h-3 bg-gray-600 rounded animate-pulse delay-200"
+                        className="h-3 bg-muted-foreground/20 rounded animate-pulse delay-200"
                         style={{ width: "85%" }}
                       ></div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-2 bg-gray-700/80 rounded-lg hover:bg-gray-700 transition-colors">
+                  <div className="flex items-center gap-3 p-2 bg-muted/80 rounded-lg hover:bg-muted transition-colors">
                     <div className="w-2 h-2 bg-chart-3 rounded-full animate-pulse delay-400"></div>
                     <div className="flex-1">
                       <div
-                        className="h-3 bg-gray-600 rounded animate-pulse delay-400"
+                        className="h-3 bg-muted-foreground/20 rounded animate-pulse delay-400"
                         style={{ width: "75%" }}
                       ></div>
                     </div>
@@ -398,14 +400,14 @@ const HeroSection = () => {
 
               {/* Enhanced floating code snippets */}
               <div className="absolute -right-10 top-1/4 opacity-90 animate-float-slow">
-                <div className="bg-gradient-to-br from-gray-800/98 to-gray-900/98 p-3 rounded-lg border border-gray-700/60 backdrop-blur-sm shadow-lg">
+                <div className="bg-gradient-to-br from-card/98 to-background/98 p-3 rounded-lg border border-border/60 backdrop-blur-sm shadow-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-2 h-2 bg-primary rounded-full"></div>
-                    <span className="text-xs font-mono text-gray-400">
+                    <span className="text-xs font-mono text-muted-foreground">
                       snippet.ts
                     </span>
                   </div>
-                  <pre className="text-xs text-gray-400 font-mono">
+                  <pre className="text-xs text-muted-foreground font-mono">
                     {`const snippet = {
   name: "useAuth",
   language: "tsx",
@@ -416,14 +418,14 @@ const HeroSection = () => {
               </div>
 
               <div className="absolute -left-10 bottom-1/4 opacity-90 animate-float-slow delay-1000">
-                <div className="bg-gradient-to-br from-gray-800/98 to-gray-900/98 p-3 rounded-lg border border-gray-700/60 backdrop-blur-sm shadow-lg">
+                <div className="bg-gradient-to-br from-card/98 to-background/98 p-3 rounded-lg border border-border/60 backdrop-blur-sm shadow-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-2 h-2 bg-chart-2 rounded-full"></div>
-                    <span className="text-xs font-mono text-gray-400">
+                    <span className="text-xs font-mono text-muted-foreground">
                       utils.js
                     </span>
                   </div>
-                  <pre className="text-xs text-gray-400 font-mono">
+                  <pre className="text-xs text-muted-foreground font-mono">
                     {`function createSnippet() {
   return "✨ Magic ✨"
 }`}
