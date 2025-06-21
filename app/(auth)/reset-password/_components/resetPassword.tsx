@@ -31,10 +31,10 @@ const ResetPasswordForm = () => {
 
     try {
       setLoading(true);
-      const res = await fetch("/api/auth/reset-password", {
+      const res = await fetch("http://localhost:8080/auth/reset-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token, password }),
+        body: JSON.stringify({ token, newPassword: password }),
       });
 
       const data = await res.json();
@@ -42,8 +42,10 @@ const ResetPasswordForm = () => {
 
       toast.success(data?.message || "Password reset successfully!");
       router.push("/login");
-    } catch (err: any) {
-      toast.error(err.message || "Something went wrong");
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Something went wrong";
+      toast.error(message);
     } finally {
       setLoading(false);
     }
@@ -63,7 +65,10 @@ const ResetPasswordForm = () => {
       <form onSubmit={handleSubmit} autoComplete="off" className="space-y-6">
         {/* New Password */}
         <div className="space-y-2">
-          <Label htmlFor="password" className="text-sm font-medium text-foreground">
+          <Label
+            htmlFor="password"
+            className="text-sm font-medium text-foreground"
+          >
             New Password
           </Label>
           <div className="relative">
@@ -82,7 +87,10 @@ const ResetPasswordForm = () => {
 
         {/* Confirm Password */}
         <div className="space-y-2">
-          <Label htmlFor="confirm" className="text-sm font-medium text-foreground">
+          <Label
+            htmlFor="confirm"
+            className="text-sm font-medium text-foreground"
+          >
             Confirm Password
           </Label>
           <div className="relative">
@@ -104,11 +112,7 @@ const ResetPasswordForm = () => {
           type="submit"
           className="w-full h-12 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-medium transition-all duration-300 group"
         >
-          {loading ? (
-            <Spinner className="size-5" />
-          ) : (
-            <>Reset Password</>
-          )}
+          {loading ? <Spinner className="size-5" /> : <>Reset Password</>}
         </Button>
       </form>
     </div>
