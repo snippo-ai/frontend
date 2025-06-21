@@ -109,7 +109,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ className = "", ...props }) => {
               Password
             </Label>
             <Link
-              href="/forget-password"
+              href="/forgot-password"
               className="text-xs text-primary hover:text-primary/80 underline-offset-4 hover:underline transition-colors"
             >
               Forgot password?
