@@ -152,7 +152,7 @@ const HeroSection = () => {
               </div>
 
               {/* Floating code blocks with enhanced styling */}
-              <div className="absolute -top-6 -left-6 bg-gradient-to-r from-primary via-primary/90 to-chart-2 rounded-xl p-4 shadow-xl animate-float-slow border border-primary/20 backdrop-blur-sm">
+              <div className="absolute -top-6 -left-6 bg-gradient-to-r from-primary to-chart-5 rounded-xl p-4 shadow-xl animate-float-slow border border-primary/20 backdrop-blur-sm">
                 <div className="flex items-center gap-3 text-primary-foreground">
                   <div className="p-1.5 bg-white/20 rounded-lg">
                     <Code className="w-4 h-4" />
@@ -167,7 +167,7 @@ const HeroSection = () => {
                 <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-primary rounded-full animate-pulse"></div>
               </div>
 
-              <div className="absolute -top-4 -right-4 bg-gradient-to-r from-chart-2 via-chart-2/90 to-chart-3 rounded-xl p-4 shadow-xl animate-float-slow delay-1000 border border-chart-2/20 backdrop-blur-sm">
+              <div className="absolute -top-4 -right-4 bg-gradient-to-r from-primary to-chart-5 rounded-xl p-4 shadow-xl animate-float-slow delay-1000 border border-chart-2/20 backdrop-blur-sm">
                 <div className="flex items-center gap-3 text-primary-foreground">
                   <div className="p-1.5 bg-white/20 rounded-lg">
                     <FileText className="w-4 h-4" />
@@ -180,7 +180,7 @@ const HeroSection = () => {
                 <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-chart-2 rounded-full animate-pulse delay-500"></div>
               </div>
 
-              <div className="absolute -bottom-6 left-1/4 bg-gradient-to-r from-chart-3 via-chart-3/90 to-chart-4 rounded-xl p-4 shadow-xl animate-float-slow delay-500 border border-chart-3/20 backdrop-blur-sm">
+              <div className="absolute -bottom-6 left-1/4 bg-gradient-to-r from-primary to-chart-5 rounded-xl p-4 shadow-xl animate-float-slow delay-500 border border-chart-3/20 backdrop-blur-sm">
                 <div className="flex items-center gap-3 text-primary-foreground">
                   <div className="p-1.5 bg-white/20 rounded-lg">
                     <Share2 className="w-4 h-4" />
@@ -200,12 +200,12 @@ const HeroSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-chart-2/20 to-chart-3/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
 
                 {/* Main brain container */}
-                <div className="relative bg-gradient-to-br from-primary via-primary/90 to-chart-2 rounded-full p-8 shadow-2xl border border-primary/30 backdrop-blur-sm hover:scale-105 transition-transform duration-300">
+                <div className="relative bg-gradient-to-br from-card/98 to-background/98 rounded-full p-8 shadow-2xl border border-primary/30 backdrop-blur-sm hover:scale-105 transition-transform duration-300 z-10">
                   <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-full"></div>
                   <Brain className="w-16 h-16 text-primary-foreground animate-pulse relative z-10" />
 
                   {/* Orbiting particles around brain */}
-                  <div className="absolute inset-0 animate-orbit">
+                  {/* <div className="absolute inset-0 animate-orbit">
                     <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-chart-2 rounded-full animate-pulse"></div>
                   </div>
                   <div
@@ -213,12 +213,12 @@ const HeroSection = () => {
                     style={{ animationDuration: "6s" }}
                   >
                     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-chart-3 rounded-full animate-pulse delay-1000"></div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
               {/* Enhanced neural network connections */}
-              <div className="absolute inset-0 pointer-events-none">
+              {/* <div className="absolute inset-0 pointer-events-none">
                 <svg className="w-full h-full" viewBox="0 0 300 250">
                   <defs>
                     <linearGradient
@@ -277,7 +277,6 @@ const HeroSection = () => {
                     </linearGradient>
                   </defs>
 
-                  {/* Animated connection paths */}
                   <path
                     d="M 50 50 Q 150 25 250 50"
                     stroke="url(#connectionGradient1)"
@@ -311,7 +310,6 @@ const HeroSection = () => {
                     strokeDasharray="5,5"
                   />
 
-                  {/* Connection nodes */}
                   <circle
                     cx="50"
                     cy="50"
@@ -348,7 +346,7 @@ const HeroSection = () => {
                     className="animate-pulse delay-800"
                   />
                 </svg>
-              </div>
+              </div> */}
 
               {/* Enhanced search functionality representation */}
               <div className="relative bg-gradient-to-br from-card/95 via-background/90 to-card/95 rounded-xl p-6 border border-border/60 backdrop-blur-sm shadow-lg">
@@ -372,13 +370,13 @@ const HeroSection = () => {
                 {/* Search results preview */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 p-2 bg-muted/80 rounded-lg hover:bg-muted transition-colors">
-                    <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                    <div className="w-2 h-2 bg-amber-300 rounded-full animate-pulse"></div>
                     <div className="flex-1">
                       <div className="h-3 bg-muted-foreground/20 rounded animate-pulse"></div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 p-2 bg-muted/80 rounded-lg hover:bg-muted transition-colors">
-                    <div className="w-2 h-2 bg-chart-2 rounded-full animate-pulse delay-200"></div>
+                    <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse delay-200"></div>
                     <div className="flex-1">
                       <div
                         className="h-3 bg-muted-foreground/20 rounded animate-pulse delay-200"
@@ -387,7 +385,7 @@ const HeroSection = () => {
                     </div>
                   </div>
                   <div className="flex items-center gap-3 p-2 bg-muted/80 rounded-lg hover:bg-muted transition-colors">
-                    <div className="w-2 h-2 bg-chart-3 rounded-full animate-pulse delay-400"></div>
+                    <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse delay-400"></div>
                     <div className="flex-1">
                       <div
                         className="h-3 bg-muted-foreground/20 rounded animate-pulse delay-400"
@@ -402,7 +400,7 @@ const HeroSection = () => {
               <div className="absolute -right-10 top-1/4 opacity-90 animate-float-slow">
                 <div className="bg-gradient-to-br from-card/98 to-background/98 p-3 rounded-lg border border-border/60 backdrop-blur-sm shadow-lg">
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                     <span className="text-xs font-mono text-muted-foreground">
                       snippet.ts
                     </span>
@@ -420,28 +418,28 @@ const HeroSection = () => {
               <div className="absolute -left-10 bottom-1/4 opacity-90 animate-float-slow delay-1000">
                 <div className="bg-gradient-to-br from-card/98 to-background/98 p-3 rounded-lg border border-border/60 backdrop-blur-sm shadow-lg">
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 bg-chart-2 rounded-full"></div>
+                    <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                     <span className="text-xs font-mono text-muted-foreground">
                       utils.js
                     </span>
                   </div>
                   <pre className="text-xs text-muted-foreground font-mono">
                     {`function createSnippet() {
-  return "✨ Magic ✨"
+  return "Magic"
 }`}
                   </pre>
                 </div>
               </div>
 
               {/* Additional floating elements */}
-              <div className="absolute top-1/2 -right-16 opacity-60 animate-float-slow delay-1500">
-                <div className="w-8 h-8 bg-gradient-to-r from-primary to-chart-2 rounded-full flex items-center justify-center">
+              <div className="absolute top-1/2 -right-16 opacity-80 animate-float-slow delay-1500">
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center">
                   <Sparkles className="w-4 h-4 text-primary-foreground" />
                 </div>
               </div>
 
-              <div className="absolute bottom-1/2 -left-16 opacity-60 animate-float-slow delay-2000">
-                <div className="w-8 h-8 bg-gradient-to-r from-chart-2 to-chart-3 rounded-full flex items-center justify-center">
+              <div className="absolute bottom-1/2 -left-16 opacity-80 animate-float-slow delay-2000">
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full flex items-center justify-center">
                   <Zap className="w-4 h-4 text-primary-foreground" />
                 </div>
               </div>
