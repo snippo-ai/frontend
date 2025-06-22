@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import type { AnchorHTMLAttributes } from "react";
@@ -60,7 +61,7 @@ export const Logo = forwardRef<HTMLAnchorElement, LogoProps>(
           />
         </span>
         {!hideLabel && (
-          <span className={cn("sr-only sm:not-sr-only", textClassName)}>
+          <span className={clsx("sr-only sm:not-sr-only", textClassName)}>
             {label}
           </span>
         )}

@@ -189,3 +189,36 @@ export const demoSnippets: SnipEntity[] = [
     folder: "utils",
   },
 ];
+
+export const faqs = [
+  {
+    question: "What is Snippo?",
+    answer:
+      "Snippo is a modern, AI-powered code snippet manager that helps developers organize, search, and share code efficiently.",
+  },
+  {
+    question: "Is there a free plan?",
+    answer:
+      "Yes! Snippo offers a Free Forever plan with unlimited public snippets and basic search features.",
+  },
+  {
+    question: "How does Snippo keep my code secure?",
+    answer:
+      "All private snippets are encrypted and securely stored. We use industry best practices to protect your data.",
+  },
+  {
+    question: "Can I use Snippo with my team?",
+    answer:
+      "Absolutely! The Pro plan includes team sharing and collaboration features for seamless teamwork.",
+  },
+  {
+    question: "Does Snippo support code highlighting?",
+    answer:
+      "Yes, Snippo supports syntax highlighting for all major programming languages, making your code easy to read and manage.",
+  },
+  {
+    question: "Can I access my snippets from multiple devices?",
+    answer:
+      "Yes, Snippo syncs your snippets to the cloud so you can access them from any device, anywhere.",
+  },
+];

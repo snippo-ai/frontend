@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import DemoSection from "./_components/home/demo-section";
+import Faqs from "./_components/home/faqs";
 import FeaturesSection from "./_components/home/features-section";
 import HeroSection from "./_components/home/hero-section";
 import PricingSection from "./_components/home/pricing-section";
@@ -45,6 +46,7 @@ const HomePage = async () => {
       <DemoSection />
       <PricingSection />
       <TestimonialsSection />
+      <Faqs />
     </main>
   );
 };

@@ -1,6 +1,6 @@
-import React from "react";
 import Logo from "@/components/shared/logo";
 import Typography from "@/components/shared/typography";
+import React from "react";
 
 const footerLinks = [
   { href: "/privacy", label: "Privacy Policy" },
@@ -36,11 +36,11 @@ const Footer: React.FC = () => {
           label="Snippo AI"
           hideLabel={false}
           className="mb-1"
-          textClassName="text-lg font-bold text-primary"
+          textClassName="text-fluid-lg font-bold text-chart-2"
         />
         <Typography
           as="p"
-          fluidSize="fluid-sm"
+          fluidSize="sm"
           className="text-muted-foreground max-w-xs"
         >
           &quot;Empowering developers to save, search, and share code
