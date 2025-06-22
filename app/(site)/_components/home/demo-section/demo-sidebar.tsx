@@ -76,6 +76,7 @@ const DemoSidebar: React.FC = () => {
                     ${isCollapsed ? "justify-center" : ""}
                   `}
               onClick={() => setCurrentNavItem(item)}
+              disabled={item.identifyKey !== "dashboard"}
             >
               <item.icon size={20} />
               {!isCollapsed && <span>{item.label}</span>}

@@ -17,7 +17,14 @@ const SnipCard: React.FC<SnipCardProps> = ({ snippet }) => {
 
   return (
     <div className="bg-card rounded-lg border border-border p-4 hover:border-zinc-600 transition-colors">
-      <div className="flex items-start justify-between mb-3">
+      <div className="flex items-center justify-between text-xs text-muted-foreground">
+        <div className="flex items-center gap-1">
+          <Calendar className="w-3 h-3" />
+          <span>Created {formatDate(snippet.createdAt)}</span>
+        </div>
+      </div>
+
+      <div className="mt-2 flex items-start justify-between mb-3">
         <h3 className="font-semibold text-zinc-200 text-lg line-clamp-1">
           {snippet.title}
         </h3>
@@ -41,13 +48,6 @@ const SnipCard: React.FC<SnipCardProps> = ({ snippet }) => {
         <pre className="text-zinc-300 text-sm font-mono whitespace-pre-wrap overflow-hidden line-clamp-3">
           <code>{truncateCode(snippet.code)}</code>
         </pre>
-      </div>
-
-      <div className="flex items-center justify-between text-xs text-zinc-500">
-        <div className="flex items-center gap-1">
-          <Calendar className="w-3 h-3" />
-          <span>Created {formatDate(snippet.createdAt)}</span>
-        </div>
       </div>
     </div>
   );

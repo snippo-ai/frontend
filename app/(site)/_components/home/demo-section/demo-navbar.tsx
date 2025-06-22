@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ChevronDown, Download, Search, TagIcon, Upload } from "lucide-react";
+import { PlusIcon, Search } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
 type DemoNavbarProps = {
@@ -29,18 +29,9 @@ const DemoNavbar: React.FC<DemoNavbarProps> = ({ setSearchString }) => {
       </div>
 
       <div className="flex flex-1 items-center gap-2 justify-end">
-        <Button size="sm" variant="outline">
-          <TagIcon className="size-3" />
-          <span>All Tags</span>
-          <ChevronDown className="w-4 h-4" />
-        </Button>
-        <Button size="sm" variant="outline" disabled>
-          <Download className="w-4 h-4" />
-          <span className="hidden sm:inline">Export</span>
-        </Button>
-        <Button size="sm" variant="outline" disabled>
-          <Upload className="w-4 h-4" />
-          <span className="hidden sm:inline">Import</span>
+        <Button size="sm" variant="default">
+          <PlusIcon className="size-4" />
+          <span>Create Snip</span>
         </Button>
       </div>
     </nav>
