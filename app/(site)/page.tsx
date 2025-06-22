@@ -43,8 +43,8 @@ const HomePage = async () => {
       <HeroSection />
       <FeaturesSection />
       <DemoSection />
-      <TestimonialsSection />
       <PricingSection />
+      <TestimonialsSection />
     </main>
   );
 };
