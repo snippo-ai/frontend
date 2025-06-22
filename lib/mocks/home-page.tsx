@@ -25,16 +25,58 @@ export const features = [
 
 export const testimonials = [
   {
-    name: "Alex J.",
-    text: "Snippo AI has streamlined my workflow. The syntax highlighting and search are top-notch!",
+    text: "Snippo has become my daily go-to for organizing code snippets. The search is lightning fast and the UI is a joy to use.",
+    image: "https://randomuser.me/api/portraits/women/1.jpg",
+    name: "Briana Patton",
+    role: "Frontend Engineer",
   },
   {
-    name: "Priya S.",
-    text: "I love how clean and fast the UI is. Sharing snippets with my team is effortless.",
+    text: "I love how easy it is to save and share snippets with my team. The collaboration features are a huge productivity boost.",
+    image: "https://randomuser.me/api/portraits/men/2.jpg",
+    name: "Bilal Ahmed",
+    role: "Full Stack Developer",
   },
   {
-    name: "Devon K.",
-    text: "The best snippet manager for developers. The pricing is super fair, too!",
+    text: "The syntax highlighting and organization tools are top-notch. Snippo keeps my workflow clean and efficient.",
+    image: "https://randomuser.me/api/portraits/women/3.jpg",
+    name: "Saman Malik",
+    role: "Backend Engineer",
+  },
+  {
+    text: "Snippo's cloud sync means I can access my code from anywhere. It's a must-have for any remote developer.",
+    image: "https://randomuser.me/api/portraits/men/4.jpg",
+    name: "Omar Raza",
+    role: "Software Engineer",
+  },
+  {
+    text: "The support team is responsive and knowledgeable. They helped me get set up in minutes and answered all my questions.",
+    image: "https://randomuser.me/api/portraits/women/5.jpg",
+    name: "Zainab Hussain",
+    role: "DevOps Engineer",
+  },
+  {
+    text: "Snippo's tagging and folder system makes it easy to keep my snippets organized across multiple projects.",
+    image: "https://randomuser.me/api/portraits/women/6.jpg",
+    name: "Aliza Khan",
+    role: "Mobile App Developer",
+  },
+  {
+    text: "I've tried many snippet managers, but Snippo stands out for its clean design and powerful features.",
+    image: "https://randomuser.me/api/portraits/men/7.jpg",
+    name: "Farhan Siddiqui",
+    role: "Frontend Developer",
+  },
+  {
+    text: "Sharing code with my team is seamless. Snippo has improved our code reviews and knowledge sharing.",
+    image: "https://randomuser.me/api/portraits/women/8.jpg",
+    name: "Sana Sheikh",
+    role: "Software Engineer",
+  },
+  {
+    text: "The ability to quickly search and insert snippets saves me hours every week. Highly recommended for any developer.",
+    image: "https://randomuser.me/api/portraits/men/9.jpg",
+    name: "Hassan Ali",
+    role: "Backend Developer",
   },
 ];
 
