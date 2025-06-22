@@ -75,14 +75,8 @@ const SnipList: React.FC<{ list: SnipEntity[]; searchString: string }> = ({
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {noFolder.map((snippet, i) => (
-              <div
-                key={snippet.id}
-                className="animate-fade-in-up"
-                style={{ animationDelay: `${i * 80}ms` }}
-              >
-                <SnipCard snippet={snippet} />
-              </div>
+            {noFolder.map((snippet) => (
+              <SnipCard key={snippet.id} snippet={snippet} />
             ))}
           </div>
         </div>

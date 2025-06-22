@@ -19,7 +19,7 @@ const DemoNavbar: React.FC<DemoNavbarProps> = ({ setSearchString }) => {
         <div className="relative">
           <Input
             type="text"
-            className="pl-8 transition text-sm w-40 sm:w-56"
+            className="pl-8 transition text-sm w-40 sm:w-56 capitalize"
             placeholder={`Search "Python"`}
             aria-label="Search snippets"
             onChange={(e) => setSearchString(e.target.value)}
