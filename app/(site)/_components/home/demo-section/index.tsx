@@ -7,19 +7,23 @@ import Typography from "@/components/shared/typography";
 import { demoSnippets } from "@/lib/mocks/home-page";
 import { LockIcon } from "lucide-react";
 import { useMemo, useState } from "react";
+import DemoMain from "./demo-main";
 import DemoNavbar from "./demo-navbar";
 import DemoSidebar from "./demo-sidebar";
-import SnipList from "./snip-list";
 
 const DemoSection: React.FC = () => {
   const [searchString, setSearchString] = useState("");
 
   const filteredSnips = useMemo(() => {
-    const snips = demoSnippets.filter((s) => s.tags.includes(searchString));
-    if (snips?.length > 0) {
-      return snips;
+    if (!searchString || searchString.length < 3) {
+      return demoSnippets;
     }
-    return demoSnippets;
+    const lower = searchString.toLowerCase();
+    return demoSnippets.filter(
+      (s) =>
+        s.title.toLowerCase().includes(lower) ||
+        s.tags.some((tag) => tag.toLowerCase().includes(lower))
+    );
   }, [searchString]);
 
   return (
@@ -53,7 +57,7 @@ const DemoSection: React.FC = () => {
                 <div className="flex-1 flex flex-col">
                   <DemoNavbar setSearchString={setSearchString} />
                   <main className="flex-1 overflow-auto">
-                    <SnipList
+                    <DemoMain
                       list={filteredSnips}
                       searchString={searchString}
                     />
