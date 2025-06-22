@@ -38,43 +38,59 @@ export const testimonials = [
   },
 ];
 
-export const pricing = [
-  {
-    plan: "Free",
-    price: "$0",
-    features: [
-      "Unlimited public snippets",
-      "Basic search",
-      "Community support",
-    ],
-    cta: "Get Started",
-    highlight: false,
-  },
-  {
-    plan: "Pro",
-    price: "$8/mo",
-    features: [
-      "Unlimited private snippets",
-      "Advanced search",
-      "Team sharing",
-      "Priority support",
-    ],
-    cta: "Start Free Trial",
-    highlight: true,
-  },
-  {
-    plan: "Team",
-    price: "$20/mo",
-    features: [
-      "All Pro features",
-      "Team management",
-      "Usage analytics",
-      "Custom domains",
-    ],
-    cta: "Contact Sales",
-    highlight: false,
-  },
-];
+export const pricing = {
+  monthly: [
+    {
+      plan: "Free Forever",
+      price: "₹0",
+      features: [
+        "Unlimited public snippets",
+        "Basic search",
+        "Community support",
+      ],
+      cta: "Get Started",
+      highlight: false,
+    },
+    {
+      plan: "Pro",
+      price: "₹249/mo",
+      features: [
+        "Unlimited private snippets",
+        "Advanced search",
+        "Team sharing",
+        "Priority support",
+      ],
+      cta: "Get Started",
+      highlight: true,
+    },
+  ],
+  yearly: [
+    {
+      plan: "Free Forever",
+      price: "₹0",
+      features: [
+        "Unlimited public snippets",
+        "Basic search",
+        "Community support",
+      ],
+      cta: "Get Started",
+      highlight: false,
+    },
+    {
+      plan: "Pro",
+      price: "₹2,499/yr",
+      features: [
+        "Unlimited private snippets",
+        "Advanced search",
+        "Team sharing",
+        "Priority support",
+        "2 months free!",
+      ],
+      cta: "Get Started",
+      highlight: true,
+    },
+  ],
+};
 
 export type SnipEntity = {
   id: string;
