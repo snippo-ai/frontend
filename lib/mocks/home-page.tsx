@@ -76,7 +76,17 @@ export const pricing = [
   },
 ];
 
-export const demoSnippets = [
+export type SnipEntity = {
+  id: string;
+  title: string;
+  description: string;
+  code: string;
+  tags: string[];
+  createdAt: string;
+  folder?: string;
+};
+
+export const demoSnippets: SnipEntity[] = [
   {
     id: "1",
     title: "Hello World in Python",
@@ -101,7 +111,6 @@ export const demoSnippets = [
     tags: ["typescript", "recursion"],
     createdAt: new Date().toISOString(),
   },
-  // Folder: utils
   {
     id: "4",
     title: "Debounce Function",
@@ -120,7 +129,6 @@ export const demoSnippets = [
     createdAt: new Date().toISOString(),
     folder: "utils",
   },
-  // Folder: algorithms
   {
     id: "6",
     title: "Binary Search",

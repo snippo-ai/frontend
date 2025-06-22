@@ -4,12 +4,24 @@ import { Container } from "@/components/shared/container";
 import Divider from "@/components/shared/divider";
 import SectionHeading from "@/components/shared/section-heading";
 import Typography from "@/components/shared/typography";
+import { demoSnippets } from "@/lib/mocks/home-page";
 import { LockIcon } from "lucide-react";
+import { useMemo, useState } from "react";
 import DemoNavbar from "./demo-navbar";
 import DemoSidebar from "./demo-sidebar";
-import SnippetList from "./snippet-list";
+import SnipList from "./snip-list";
 
 const DemoSection: React.FC = () => {
+  const [searchString, setSearchString] = useState("");
+
+  const filteredSnips = useMemo(() => {
+    const snips = demoSnippets.filter((s) => s.tags.includes(searchString));
+    if (snips?.length > 0) {
+      return snips;
+    }
+    return demoSnippets;
+  }, [searchString]);
+
   return (
     <Container className="relative w-full px-4 py-16 flex flex-col items-center">
       <SectionHeading
@@ -19,17 +31,6 @@ const DemoSection: React.FC = () => {
         See Snippo AI in Action
       </SectionHeading>
       <Divider />
-      {/* <Safari url="Snippo Dashboard" className="size-full">
-        <div className="flex h-full">
-          <DemoSidebar />
-          <div className="flex-1 flex flex-col">
-            <DemoNavbar />
-            <main className="flex-1 p-6 overflow-auto">
-              <SnippetList />
-            </main>
-          </div>
-        </div>
-      </Safari> */}
       <section className="w-full h-[760px]">
         <div className="mx-auto h-full">
           <div className="rounded-xl border border-zinc-300 dark:border-zinc-700 overflow-hidden shadow-lg bg-white dark:bg-zinc-800 h-full">
@@ -50,9 +51,12 @@ const DemoSection: React.FC = () => {
               <div className="flex h-full">
                 <DemoSidebar />
                 <div className="flex-1 flex flex-col">
-                  <DemoNavbar />
-                  <main className="flex-1 p-6 overflow-auto">
-                    <SnippetList />
+                  <DemoNavbar setSearchString={setSearchString} />
+                  <main className="flex-1 overflow-auto">
+                    <SnipList
+                      list={filteredSnips}
+                      searchString={searchString}
+                    />
                   </main>
                 </div>
               </div>
@@ -60,32 +64,6 @@ const DemoSection: React.FC = () => {
           </div>
         </div>
       </section>
-      {/* <div className="w-full bg-zinc-950 rounded-xl shadow-lg overflow-auto border border-zinc-200 dark:border-zinc-800 mb-4 animate-fade-in"> */}
-      {/* <pre
-          className="text-left text-sm md:text-base p-6 text-zinc-100 overflow-x-auto whitespace-pre language-ts"
-          style={{ background: "#18181b" }}
-        >
-          <code>
-            {`// Save and search your code instantly
-const snippet = await snippo.save({
-  title: "Debounce Hook",
-  code: "function useDebounce(fn, delay) { ... }",
-  language: "js",
-});
-const results = await snippo.search("debounce");
-console.log(results); // [ { title: "Debounce Hook", ... } ]`}
-          </code>
-        </pre> */}
-      {/* <div className="flex h-[600px]">
-          <DashboardSidebar />
-          <div className="flex-1 flex flex-col">
-            <DashboardNavbar />
-            <main className="flex-1 p-6 overflow-auto">
-              <SnippetList />
-            </main>
-          </div>
-        </div> */}
-      {/* </div> */}
       <Typography as="p" className="text-muted-foreground mt-4">
         Developer-friendly, syntax-highlighted, and blazing fast.
       </Typography>

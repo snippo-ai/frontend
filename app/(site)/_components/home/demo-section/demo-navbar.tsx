@@ -3,8 +3,13 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ChevronDown, Download, Search, TagIcon, Upload } from "lucide-react";
+import { Dispatch, SetStateAction } from "react";
 
-const DemoNavbar: React.FC = () => {
+type DemoNavbarProps = {
+  setSearchString: Dispatch<SetStateAction<string>>;
+};
+
+const DemoNavbar: React.FC<DemoNavbarProps> = ({ setSearchString }) => {
   return (
     <nav className="flex flex-col sm:flex-row items-center gap-4 justify-between px-4 py-3 border-b border-border bg-sidebar">
       <div
@@ -15,8 +20,9 @@ const DemoNavbar: React.FC = () => {
           <Input
             type="text"
             className="pl-8 transition text-sm w-40 sm:w-56"
-            placeholder="Search snippets..."
+            placeholder={`Search "Python"`}
             aria-label="Search snippets"
+            onChange={(e) => setSearchString(e.target.value)}
           />
           <Search className="text-border absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4" />
         </div>
