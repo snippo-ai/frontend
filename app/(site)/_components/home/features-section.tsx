@@ -1,6 +1,7 @@
 "use client";
 
 import { Container } from "@/components/shared/container";
+import Divider from "@/components/shared/divider";
 import SectionHeading from "@/components/shared/section-heading";
 import {
   Card,
@@ -51,16 +52,7 @@ const FeaturesSection = () => {
         >
           Powerful Features
         </SectionHeading>
-        {/* Minimal divider below heading */}
-        <div
-          className="w-20 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-primary via-chart-2 to-chart-3 shadow-lg animate-scale-in sm:w-28 sm:h-1.5 md:w-32 md:mb-10"
-          style={{
-            boxShadow: "0 2px 16px 0 rgba(80,120,255,0.15)",
-            filter: "drop-shadow(0 0 8px var(--primary))",
-            animation: "scale-in 0.7s cubic-bezier(0.4,0,0.2,1)",
-          }}
-          aria-hidden="true"
-        />
+        <Divider />
         {/* Subtle radial gradient background behind grid */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
           <div className="w-3/4 h-3/4 sm:w-2/3 sm:h-2/3 md:w-1/2 md:h-1/2 rounded-full bg-gradient-to-br from-primary/30 via-chart-2/30 to-transparent blur-2xl" />

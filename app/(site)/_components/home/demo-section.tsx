@@ -1,11 +1,18 @@
+import { Container } from "@/components/shared/container";
+import Divider from "@/components/shared/divider";
+import SectionHeading from "@/components/shared/section-heading";
 import Typography from "@/components/shared/typography";
 
 const DemoSection = () => {
   return (
-    <section className="w-full max-w-4xl px-4 py-16 flex flex-col items-center">
-      <Typography as="h2" fluidSize="fluid-2xl" className="font-semibold mb-4">
+    <Container className="w-full px-4 py-16 flex flex-col items-center">
+      <SectionHeading
+        as="h2"
+        subtitle="Experience how easily you can save, search, and organize your code snippets with Snippo AI."
+      >
         See Snippo AI in Action
-      </Typography>
+      </SectionHeading>
+      <Divider />
       <div className="w-full bg-zinc-950 rounded-xl shadow-lg overflow-auto border border-zinc-200 dark:border-zinc-800 mb-4 animate-fade-in">
         <pre
           className="text-left text-sm md:text-base p-6 text-zinc-100 overflow-x-auto whitespace-pre language-ts"
@@ -26,7 +33,7 @@ console.log(results); // [ { title: "Debounce Hook", ... } ]`}
       <Typography as="p" className="text-muted-foreground">
         Developer-friendly, syntax-highlighted, and blazing fast.
       </Typography>
-    </section>
+    </Container>
   );
 };
 
