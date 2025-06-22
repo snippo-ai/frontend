@@ -1,160 +1,156 @@
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import type { SnipEntity } from "@/lib/mocks/home-page";
 import { X } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
-const DEFAULT_CODE = `function helloWorld() {
-  console.log('Hello, world!');
-}`;
-
-const SaveSnippetModal = () => {
-  // const { state, dispatch } = useSnippetStore();
+const SaveSnippetModal = ({
+  prefill,
+  onClose,
+  onSave,
+}: {
+  prefill: SnipEntity;
+  onClose: () => void;
+  onSave: () => void;
+}) => {
   const modalRef = useRef<HTMLDivElement>(null);
-  const firstInputRef = useRef<HTMLInputElement>(null);
+  const [exiting, setExiting] = useState(false);
 
-  // Trap focus
-  // useEffect(() => {
-  //   if (state.isModalOpen && firstInputRef.current) {
-  //     firstInputRef.current.focus();
-  //   }
-  //   const handleFocus = (e: KeyboardEvent) => {
-  //     if (!state.isModalOpen) return;
-  //     const focusableEls = modalRef.current?.querySelectorAll<HTMLElement>(
-  //       'input, textarea, button, [tabindex]:not([tabindex="-1"])'
-  //     );
-  //     if (!focusableEls || focusableEls.length === 0) return;
-  //     const first = focusableEls[0];
-  //     const last = focusableEls[focusableEls.length - 1];
-  //     if (e.key === "Tab") {
-  //       if (e.shiftKey) {
-  //         if (document.activeElement === first) {
-  //           e.preventDefault();
-  //           last.focus();
-  //         }
-  //       } else {
-  //         if (document.activeElement === last) {
-  //           e.preventDefault();
-  //           first.focus();
-  //         }
-  //       }
-  //     }
-  //   };
-  //   document.addEventListener("keydown", handleFocus);
-  //   return () => document.removeEventListener("keydown", handleFocus);
-  // }, [state.isModalOpen]);
+  // Instead, use the prefill values directly
+  const title = prefill.title;
+  const tags = prefill.tags.join(", ");
+  const code = prefill.code;
+  const disabled = false;
 
-  // Close on Esc
-  // useEffect(() => {
-  //   const handleEsc = (e: KeyboardEvent) => {
-  //     if (e.key === "Escape" && state.isModalOpen) {
-  //       dispatch({ type: "SET_MODAL_OPEN", payload: false });
-  //     }
-  //   };
-  //   document.addEventListener("keydown", handleEsc);
-  //   return () => document.removeEventListener("keydown", handleEsc);
-  // }, [state.isModalOpen, dispatch]);
-
-  // if (!state.isModalOpen) return null;
-
-  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   const form = e.currentTarget;
-  //   const title = (
-  //     form.elements.namedItem("title") as HTMLInputElement
-  //   ).value.trim();
-  //   const description = (
-  //     form.elements.namedItem("description") as HTMLInputElement
-  //   ).value.trim();
-  //   const tags = (form.elements.namedItem("tags") as HTMLInputElement).value
-  //     .split(",")
-  //     .map((t) => t.trim())
-  //     .filter(Boolean);
-  //   const code = (form.elements.namedItem("code") as HTMLTextAreaElement).value;
-  //   if (!title || !code) return;
-  //   dispatch({
-  //     type: "ADD_SNIPPET",
-  //     payload: { title, description, tags, code },
-  //   });
-  //   dispatch({ type: "SET_MODAL_OPEN", payload: false });
-  // };
+  const handleClose = () => {
+    setExiting(true);
+    setTimeout(() => onClose(), 300); // match animation duration
+  };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+    <div
+      className={`absolute inset-0 z-50 flex items-center justify-center transition-opacity duration-300 ${
+        exiting ? "opacity-0" : "opacity-100"
+      }`}
+      style={{ background: "rgba(0,0,0,0.7)" }}
+    >
       <div
         ref={modalRef}
         role="dialog"
         aria-modal="true"
-        className="bg-zinc-900 rounded-xl shadow-2xl border border-zinc-700 w-full max-w-md p-6 relative animate-fade-in"
+        className={`rounded-2xl shadow-2xl border w-full max-w-lg p-8 relative bg-card border-border text-foreground ${
+          exiting ? "animate-fade-out" : "animate-fade-in"
+        }`}
+        style={{
+          boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.25)",
+        }}
       >
         <button
-          className="absolute top-3 right-3 p-2 rounded-md hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-violet-400"
+          className="absolute top-4 right-4 p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
           aria-label="Close modal"
-          // onClick={() => dispatch({ type: "SET_MODAL_OPEN", payload: false })}
+          onClick={handleClose}
+          style={{
+            background: "var(--card)",
+            color: "var(--muted-foreground)",
+          }}
         >
           <X className="w-5 h-5" />
         </button>
-        <h2 className="text-xl font-bold mb-2 text-violet-400">
-          Save a Snippet
-        </h2>
+        <div className="flex flex-col items-center mb-4">
+          <h2 className="text-2xl font-bold mb-1 tracking-tight text-chart-2">
+            Add New Snippet
+          </h2>
+        </div>
         <form
-          // onSubmit={handleSubmit}
-          className="space-y-4"
+          className="space-y-5 text-center"
+          onSubmit={(e) => {
+            e.preventDefault();
+            onSave();
+          }}
         >
           <div>
-            <label htmlFor="title" className="block text-sm font-medium mb-1">
-              Title <span className="text-violet-400">*</span>
-            </label>
-            <input
-              ref={firstInputRef}
-              id="title"
-              name="title"
-              type="text"
-              required
-              className="w-full rounded-md bg-zinc-800 border border-zinc-700 px-3 py-2 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-violet-400"
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="description"
-              className="block text-sm font-medium mb-1"
+            <Label
+              htmlFor="title"
+              className="mb-1"
+              style={{ color: "var(--foreground)" }}
             >
-              Description
-            </label>
-            <input
-              id="description"
-              name="description"
-              type="text"
-              className="w-full rounded-md bg-zinc-800 border border-zinc-700 px-3 py-2 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-violet-400"
-            />
+              Title <span style={{ color: "var(--primary)" }}>*</span>
+            </Label>
+            <div
+              className="w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary/70 placeholder:opacity-70 transition border text-sm mt-2 text-left"
+              style={{
+                background: "var(--input)",
+                border: "1px solid var(--border)",
+                color: "var(--foreground)",
+                minHeight: 36,
+                display: "flex",
+                alignItems: "center",
+                fontFamily: "inherit",
+              }}
+            >
+              {title || <span className="opacity-50">Snippet title</span>}
+            </div>
           </div>
           <div>
-            <label htmlFor="tags" className="block text-sm font-medium mb-1">
-              Tags <span className="text-zinc-400">(comma separated)</span>
-            </label>
-            <input
-              id="tags"
-              name="tags"
-              type="text"
-              className="w-full rounded-md bg-zinc-800 border border-zinc-700 px-3 py-2 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-violet-400"
-            />
+            <Label
+              htmlFor="tags"
+              className="mb-1"
+              style={{ color: "var(--foreground)" }}
+            >
+              Tags{" "}
+              <span style={{ color: "var(--muted-foreground)" }}>
+                (comma separated)
+              </span>
+            </Label>
+            <div
+              className="w-full rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary/70 placeholder:opacity-70 transition border text-sm mt-2 text-left"
+              style={{
+                background: "var(--input)",
+                border: "1px solid var(--border)",
+                color: "var(--foreground)",
+                minHeight: 36,
+                display: "flex",
+                alignItems: "center",
+                fontFamily: "inherit",
+              }}
+            >
+              {tags || (
+                <span className="opacity-50">e.g. python, algorithm</span>
+              )}
+            </div>
           </div>
           <div>
-            <label htmlFor="code" className="block text-sm font-medium mb-1">
-              Code <span className="text-violet-400">*</span>
-            </label>
-            <textarea
-              id="code"
-              name="code"
-              required
-              rows={5}
-              defaultValue={DEFAULT_CODE}
-              className="w-full rounded-md bg-zinc-800 border border-zinc-700 px-3 py-2 text-zinc-100 font-mono focus:outline-none focus:ring-2 focus:ring-violet-400"
-            />
+            <Label
+              htmlFor="code"
+              className="mb-1"
+              style={{ color: "var(--foreground)" }}
+            >
+              Code <span style={{ color: "var(--primary)" }}>*</span>
+            </Label>
+            <div
+              className="w-full rounded-lg px-4 py-2 font-mono focus:outline-none focus:ring-2 focus:ring-primary/70 placeholder:opacity-70 transition border text-sm mt-2 text-left"
+              style={{
+                background: "var(--input)",
+                border: "1px solid var(--border)",
+                color: "var(--foreground)",
+                minHeight: 48,
+                fontFamily: "JetBrains Mono, monospace",
+                whiteSpace: "pre-wrap",
+              }}
+            >
+              {code || (
+                <span className="opacity-50">Paste your code here...</span>
+              )}
+            </div>
           </div>
-          <button
+          <Button
+            size="sm"
             type="submit"
-            className="w-full py-2 rounded-md bg-violet-600 hover:bg-violet-500 text-white font-semibold transition focus:outline-none focus:ring-2 focus:ring-violet-400"
+            className="w-fit ml-auto py-2 rounded-lg font-semibold shadow-md transition"
+            disabled={disabled}
           >
-            Save Snippet
-          </button>
+            Add Snippet
+          </Button>
         </form>
       </div>
     </div>

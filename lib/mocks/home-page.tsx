@@ -105,11 +105,12 @@ export const demoSnippets: SnipEntity[] = [
   },
   {
     id: "3",
-    title: "Factorial Function",
-    description: "Recursive factorial in TypeScript.",
-    code: `function factorial(n: number): number { return n <= 1 ? 1 : n * factorial(n - 1); }`,
-    tags: ["typescript", "recursion"],
+    title: "Binary Search",
+    description: "Binary search implementation in Python.",
+    code: `def binary_search(arr, x):\n    l, r = 0, len(arr) - 1\n    while l <= r:\n        mid = (l + r) // 2\n        if arr[mid] == x:\n            return mid\n        elif arr[mid] < x:\n            l = mid + 1\n        else:\n            r = mid - 1\n    return -1`,
+    tags: ["python", "algorithms"],
     createdAt: new Date().toISOString(),
+    folder: "algorithms",
   },
   {
     id: "4",
@@ -128,14 +129,5 @@ export const demoSnippets: SnipEntity[] = [
     tags: ["javascript", "utils"],
     createdAt: new Date().toISOString(),
     folder: "utils",
-  },
-  {
-    id: "6",
-    title: "Binary Search",
-    description: "Binary search implementation in Python.",
-    code: `def binary_search(arr, x):\n    l, r = 0, len(arr) - 1\n    while l <= r:\n        mid = (l + r) // 2\n        if arr[mid] == x:\n            return mid\n        elif arr[mid] < x:\n            l = mid + 1\n        else:\n            r = mid - 1\n    return -1`,
-    tags: ["python", "algorithms"],
-    createdAt: new Date().toISOString(),
-    folder: "algorithms",
   },
 ];

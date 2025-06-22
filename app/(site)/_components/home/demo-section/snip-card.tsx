@@ -3,9 +3,10 @@ import { Calendar, Tag } from "lucide-react";
 
 interface SnipCardProps {
   snippet: SnipEntity;
+  animate?: boolean;
 }
 
-const SnipCard: React.FC<SnipCardProps> = ({ snippet }) => {
+const SnipCard: React.FC<SnipCardProps> = ({ snippet, animate }) => {
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString();
   };
@@ -16,7 +17,11 @@ const SnipCard: React.FC<SnipCardProps> = ({ snippet }) => {
   };
 
   return (
-    <div className="bg-card rounded-lg border border-border p-4 hover:border-zinc-600 transition-colors">
+    <div
+      className={`bg-card rounded-lg border border-border p-4 hover:border-zinc-600 transition-colors ${
+        animate ? "animate-scale-in ring-2 ring-violet-400/70" : ""
+      }`}
+    >
       <div className="flex items-center justify-between text-xs text-muted-foreground">
         <div className="flex items-center gap-1">
           <Calendar className="w-3 h-3" />

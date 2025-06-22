@@ -19,18 +19,17 @@ const groupSnippets = (snippets: typeof demoSnippets) => {
   return { folders, noFolder };
 };
 
-const DemoMain: React.FC<{ list: SnipEntity[]; searchString: string }> = ({
-  list,
-  searchString,
-}) => {
+const DemoMain: React.FC<{
+  list: SnipEntity[];
+  searchString: string;
+  lastAddedId?: string | null;
+}> = ({ list, searchString, lastAddedId }) => {
   const { folders, noFolder } = groupSnippets(list);
   const [openFolder, setOpenFolder] = useState<string | null>(null);
 
-  // If searching, flatten all snippets for search results
   const allSnips = [...noFolder, ...Object.values(folders).flat()];
   const isSearching = !!searchString;
 
-  // If a folder is open, show only its snips
   const folderSnips = openFolder ? folders[openFolder] || [] : [];
 
   return (
@@ -65,7 +64,11 @@ const DemoMain: React.FC<{ list: SnipEntity[]; searchString: string }> = ({
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {allSnips.map((snippet) => (
-                <SnipCard key={snippet.id} snippet={snippet} />
+                <SnipCard
+                  key={snippet.id}
+                  snippet={snippet}
+                  animate={snippet.id === lastAddedId}
+                />
               ))}
             </div>
           )}
@@ -88,7 +91,11 @@ const DemoMain: React.FC<{ list: SnipEntity[]; searchString: string }> = ({
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {folderSnips.map((snippet) => (
-              <SnipCard key={snippet.id} snippet={snippet} />
+              <SnipCard
+                key={snippet.id}
+                snippet={snippet}
+                animate={snippet.id === lastAddedId}
+              />
             ))}
           </div>
         </div>
@@ -129,7 +136,7 @@ const DemoMain: React.FC<{ list: SnipEntity[]; searchString: string }> = ({
             <div className="space-y-4 z-10 mt-8">
               <div className="flex items-center justify-between">
                 <h2 className="font-bold drop-shadow-md tracking-tight text-chart-2">
-                  My Snips
+                  My Snips{" "}
                   <span className="text-base font-normal text-muted-foreground">
                     ({noFolder.length})
                   </span>
@@ -137,7 +144,11 @@ const DemoMain: React.FC<{ list: SnipEntity[]; searchString: string }> = ({
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {noFolder.map((snippet) => (
-                  <SnipCard key={snippet.id} snippet={snippet} />
+                  <SnipCard
+                    key={snippet.id}
+                    snippet={snippet}
+                    animate={snippet.id === lastAddedId}
+                  />
                 ))}
               </div>
             </div>

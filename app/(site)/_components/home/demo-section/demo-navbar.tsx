@@ -7,9 +7,15 @@ import { Dispatch, SetStateAction, useState } from "react";
 
 type DemoNavbarProps = {
   setSearchString: Dispatch<SetStateAction<string>>;
+  onCreateClick?: () => void;
+  disabled?: boolean;
 };
 
-const DemoNavbar: React.FC<DemoNavbarProps> = ({ setSearchString }) => {
+const DemoNavbar: React.FC<DemoNavbarProps> = ({
+  setSearchString,
+  onCreateClick,
+  disabled,
+}) => {
   const [value, setValue] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,7 +55,12 @@ const DemoNavbar: React.FC<DemoNavbarProps> = ({ setSearchString }) => {
       </div>
 
       <div className="flex flex-1 items-center gap-2 justify-end">
-        <Button size="sm" variant="default">
+        <Button
+          size="sm"
+          variant="default"
+          onClick={onCreateClick}
+          disabled={disabled}
+        >
           <PlusIcon className="size-4" />
           <span>Create Snip</span>
         </Button>
