@@ -81,7 +81,7 @@ const AuthButtons = ({
     </>
   ) : (
     <Link
-      href="/login"
+      href="/login?redirectUrl=%2Fdashboard"
       className={cn(
         buttonVariants({
           variant: "default",
