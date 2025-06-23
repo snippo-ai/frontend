@@ -50,7 +50,7 @@ const DemoSidebar: React.FC = () => {
       `}
       >
         <div className="flex items-center justify-between p-4">
-          {!isCollapsed && <Logo />}
+          {!isCollapsed && <Logo href="#" hideLabel />}
           <Button
             size="icon"
             variant="ghost"

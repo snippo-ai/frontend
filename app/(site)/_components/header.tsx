@@ -18,9 +18,8 @@ import React, { useMemo } from "react";
 const useNavLinks = () =>
   useMemo(
     () => [
-      { href: "#features", label: "Features" },
-      { href: "#pricing", label: "Pricing" },
-      { href: "#demo", label: "Demo" },
+      { href: "/#demo", label: "Demo" },
+      { href: "/pricing", label: "Pricing" },
     ],
     []
   );
@@ -28,12 +27,14 @@ const useNavLinks = () =>
 // Reusable desktop/mobile link
 const NavLink = ({ href, label }: { href: string; label: string }) => (
   <NavigationMenuItem key={href}>
-    <NavigationMenuLink
-      href={href}
-      className="px-3 py-1.5 rounded-md text-gray-300 hover:text-white hover:bg-gray-800/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 transition-colors"
-      aria-label={`Navigate to ${label}`}
-    >
-      {label}
+    <NavigationMenuLink asChild>
+      <Link
+        href={href}
+        className="px-3 py-1.5 rounded-md text-gray-300 hover:text-white hover:bg-gray-800/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 transition-colors"
+        aria-label={`Navigate to ${label}`}
+      >
+        {label}
+      </Link>
     </NavigationMenuLink>
   </NavigationMenuItem>
 );
@@ -79,34 +80,19 @@ const AuthButtons = ({
       </form>
     </>
   ) : (
-    <>
-      <Link
-        href="/login"
-        className={cn(
-          buttonVariants({
-            variant: "default",
-            size: "sm",
-            className: `px-4 ${fullWidth ? "w-full" : ""}`,
-          })
-        )}
-        aria-label="Login to your account"
-      >
-        Login
-      </Link>
-      {/* <Link
-        href="/sign-up"
-        className={cn(
-          buttonVariants({
-            variant: "default",
-            size: "sm",
-            className: `px-4 ${fullWidth ? "w-full" : ""}`,
-          })
-        )}
-        aria-label="Create a new account"
-      >
-        Sign Up
-      </Link> */}
-    </>
+    <Link
+      href="/login"
+      className={cn(
+        buttonVariants({
+          variant: "default",
+          size: "sm",
+          className: `px-4 ${fullWidth ? "w-full" : ""}`,
+        })
+      )}
+      aria-label="Login to your account"
+    >
+      Login
+    </Link>
   );
 
 // Main Header

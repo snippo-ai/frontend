@@ -50,7 +50,10 @@ const DemoSection: React.FC = () => {
   };
 
   return (
-    <Container className="relative w-full px-4 py-16 flex flex-col items-center">
+    <Container
+      id="demo"
+      className="relative w-full px-4 py-16 flex flex-col items-center"
+    >
       <SectionHeading
         as="h2"
         subtitle="Experience how easily you can save, search, and organize your code snippets with Snippo AI."
@@ -58,7 +61,7 @@ const DemoSection: React.FC = () => {
         See Snippo AI in Action
       </SectionHeading>
       <Divider />
-      <section className="w-full h-[760px]">
+      <section className="w-full h-[760px]" id="demo-main">
         <div className="mx-auto h-full">
           <div className="rounded-xl border border-zinc-300 dark:border-zinc-700 overflow-hidden shadow-lg bg-white dark:bg-zinc-800 h-full">
             <div className="flex items-center justify-between px-4 py-2 bg-[#262626] border-b border-zinc-300 dark:border-zinc-600 ">
