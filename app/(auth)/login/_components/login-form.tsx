@@ -110,7 +110,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ className = "", ...props }) => {
             </Label>
             <Link
               href="/forgot-password"
-              className="text-xs text-primary hover:text-primary/80 underline-offset-4 hover:underline transition-colors"
+              className="text-xs text-chart-2 hover:text-chart-3 underline-offset-4 hover:underline transition-colors"
             >
               Forgot password?
             </Link>
@@ -150,7 +150,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ className = "", ...props }) => {
             Don&apos;t have an account?{" "}
             <Link
               href="/sign-up"
-              className="text-primary hover:text-primary/80 font-medium underline-offset-4 hover:underline transition-colors"
+              className="text-chart-2 hover:text-chart-3 font-medium underline-offset-4 hover:underline transition-colors"
             >
               Create one
             </Link>

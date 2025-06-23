@@ -44,7 +44,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
           <div className="mb-8 text-center" style={{ animationDelay: "0.2s" }}>
             <Logo
               iconSize={32}
-              textClassName="text-2xl font-bold text-primary"
+              textClassName="text-2xl font-bold text-chart-2"
               center
             />
             {/* <div className="mt-2 h-px w-16 bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto animate-shimmer"></div> */}
