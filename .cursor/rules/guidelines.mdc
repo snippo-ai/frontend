@@ -28,6 +28,7 @@ These standards must be followed across all components, pages, and features in t
   - `text-fluid-lg`
 - Do **not** use hardcoded spacing, font sizes, or colors
   - Always prefer **Tailwind utilities** or **theme tokens** from the design system
+- It should look and feel like an AI website
 
 ---
 
