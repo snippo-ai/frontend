@@ -1,16 +1,17 @@
 import Logo from "@/components/shared/logo";
 import Typography from "@/components/shared/typography";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const footerLinks = [
-  { href: "/privacy", label: "Privacy Policy" },
-  { href: "/terms", label: "Terms of Service" },
-  {
-    href: "https://github.com/snippoai",
-    label: "GitHub Repository",
-    external: true,
-  },
+  { href: "/privacy-policy", label: "Privacy Policy", external: false },
+  { href: "/terms", label: "Terms of Service", external: false },
+  // {
+  //   href: "https://github.com/snippoai",
+  //   label: "GitHub Repository",
+  //   external: true,
+  // },
 ];
 
 const Footer: React.FC = () => (
@@ -60,7 +61,7 @@ const Footer: React.FC = () => (
       aria-label="Footer links"
     >
       {footerLinks.map((link) => (
-        <a
+        <Link
           key={link.href}
           href={link.href}
           target={link.external ? "_blank" : undefined}
@@ -69,7 +70,7 @@ const Footer: React.FC = () => (
           aria-label={link.label}
         >
           {link.label}
-        </a>
+        </Link>
       ))}
     </nav>
     {/* Copyright */}
