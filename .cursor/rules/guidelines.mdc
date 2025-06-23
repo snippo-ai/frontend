@@ -66,14 +66,10 @@ These standards must be followed across all components, pages, and features in t
   - Supporting keyboard navigation
   - Including visible focus indicators (`focus-visible`)
   - Using semantic roles (e.g., `role="dialog"`, `role="button"`)
+- Ensure best SEO practices for pages
 
 ---
 
 
 
-
-
-
-
-
-> ✳️ **Note**: These rules apply to all Cursor AI-generated code, as well as team-authored files. Include this guideline in any prompts where consistency or reuse is expected.
+> ✳️ **Note**: These rules apply to all Cursor AI-generated code, as well as team-authored files. Include this guideline in any prompts where consistency or reuse is expected

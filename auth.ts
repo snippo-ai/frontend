@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import { fetcher } from "./lib/api";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -10,14 +11,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       authorize: async (credentials) => {
         const { email, password } = credentials;
-        const response = await fetch("http://localhost:8080/auth/login", {
+        const response = await fetcher({
+          url: "/auth/login",
           method: "POST",
-          body: JSON.stringify({ email, password }),
-          headers: {
-            "Content-Type": "application/json",
-          },
+          data: JSON.stringify({ email, password }),
         });
-        const { data } = await response.json();
+
+        const { data } = response;
         const user = { ...data.user, token: data.token };
 
         if (response.status <= 301) {
