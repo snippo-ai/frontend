@@ -95,7 +95,7 @@ const OnBoarding = ({ session }: OnBoardingProps) => {
         }
       })
       .finally(() => setLoading(false));
-  }, [router]);
+  }, [router, session?.user?.token]);
 
   // Save progress to backend
   const saveProgress = async (updates: Partial<OnboardingForm>) => {

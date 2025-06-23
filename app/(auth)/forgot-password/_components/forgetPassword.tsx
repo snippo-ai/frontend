@@ -16,18 +16,23 @@ const ForgetPasswordForm = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:8080/auth/reset-password-request", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
+      const res = await fetch(
+        "http://localhost:8080/auth/reset-password-request",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
 
       const data = await res.json();
       if (!res.ok) throw new Error(data?.error || "Something went wrong");
 
       toast.success(data?.message || "Reset link sent! Check your inbox.");
-    } catch (err: any) {
-      toast.error(err.message || "Failed to send reset email");
+    } catch (err: unknown) {
+      toast.error(
+        err instanceof Error ? err.message : "Failed to send reset email"
+      );
     } finally {
       setLoading(false);
     }
@@ -47,7 +52,10 @@ const ForgetPasswordForm = () => {
       <form onSubmit={handleSubmit} autoComplete="off" className="space-y-6">
         {/* Email field */}
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-sm font-medium text-foreground">
+          <Label
+            htmlFor="email"
+            className="text-sm font-medium text-foreground"
+          >
             Email address
           </Label>
           <div className="relative">
@@ -70,11 +78,7 @@ const ForgetPasswordForm = () => {
           type="submit"
           className="w-full h-12 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-medium transition-all duration-300 group"
         >
-          {loading ? (
-            <Spinner className="size-5" />
-          ) : (
-            <>Send Reset Link</>
-          )}
+          {loading ? <Spinner className="size-5" /> : <>Send Reset Link</>}
         </Button>
       </form>
     </div>
