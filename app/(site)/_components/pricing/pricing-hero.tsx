@@ -110,7 +110,7 @@ const PricingHero: React.FC = () => {
                       } ${colIdx === tiers.length - 1 ? "rounded-r-xl" : ""}`}
                     >
                       {tier.features.includes(feature) ? (
-                        <CheckIcon className="mx-auto text-primary size-6 drop-shadow-md" />
+                        <CheckIcon className="mx-auto text-chart-2 size-6 drop-shadow-md" />
                       ) : (
                         <span className="text-muted-foreground">—</span>
                       )}
