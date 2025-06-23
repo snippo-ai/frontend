@@ -52,7 +52,7 @@ const SignUpForm = ({ className = "", ...props }) => {
     <div className={cn("space-y-6", className)} {...props}>
       <div className="text-center mb-8">
         <div className="flex items-center justify-center mb-3">
-          <Sparkles className="size-6 text-primary mr-2" />
+          <Sparkles className="size-6 text-foreground mr-2" />
           <h1 className="text-3xl font-bold bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
             Join Snippo AI
           </h1>
@@ -169,7 +169,7 @@ const SignUpForm = ({ className = "", ...props }) => {
             Already have an account?{" "}
             <Link
               href="/login"
-              className="text-primary hover:text-primary/80 font-medium underline-offset-4 hover:underline transition-colors"
+              className="text-chart-2 hover:text-chart-3 font-medium underline-offset-4 hover:underline transition-colors"
             >
               Sign in
             </Link>
@@ -179,18 +179,18 @@ const SignUpForm = ({ className = "", ...props }) => {
 
       {/* Terms and privacy */}
       <div className="text-center">
-        <p className="text-xs text-muted-foreground leading-relaxed">
+        <p className="text-xs text-muted-foreground leading-relaxed text-balance">
           By creating an account, you agree to our{" "}
           <Link
-            href="/terms-of-service"
-            className="text-primary hover:text-primary/80 underline underline-offset-4 transition-colors"
+            href="/terms"
+            className="text-chart-2 hover:text-chart-3 underline underline-offset-4 transition-colors"
           >
             Terms of Service
           </Link>{" "}
           and{" "}
           <Link
             href="/privacy-policy"
-            className="text-primary hover:text-primary/80 underline underline-offset-4 transition-colors"
+            className="text-chart-2 hover:text-chart-3 underline underline-offset-4 transition-colors"
           >
             Privacy Policy
           </Link>
