@@ -1,23 +1,18 @@
 "use client";
 
 import { Container } from "@/components/shared/container";
+import SectionHeading from "@/components/shared/section-heading";
 import Typography from "@/components/shared/typography";
 import { Button } from "@/components/ui/button";
 
-const PricingUpgradeInfo = () => {
+const PricingUpgradeInfo: React.FC = () => {
   return (
-    <section className="w-full flex justify-center py-16 px-2 animate-fade-in">
-      <Container className="relative bg-gradient-to-br from-primary/10 via-accent/10 to-transparent rounded-3xl shadow-xl border border-border p-10 flex flex-col items-center text-center max-w-3xl">
-        <Typography
-          as="h2"
-          fluidSize="2xl"
-          className="font-bold mb-4 bg-gradient-to-r from-primary via-accent to-chart-2 bg-clip-text text-transparent"
-        >
-          Upgrade, Downgrade, or Cancel Anytime
-        </Typography>
+    <section className="bg-transparent w-full flex justify-center py-16 px-2">
+      <Container className="relative rounded-3xl shadow-xl border border-border p-10 flex flex-col items-center text-center max-w-5xl">
+        <SectionHeading>Upgrade, Downgrade, or Cancel Anytime</SectionHeading>
         <Typography
           as="p"
-          fluidSize="lg"
+          fluidSize="base"
           className="mb-8 text-muted-foreground"
         >
           You have full control over your subscription. Upgrade to Pro for
@@ -28,24 +23,9 @@ const PricingUpgradeInfo = () => {
           size="lg"
           className="bg-gradient-to-r from-primary to-accent text-primary-foreground font-bold rounded-full px-10 py-6 shadow-lg hover:scale-105 transition-transform duration-200"
         >
-          Manage Subscription
+          UPGRADE TO PRO
         </Button>
       </Container>
-      <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(40px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in {
-          animation: fade-in 1s cubic-bezier(0.4, 0, 0.2, 1) both;
-        }
-      `}</style>
     </section>
   );
 };

@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import PricingFaq from "../_components/pricing/pricing-faq";
 import PricingHero from "../_components/pricing/pricing-hero";
 import PricingSupportCta from "../_components/pricing/pricing-support-cta";
-import PricingTable from "../_components/pricing/pricing-table";
 import PricingUpgradeInfo from "../_components/pricing/pricing-upgrade-info";
 
 export const metadata: Metadata = {
@@ -15,7 +14,6 @@ const PricingPage = () => {
   return (
     <main className="min-h-screen w-full bg-background text-foreground flex flex-col items-center">
       <PricingHero />
-      <PricingTable />
       <PricingUpgradeInfo />
       <PricingFaq />
       <PricingSupportCta />
