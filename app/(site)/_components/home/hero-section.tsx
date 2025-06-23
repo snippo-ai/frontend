@@ -48,11 +48,8 @@ const HeroSection = () => {
         ))}
       </div>
 
-      {/* Main content container */}
       <Container className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* Left Section - Content */}
         <div className="text-left">
-          {/* Main heading with gradient text */}
           <div className="mb-6">
             <Typography
               as="h1"
@@ -70,7 +67,6 @@ const HeroSection = () => {
             </Typography>
           </div>
 
-          {/* Subtitle with enhanced styling */}
           <Typography
             as="p"
             fluidSize="lg"
@@ -83,7 +79,6 @@ const HeroSection = () => {
             ease.
           </Typography>
 
-          {/* Feature highlights */}
           <div className="flex flex-wrap gap-4 mb-8">
             {[
               { icon: Sparkles, text: "AI-Powered", color: "text-zinc-400" },
@@ -104,19 +99,16 @@ const HeroSection = () => {
             ))}
           </div>
 
-          {/* CTA Button with enhanced styling */}
           <div className="relative">
             <Button
               size="lg"
               className="relative px-12 py-6 text-fluid-base font-semibold bg-gradient-to-br from-primary to-chart-2 border-0 shadow-2xl hover:shadow-primary/25 transition-200 group w-fit rounded-xl"
             >
-              {/* <Sparkles className="size-6 mr-2" /> */}
               Get Started
               <ArrowRight className="size-6 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
 
-          {/* Trust indicators */}
           <div className="mt-8 flex flex-wrap items-center gap-6 text-muted-foreground  delay-600">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-chart-2 rounded-full animate-pulse delay-500"></div>
@@ -129,12 +121,9 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Right Section - Creative Illustration */}
         <div className="relative flex items-center justify-center  delay-300">
           <div className="relative w-full max-w-lg">
-            {/* Enhanced main illustration container */}
             <div className="relative bg-gradient-to-br from-card/95 via-background/90 to-card/95 backdrop-blur-xl rounded-3xl border border-border/60 p-8 shadow-2xl hover:shadow-primary/10 transition-all duration-500">
-              {/* Animated background grid */}
               <div className="absolute inset-0 rounded-3xl overflow-hidden opacity-20">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-chart-2/10"></div>
                 <div
@@ -199,152 +188,9 @@ const HeroSection = () => {
                 <div className="relative bg-gradient-to-br from-card/98 to-background/98 rounded-full p-8 shadow-2xl border border-primary/30 backdrop-blur-sm hover:scale-105 transition-transform duration-300 z-10">
                   <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-full"></div>
                   <Brain className="w-16 h-16 text-primary-foreground animate-pulse relative z-10" />
-
-                  {/* Orbiting particles around brain */}
-                  {/* <div className="absolute inset-0 animate-orbit">
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-chart-2 rounded-full animate-pulse"></div>
-                  </div>
-                  <div
-                    className="absolute inset-0 animate-orbit-reverse"
-                    style={{ animationDuration: "6s" }}
-                  >
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-chart-3 rounded-full animate-pulse delay-1000"></div>
-                  </div> */}
                 </div>
               </div>
 
-              {/* Enhanced neural network connections */}
-              {/* <div className="absolute inset-0 pointer-events-none">
-                <svg className="w-full h-full" viewBox="0 0 300 250">
-                  <defs>
-                    <linearGradient
-                      id="connectionGradient1"
-                      x1="0%"
-                      y1="0%"
-                      x2="100%"
-                      y2="100%"
-                    >
-                      <stop
-                        offset="0%"
-                        stopColor="hsl(var(--primary))"
-                        stopOpacity="0.8"
-                      />
-                      <stop
-                        offset="100%"
-                        stopColor="hsl(var(--chart-2))"
-                        stopOpacity="0.8"
-                      />
-                    </linearGradient>
-                    <linearGradient
-                      id="connectionGradient2"
-                      x1="0%"
-                      y1="0%"
-                      x2="100%"
-                      y2="100%"
-                    >
-                      <stop
-                        offset="0%"
-                        stopColor="hsl(var(--chart-2))"
-                        stopOpacity="0.8"
-                      />
-                      <stop
-                        offset="100%"
-                        stopColor="hsl(var(--chart-3))"
-                        stopOpacity="0.8"
-                      />
-                    </linearGradient>
-                    <linearGradient
-                      id="connectionGradient3"
-                      x1="0%"
-                      y1="0%"
-                      x2="100%"
-                      y2="100%"
-                    >
-                      <stop
-                        offset="0%"
-                        stopColor="hsl(var(--chart-3))"
-                        stopOpacity="0.8"
-                      />
-                      <stop
-                        offset="100%"
-                        stopColor="hsl(var(--primary))"
-                        stopOpacity="0.8"
-                      />
-                    </linearGradient>
-                  </defs>
-
-                  <path
-                    d="M 50 50 Q 150 25 250 50"
-                    stroke="url(#connectionGradient1)"
-                    strokeWidth="3"
-                    fill="none"
-                    className="animate-pulse"
-                    strokeDasharray="5,5"
-                  />
-                  <path
-                    d="M 50 200 Q 150 225 250 200"
-                    stroke="url(#connectionGradient2)"
-                    strokeWidth="3"
-                    fill="none"
-                    className="animate-pulse delay-500"
-                    strokeDasharray="5,5"
-                  />
-                  <path
-                    d="M 50 50 Q 150 125 50 200"
-                    stroke="url(#connectionGradient3)"
-                    strokeWidth="3"
-                    fill="none"
-                    className="animate-pulse delay-1000"
-                    strokeDasharray="5,5"
-                  />
-                  <path
-                    d="M 250 50 Q 150 125 250 200"
-                    stroke="url(#connectionGradient1)"
-                    strokeWidth="3"
-                    fill="none"
-                    className="animate-pulse delay-1500"
-                    strokeDasharray="5,5"
-                  />
-
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="4"
-                    fill="hsl(var(--primary))"
-                    className="animate-pulse"
-                  />
-                  <circle
-                    cx="250"
-                    cy="50"
-                    r="4"
-                    fill="hsl(var(--chart-2))"
-                    className="animate-pulse delay-200"
-                  />
-                  <circle
-                    cx="50"
-                    cy="200"
-                    r="4"
-                    fill="hsl(var(--chart-3))"
-                    className="animate-pulse delay-400"
-                  />
-                  <circle
-                    cx="250"
-                    cy="200"
-                    r="4"
-                    fill="hsl(var(--primary))"
-                    className="animate-pulse delay-600"
-                  />
-                  <circle
-                    cx="150"
-                    cy="125"
-                    r="6"
-                    fill="hsl(var(--chart-2))"
-                    className="animate-pulse delay-800"
-                  />
-                </svg>
-              </div> */}
-
-              {/* Enhanced search functionality representation */}
               <div className="relative bg-gradient-to-br from-card/95 via-background/90 to-card/95 rounded-xl p-6 border border-border/60 backdrop-blur-sm shadow-lg">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="p-2 bg-gradient-to-r from-primary to-chart-2 rounded-lg">
@@ -363,7 +209,6 @@ const HeroSection = () => {
                   </div>
                 </div>
 
-                {/* Search results preview */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 p-2 bg-muted/80 rounded-lg hover:bg-muted transition-colors">
                     <div className="w-2 h-2 bg-amber-300 rounded-full animate-pulse"></div>
@@ -392,7 +237,6 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              {/* Enhanced floating code snippets */}
               <div className="absolute -right-10 top-1/4 opacity-90 animate-float-slow">
                 <div className="bg-gradient-to-br from-card/98 to-background/98 p-3 rounded-lg border border-border/60 backdrop-blur-sm shadow-lg">
                   <div className="flex items-center gap-2 mb-2">
