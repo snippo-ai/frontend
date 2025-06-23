@@ -16,6 +16,7 @@ These standards must be followed across all components, pages, and features in t
 - Components must be **responsive by default** using utility-first layout practices
 - Use **semantic HTML** wherever appropriate (e.g., `<header>`, `<section>`, `<main>`)
 - Do not use **a** tags for links, use **Link** component from next js
+- Always generate mock data under **lib/mocks/**
 
 ---
 
@@ -70,6 +71,9 @@ These standards must be followed across all components, pages, and features in t
 - Ensure best SEO practices for pages
 
 ---
+
+
+
 
 
 
