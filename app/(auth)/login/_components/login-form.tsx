@@ -11,9 +11,13 @@ import { useRouter } from "next/navigation";
 import { useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
 
-type LoginFormProps = React.ComponentProps<"div"> & { redirectTo?: string };
+type LoginFormProps = React.ComponentProps<"div"> & { redirectTo: string };
 
-const LoginForm: React.FC<LoginFormProps> = ({ className = "", ...props }) => {
+const LoginForm: React.FC<LoginFormProps> = ({
+  className = "",
+  redirectTo,
+  ...props
+}) => {
   const router = useRouter();
   const [state, formAction] = useActionState(login, null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -22,7 +26,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ className = "", ...props }) => {
     setLoading(false);
     if (state?.error) toast.error(state.error);
     else if (state?.success) {
-      router.push("/");
+      router.push(redirectTo);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
