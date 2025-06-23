@@ -30,7 +30,7 @@ const PricingHero: React.FC = () => {
         <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-gradient-to-br from-primary/30 via-accent/20 to-transparent rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tr from-chart-2/20 to-transparent rounded-full blur-2xl animate-pulse delay-500 z-0" />
       </div>
-      <Container className="relative flex flex-col items-center text-center animate-fade-in z-10">
+      <Container className="relative flex flex-col items-center text-center animate-fade-in-up z-10">
         <SectionHeading
           subtitle="Choose the plan that fits your needs. No hidden fees, cancel anytime.
           Upgrade or downgrade at any time with a single click."
@@ -165,21 +165,6 @@ const PricingHero: React.FC = () => {
           </svg>
         </div>
       </Container>
-      <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(40px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in {
-          animation: fade-in 1s cubic-bezier(0.4, 0, 0.2, 1) both;
-        }
-      `}</style>
     </section>
   );
 };
