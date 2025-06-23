@@ -1,0 +1,72 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# 🏛️ Snippo AI UI/UX Implementation Guidelines
+
+These standards must be followed across all components, pages, and features in the Snippo AI codebase — including all AI-generated or team-built sections.
+
+---
+
+## ⚙️ Component & Structure Standards
+
+- Use **ShadCN UI components** strictly from the path: `@/components/ui`
+- Follow **Next.js App Router** architecture only (no use of the legacy `pages/` directory)
+- Components must be **responsive by default** using utility-first layout practices
+- Use **semantic HTML** wherever appropriate (e.g., `<header>`, `<section>`, `<main>`)
+
+---
+
+## 🌑 Theming & Styling
+
+- All styling must be compatible with the **dark theme** and respect Tailwind's dark mode classes
+- Use **fluid typography classes** from `globals.css`, such as:
+  - `text-fluid-sm`
+  - `text-fluid-base`
+  - `text-fluid-lg`
+- Do **not** use hardcoded spacing, font sizes, or colors
+  - Always prefer **Tailwind utilities** or **theme tokens** from the design system
+
+---
+
+## 🎨 Visual Design
+
+- Use **theme-consistent gradients and shadows** for backgrounds, cards, and headings
+- All **buttons and CTA elements** must follow the design system’s:
+  - `primary`
+  - `secondary`
+  - `ghost` variants
+- Avoid deviating from existing style tokens unless explicitly scoped
+
+---
+
+## 🌀 Animations
+
+- Animations must be:
+  - **Subtle**, **accessible**, and **non-blocking**
+  - Applied using classes defined in `globals.css`
+  - Never defined inline in JSX or inline styles
+- Use standard animation class naming like:
+  - `.fade-in`
+  - `.slide-up`
+  - `.pulse-on-hover`
+
+---
+
+## ✅ Performance & Accessibility
+
+- All components must be:
+  - **Lighthouse-optimized** (Core Web Vitals friendly)
+  - **Minimal in DOM size and dependencies**
+  - **Lazy-loaded** when appropriate
+- Ensure **accessibility** by:
+  - Using proper `aria-*` labels
+  - Supporting keyboard navigation
+  - Including visible focus indicators (`focus-visible`)
+  - Using semantic roles (e.g., `role="dialog"`, `role="button"`)
+
+---
+
+> ✳️ **Note**: These rules apply to all Cursor AI-generated code, as well as team-authored files. Include this guideline in any prompts where consistency or reuse is expected.
+
