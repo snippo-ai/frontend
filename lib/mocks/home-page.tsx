@@ -95,7 +95,7 @@ export const pricing = {
     },
     {
       plan: "Pro",
-      price: "₹249/mo",
+      price: "₹249 / mo",
       features: [
         "Unlimited private snippets",
         "Advanced search",
@@ -120,13 +120,12 @@ export const pricing = {
     },
     {
       plan: "Pro",
-      price: "₹2,499/yr",
+      price: "₹2,499 / yr",
       features: [
         "Unlimited private snippets",
         "Advanced search",
         "Team sharing",
         "Priority support",
-        "2 months free!",
       ],
       cta: "Get Started",
       highlight: true,
