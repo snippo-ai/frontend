@@ -15,6 +15,7 @@ These standards must be followed across all components, pages, and features in t
 - Follow **Next.js App Router** architecture only (no use of the legacy `pages/` directory)
 - Components must be **responsive by default** using utility-first layout practices
 - Use **semantic HTML** wherever appropriate (e.g., `<header>`, `<section>`, `<main>`)
+- Do not use **a** tags for links, use **Link** component from next js
 
 ---
 
@@ -68,5 +69,11 @@ These standards must be followed across all components, pages, and features in t
 
 ---
 
-> ✳️ **Note**: These rules apply to all Cursor AI-generated code, as well as team-authored files. Include this guideline in any prompts where consistency or reuse is expected.
 
+
+
+
+
+
+
+> ✳️ **Note**: These rules apply to all Cursor AI-generated code, as well as team-authored files. Include this guideline in any prompts where consistency or reuse is expected.
