@@ -1,4 +1,3 @@
-import { auth } from "@/auth";
 import { Metadata } from "next";
 import DemoSection from "./_components/home/demo-section";
 import Faqs from "./_components/home/faqs";
@@ -39,10 +38,7 @@ export const metadata: Metadata = {
   },
 };
 
-const HomePage = async () => {
-  const session = await auth();
-  console.log({ session });
-
+const HomePage = () => {
   return (
     <main className="min-h-screen w-full bg-background text-foreground flex flex-col items-center">
       <HeroSection />

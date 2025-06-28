@@ -1,4 +1,3 @@
-import { auth } from "@/auth";
 import { Metadata } from "next";
 import PricingFaq from "../_components/pricing/pricing-faq";
 import PricingHero from "../_components/pricing/pricing-hero";
@@ -11,9 +10,7 @@ export const metadata: Metadata = {
     "Simple, transparent pricing for Snippo AI. Choose the plan that fits your needs. No hidden fees, cancel anytime.",
 };
 
-const PricingPage = async () => {
-  const session = await auth();
-  console.log({ session });
+const PricingPage = () => {
   return (
     <main className="min-h-screen w-full bg-background text-foreground flex flex-col items-center">
       <PricingHero />

@@ -12,7 +12,6 @@ interface TopbarProps {
 }
 
 const Topbar: React.FC<TopbarProps> = ({ session }) => {
-  console.log({ session });
   return (
     <header className="flex h-16 items-center justify-between border-b bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/50 px-4 md:px-6">
       <div className="flex items-center space-x-4">
