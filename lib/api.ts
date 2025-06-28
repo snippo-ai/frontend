@@ -16,7 +16,7 @@ export async function fetcher(
   let token;
 
   // If session is provided (server), use it
-  if (session && session.user?.token) {
+  if (session && session?.user?.token) {
     token = session.user.token;
   } else {
     // Try to get session on client

@@ -15,7 +15,7 @@ type LoginFormProps = React.ComponentProps<"div"> & { redirectTo: string };
 
 const LoginForm: React.FC<LoginFormProps> = ({
   className = "",
-  redirectTo,
+  redirectTo = "/",
   ...props
 }) => {
   const router = useRouter();

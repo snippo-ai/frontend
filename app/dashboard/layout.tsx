@@ -1,23 +1,23 @@
-"use client";
-
-import { useState } from "react";
+import { auth } from "@/auth";
+import { notFound } from "next/navigation";
 import { MainContent, Sidebar, Topbar } from "./_components";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
-const DashboardLayout = ({ children }: DashboardLayoutProps) => {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
+  const session = await auth();
+
+  if (!session) {
+    return notFound();
+  }
 
   return (
     <div className="flex h-screen bg-background">
-      <Sidebar
-        sidebarCollapsed={sidebarCollapsed}
-        setSidebarCollapsed={setSidebarCollapsed}
-      />
+      <Sidebar session={session} />
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Topbar />
+        <Topbar session={session} />
         <MainContent>{children}</MainContent>
       </div>
     </div>

@@ -1,16 +1,20 @@
 "use client";
 
+import Logo from "@/components/shared/logo";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, FileText } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Session } from "next-auth";
 import Link from "next/link";
+import { useState } from "react";
 import { bottomSidebarItems, sidebarItems } from "./navigation-data";
 
 interface SidebarProps {
-  sidebarCollapsed: boolean;
-  setSidebarCollapsed: (collapsed: boolean) => void;
+  session: Session;
 }
 
-const Sidebar = ({ sidebarCollapsed, setSidebarCollapsed }: SidebarProps) => {
+const Sidebar: React.FC<SidebarProps> = () => {
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
   return (
     <div
       className={`hidden md:flex flex-col border-r bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/50 ${
@@ -20,10 +24,8 @@ const Sidebar = ({ sidebarCollapsed, setSidebarCollapsed }: SidebarProps) => {
       {/* Logo Section */}
       <div className="flex h-16 items-center justify-between px-4 border-b">
         {!sidebarCollapsed && (
-          <Link href="/dashboard" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/60 rounded-lg flex items-center justify-center">
-              <FileText className="w-4 w-4 text-primary-foreground" />
-            </div>
+          <Link href="/" className="flex items-center space-x-2">
+            <Logo hideLabel />
             <span className="text-fluid-base font-semibold">Snippo</span>
           </Link>
         )}

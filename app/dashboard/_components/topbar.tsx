@@ -4,9 +4,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Bell, Search, User } from "lucide-react";
+import { Session } from "next-auth";
 import { MobileSidebar } from "./index";
 
-const Topbar = () => {
+interface TopbarProps {
+  session: Session;
+}
+
+const Topbar: React.FC<TopbarProps> = ({ session }) => {
+  console.log({ session });
   return (
     <header className="flex h-16 items-center justify-between border-b bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/50 px-4 md:px-6">
       <div className="flex items-center space-x-4">
@@ -39,8 +45,10 @@ const Topbar = () => {
         {/* User Menu */}
         <div className="flex items-center space-x-3">
           <div className="hidden md:block text-right">
-            <p className="text-sm font-medium">John Doe</p>
-            <p className="text-xs text-muted-foreground">john@example.com</p>
+            <p className="text-sm font-medium">{session.user.name}</p>
+            <p className="text-xs text-muted-foreground">
+              {session.user.email}
+            </p>
           </div>
           <Avatar className="h-8 w-8">
             <AvatarImage src="/avatars/user.jpg" alt="User" />

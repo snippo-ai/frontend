@@ -16,12 +16,44 @@ type Duration = (typeof plans)[number]["key"];
 type Tier = (typeof pricing)["monthly"][number];
 
 const PricingHero: React.FC = () => {
+  // const [loading, setLoading] = useState(false);
   const [duration, setDuration] = useState<Duration>("monthly");
   const tiers: Tier[] = pricing[duration];
 
   const allFeatures = Array.from(
     new Set(tiers.flatMap((tier: Tier) => tier.features))
   );
+
+  // async function pay() {
+  //   setLoading(true);
+  //   await fetch("http://localhost:8080/api/billing/create-subscription", {
+  //     method: "POST",
+  //     body: JSON.stringify({ planId: "plan_QkMj84RI3NKDCj" }),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWVlY2Y4ZGVmZjVkN2Q1OTZiOTcyMCIsImZpcnN0TmFtZSI6IlRlc3QiLCJsYXN0TmFtZSI6IjE1IiwiZW1haWwiOiJ0ZXN0MTVAZ21haWwuY29tIiwibG9naW5NZXRob2QiOiJjcmVkcyIsImlhdCI6MTc1MTA1MTUxMiwiZXhwIjoxNzUxNjU2MzEyfQ.rhORSKMQfqXH8aMyAVUFaTk3XyioIk2UR4tTBepR8nU`,
+  //     },
+  //   })
+  //     .then((r) => r.json())
+  //     .then((d) => {
+  //       const rzp = new window.Razorpay({
+  //         key: "rzp_test_KbnkN97h5H9FLZ",
+  //         name: "Snippo AI",
+  //         description: "Subscription Payment",
+  //         subscription_id: d.data.subscriptionId,
+  //         // handler: async (response: any) => {
+  //         //   await fetch("/api/billing/verify-payment", {
+  //         //     method: "POST",
+  //         //     headers: { "Content-Type": "application/json" },
+  //         //     body: JSON.stringify(response),
+  //         //   });
+  //         // },
+  //       });
+
+  //       rzp.open();
+  //       setLoading(false);
+  //     });
+  // }
 
   return (
     <section className="relative w-full flex items-center justify-center py-20 md:py-32">
@@ -83,8 +115,10 @@ const PricingHero: React.FC = () => {
                       {tier.price}
                     </div>
                     <Button
+                      // onClick={() => pay()}
                       className={`mt-4 w-3/4 mx-auto font-bold rounded-full shadow-xl hover:shadow-2xl transition-transform duration-200 focus:ring-4 focus:ring-primary/30 focus:outline-none`}
                     >
+                      {/* {loading ? <Spinner /> : tier.cta} */}
                       {tier.cta}
                     </Button>
                   </th>

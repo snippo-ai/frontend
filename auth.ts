@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { fetcher } from "./lib/api";
@@ -11,20 +12,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       authorize: async (credentials) => {
         const { email, password } = credentials;
-        const response = await fetcher({
-          url: "/auth/login",
-          method: "POST",
-          data: JSON.stringify({ email, password }),
-        });
+        try {
+          const response = await fetcher({
+            url: "/auth/login",
+            method: "POST",
+            data: JSON.stringify({ email, password }),
+          });
 
-        const { data } = response;
-        const user = { ...data.user, token: data.token };
+          const { data } = response;
+          if (response.status <= 301) {
+            return data.data;
+          }
 
-        if (response.status <= 301) {
-          return user;
+          return null;
+        } catch (error: any) {
+          console.log(`Auth Error ----> ${error?.response?.data}`);
+          return null;
         }
-
-        return null;
       },
     }),
   ],
@@ -34,14 +38,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
+        token.user = user;
         token.token = user.token;
       }
       return token;
     },
     session({ session, token }) {
-      session.user.id = token.id as string;
-      session.user.token = token.token as string;
+      if (token.user) {
+        session.user = token.user as any;
+        session.token = token.token as string;
+        session.id = (token.user as any).id;
+        delete (session.user as any).token;
+        delete (session.user as any).id;
+      }
       return session;
     },
   },
