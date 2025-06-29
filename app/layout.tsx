@@ -9,7 +9,7 @@ const font = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Snippo AI",
+  title: { default: "Snippo AI", template: "%s | Snippo AI" },
   description: "",
 };
 

@@ -18,6 +18,11 @@ import {
   Users,
 } from "lucide-react";
 import { ChartAreaInteractive } from "./_components/charts/chart-area";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard"
+}
 
 const DashboardPage = () => {
   const stats = [
