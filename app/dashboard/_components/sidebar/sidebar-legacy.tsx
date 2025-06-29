@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Session } from "next-auth";
 import Link from "next/link";
 import { useState } from "react";
-import { bottomSidebarItems, sidebarItems } from "./navigation-data";
+import { bottomSidebarItems, sidebarItems } from "../navigation-data";
 
 interface SidebarProps {
   session: Session;
@@ -22,7 +22,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
       } transition-all duration-300 ease-in-out`}
     >
       {/* Logo Section */}
-      <div className="flex h-16 items-center justify-between px-4 border-b">
+      <div className="flex h-16 items-center justify-between px-4">
         {!sidebarCollapsed && (
           <Link href="/" className="flex items-center space-x-2">
             <Logo hideLabel />

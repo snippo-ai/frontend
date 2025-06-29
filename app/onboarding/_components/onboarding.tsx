@@ -59,7 +59,7 @@ const steps = [
 ];
 
 type OnBoardingProps = {
-  session: Session | null;
+  session?: Session | null;
 };
 
 const OnBoarding = ({ session }: OnBoardingProps) => {

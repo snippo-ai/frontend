@@ -3,7 +3,6 @@ import {
   FileText,
   Folder,
   Home,
-  LogOut,
   Settings as SettingsIcon,
   Users,
 } from "lucide-react";
@@ -18,5 +17,4 @@ export const sidebarItems = [
 
 export const bottomSidebarItems = [
   { icon: SettingsIcon, label: "Settings", href: "/dashboard/settings" },
-  { icon: LogOut, label: "Logout", href: "/auth/logout" },
 ];
