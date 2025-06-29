@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/sidebar";
 import { notFound } from "next/navigation";
 import DashboardBreadcrumb from "./_components/breadcrumb";
-import { AppSidebar } from "./_components/sidebar";
+import AppSidebar from "./_components/sidebar";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -22,7 +22,7 @@ const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
 
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <AppSidebar session={session} />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
           <div className="flex items-center gap-2 px-4">

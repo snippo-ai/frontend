@@ -21,6 +21,7 @@ import {
   Settings2,
   SquareTerminal,
 } from "lucide-react";
+import { User } from "next-auth";
 import * as React from "react";
 import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
@@ -149,7 +150,10 @@ const data = {
   ],
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+const AppSidebar = ({
+  session,
+  ...props
+}: React.ComponentProps<typeof Sidebar> & { session: { user: User } }) => {
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -167,8 +171,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={session.user} />
       </SidebarFooter>
     </Sidebar>
   );
-}
+};
+
+export default AppSidebar;

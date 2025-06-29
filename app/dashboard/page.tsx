@@ -17,6 +17,7 @@ import {
   TrendingUp,
   Users,
 } from "lucide-react";
+import { ChartAreaInteractive } from "./_components/charts/chart-area";
 
 const DashboardPage = () => {
   const stats = [
@@ -85,9 +86,9 @@ const DashboardPage = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-fluid-2xl font-bold tracking-tight">Dashboard</h1>
+          <h1 className="text-fluid-2xl font-bold tracking-tight">Overview</h1>
           <p className="text-muted-foreground">
-            Welcome back! Here&apos;s what&apos;s happening with your snippets.
+            Here&apos;s what&apos;s happening with your snippets.
           </p>
         </div>
         <Button className="flex items-center space-x-2">
@@ -116,6 +117,7 @@ const DashboardPage = () => {
           </Card>
         ))}
       </div>
+      <ChartAreaInteractive />
 
       {/* Recent Snippets */}
       <Card>
