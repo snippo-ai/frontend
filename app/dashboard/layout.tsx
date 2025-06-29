@@ -1,12 +1,4 @@
 import { auth } from "@/auth";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -14,6 +6,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { notFound } from "next/navigation";
+import DashboardBreadcrumb from "./_components/breadcrumb";
 import { AppSidebar } from "./_components/sidebar";
 
 interface DashboardLayoutProps {
@@ -38,33 +31,14 @@ const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
             />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+            <DashboardBreadcrumb
+              routes={[{ label: "Dashboard", icon: null, href: "/dashboard" }]}
+            />
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          {children}
-        </div>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</div>
       </SidebarInset>
     </SidebarProvider>
-    // <div className="flex h-screen bg-background">
-    //   <Sidebar session={session} />
-    //   <div className="flex-1 flex flex-col overflow-hidden">
-    //     <Topbar session={session} />
-    //     <MainContent>{children}</MainContent>
-    //   </div>
-    // </div>
   );
 };
 
