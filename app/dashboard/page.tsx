@@ -134,11 +134,11 @@ const DashboardPage = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="space-y-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {recentSnippets.map((snippet) => (
               <div
                 key={snippet.id}
-                className="flex items-center justify-between p-4 rounded-lg border hover:bg-accent/50 transition-colors"
+                className="flex items-center justify-between p-4 rounded-lg border hover:bg-accent/50 transition-colors h-full"
               >
                 <div className="flex-1 space-y-1">
                   <div className="flex items-center space-x-2">
