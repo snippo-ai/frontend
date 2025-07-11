@@ -7,7 +7,7 @@ type LoginPageProps = {
 const LoginPage = async ({ searchParams }: LoginPageProps) => {
   const { redirectUrl = "/dashboard" } = await searchParams;
 
-  return <LoginForm redirectTo={redirectUrl} />;
+  return <LoginForm redirectTo={redirectUrl} aria-label="Login Form" />;
 };
 
 export default LoginPage;

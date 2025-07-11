@@ -98,7 +98,6 @@ const LoginForm: React.FC<LoginFormProps> = ({
               type="email"
               placeholder="Enter your email"
               className="pl-10 h-12 bg-card/30 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
-              required
             />
           </div>
         </div>
@@ -127,7 +126,6 @@ const LoginForm: React.FC<LoginFormProps> = ({
               type="password"
               placeholder="Enter your password"
               className="pl-10 h-12 bg-card/30 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
-              required
             />
           </div>
         </div>
