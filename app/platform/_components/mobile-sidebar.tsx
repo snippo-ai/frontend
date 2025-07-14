@@ -18,7 +18,7 @@ const MobileSidebar = () => {
         <div className="flex h-full flex-col">
           {/* Logo Section */}
           <div className="flex h-16 items-center px-4 border-b">
-            <Link href="/dashboard" className="flex items-center space-x-2">
+            <Link href="/platform" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/60 rounded-lg flex items-center justify-center">
                 <FileText className="w-4 h-4 text-primary-foreground" />
               </div>

@@ -6,11 +6,12 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { notFound } from "next/navigation";
+import { ReactNode } from "react";
 import DashboardBreadcrumb from "./_components/breadcrumb";
 import AppSidebar from "./_components/sidebar";
 
 interface DashboardLayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
@@ -19,6 +20,8 @@ const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
   if (!session) {
     return notFound();
   }
+
+  // Try to get breadcrumb from the child page
 
   return (
     <SidebarProvider>
@@ -32,7 +35,10 @@ const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
               className="mr-2 data-[orientation=vertical]:h-4"
             />
             <DashboardBreadcrumb
-              routes={[{ label: "Dashboard", icon: null, href: "/dashboard" }]}
+              routes={[
+                { label: "Platform", icon: null, href: "" },
+                { label: "Overview", icon: null, href: "/overview" },
+              ]}
             />
           </div>
         </header>

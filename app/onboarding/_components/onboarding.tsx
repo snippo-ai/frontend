@@ -89,7 +89,7 @@ const OnBoarding = ({ session }: OnBoardingProps) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.onboardingComplete) {
-          router.replace("/dashboard");
+          router.replace("/platform");
         } else {
           setForm((prev) => ({ ...prev, ...data }));
         }
@@ -158,7 +158,7 @@ const OnBoarding = ({ session }: OnBoardingProps) => {
       body: JSON.stringify({ onboardingComplete: true }),
     });
     setSaving(false);
-    router.replace("/dashboard");
+    router.replace("/platform");
   };
 
   // Handle submit
@@ -171,7 +171,7 @@ const OnBoarding = ({ session }: OnBoardingProps) => {
       body: JSON.stringify({ ...form, onboardingComplete: true }),
     });
     setSaving(false);
-    router.replace("/dashboard");
+    router.replace("/platform");
   };
 
   if (loading)

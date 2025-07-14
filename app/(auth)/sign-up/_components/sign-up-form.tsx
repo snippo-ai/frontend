@@ -35,7 +35,7 @@ const SignUpForm = ({ className = "", ...props }) => {
         .then((data) => {
           if (data.onboardingComplete) {
             toast.success("Account created!");
-            router.push("/dashboard");
+            router.push("/platform");
           } else {
             toast.success("Account created!");
             router.push("/onboarding");
@@ -43,7 +43,7 @@ const SignUpForm = ({ className = "", ...props }) => {
         })
         .catch(() => {
           toast.error("Could not check onboarding status");
-          router.push("/dashboard");
+          router.push("/platform");
         });
     }
   }, [state, router]);

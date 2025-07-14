@@ -18,6 +18,7 @@ import {
   Users,
 } from "lucide-react";
 import { Metadata } from "next";
+import PageHeader from "../_components/page-header";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -87,19 +88,19 @@ const DashboardPage = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-fluid-2xl font-bold tracking-tight">Overview</h1>
-          <p className="text-muted-foreground">
-            Here&apos;s what&apos;s happening with your snippets.
-          </p>
-        </div>
-        <Button className="flex items-center space-x-2">
-          <Plus className="h-4 w-4" />
-          <span>New Snippet</span>
-        </Button>
-      </div>
+      <PageHeader
+        title="Overview"
+        description="Here's what's happening with your snippets."
+        actions={[
+          <Button
+            key="create-new-snippet-button"
+            className="flex items-center space-x-2"
+          >
+            <Plus className="h-4 w-4" />
+            <span>New Snippet</span>
+          </Button>,
+        ]}
+      />
 
       {/* Stats Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

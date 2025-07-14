@@ -50,7 +50,7 @@ const AuthButtons = ({
   session ? (
     <>
       <Link
-        href="/dashboard"
+        href="/platform/overview"
         className={cn(
           buttonVariants({
             variant: "ghost",
