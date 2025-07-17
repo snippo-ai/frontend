@@ -21,8 +21,6 @@ const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
     return notFound();
   }
 
-  // Try to get breadcrumb from the child page
-
   return (
     <SidebarProvider>
       <AppSidebar session={session} />

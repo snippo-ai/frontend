@@ -13,10 +13,10 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { ChartNoAxesGanttIcon, ShapesIcon } from "lucide-react";
-import { User } from "next-auth";
+import { Session } from "next-auth";
 import * as React from "react";
 import { NavMain } from "./nav-main";
-import { NavUser } from "./nav-user";
+import NavUser from "./nav-user";
 
 const data = {
   navMain: [
@@ -36,7 +36,7 @@ const data = {
 const AppSidebar = ({
   session,
   ...props
-}: React.ComponentProps<typeof Sidebar> & { session: { user: User } }) => {
+}: React.ComponentProps<typeof Sidebar> & { session: Session }) => {
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -54,7 +54,7 @@ const AppSidebar = ({
         <UpgradeToProCard variant="small" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={session.user} />
+        <NavUser session={session} />
       </SidebarFooter>
     </Sidebar>
   );

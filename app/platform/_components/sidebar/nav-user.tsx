@@ -15,11 +15,16 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { ChevronsUpDown, LogOut, SettingsIcon } from "lucide-react";
-import { User } from "next-auth";
+import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
 import Settings from "./settings";
 
-export function NavUser({ user }: { user: User }) {
+type NavUserProps = {
+  session: Session;
+};
+
+const NavUser = ({ session }: NavUserProps) => {
+  const { user } = session;
   const { isMobile } = useSidebar();
 
   return (
@@ -65,10 +70,12 @@ export function NavUser({ user }: { user: User }) {
             className="max-w-3xl sm:max-w-4xl md:max-w-5xl lg:max-w-6xl w-full p-0"
             overlayBlur
           >
-            <Settings />
+            <Settings session={session} />
           </DialogContent>
         </Dialog>
       </SidebarMenuItem>
     </SidebarMenu>
   );
-}
+};
+
+export default NavUser;
