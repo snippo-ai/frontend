@@ -2,6 +2,7 @@
 
 import Logo from "@/components/shared/logo";
 import UpgradeToProCard from "@/components/shared/updgrade-to-pro-card";
+import { Separator } from "@/components/ui/separator";
 import {
   Sidebar,
   SidebarContent,
@@ -49,9 +50,10 @@ const AppSidebar = ({
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
+        <Separator className="mb-4" />
+        <UpgradeToProCard variant="small" />
       </SidebarContent>
       <SidebarFooter>
-        <UpgradeToProCard variant="small" />
         <NavUser user={session.user} />
       </SidebarFooter>
     </Sidebar>
