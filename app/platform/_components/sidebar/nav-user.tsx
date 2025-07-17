@@ -66,9 +66,6 @@ export function NavUser({ user }: { user: User }) {
             overlayBlur
           >
             <Settings />
-            {/* <DialogFooter>
-              <Button type="submit">Confirm</Button>
-            </DialogFooter> */}
           </DialogContent>
         </Dialog>
       </SidebarMenuItem>
