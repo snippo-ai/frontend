@@ -1,0 +1,1 @@
+export const VISIBLE_CHARACTERS_IN_MASKING = 3;
