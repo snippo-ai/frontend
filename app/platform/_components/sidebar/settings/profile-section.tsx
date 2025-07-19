@@ -120,6 +120,15 @@ const ProfileSection = ({ session }: Props) => {
     setTimeout(() => setOpen(false), 1500);
   };
 
+  // Automatically submit OTP when complete
+  useEffect(() => {
+    if (showOtp && otp.length === 6) {
+      // Create a fake event to pass to handleOtpSubmit
+      const event = { preventDefault: () => {} } as React.FormEvent;
+      handleOtpSubmit(event);
+    }
+  }, [otp, showOtp]);
+
   return (
     <>
       <MainContentHeader
@@ -301,8 +310,8 @@ const ProfileSection = ({ session }: Props) => {
                             className="text-muted-foreground"
                           >
                             Please enter the 6-digit code sent to{" "}
-                            <span className="font-semibold text-foreground">
-                              {session.user.email}
+                            <span className="font-semibold text-foreground font-mono">
+                              {maskEmail(session.user.email)}
                             </span>
                             .
                           </Typography>
