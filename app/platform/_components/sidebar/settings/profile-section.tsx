@@ -136,7 +136,6 @@ const ProfileSection = ({ session }: Props) => {
         description="Manage your account settings and profile information."
         icon={SectionIconMap[SECTIONS_ENUM.PROFILE]}
       />
-
       <div className="grid gap-6">
         {/* User Names */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

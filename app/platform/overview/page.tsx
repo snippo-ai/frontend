@@ -103,7 +103,7 @@ const DashboardPage = () => {
       />
 
       {/* Stats Grid */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      {/* <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => (
           <Card key={stat.title} className="hover:shadow-md transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -121,6 +121,45 @@ const DashboardPage = () => {
             </CardContent>
           </Card>
         ))}
+      </div> */}
+
+      {/* Quick Actions */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <Card className="hover:shadow-md transition-shadow cursor-pointer">
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              <Plus className="h-5 w-5" />
+              <span>Create Snippet</span>
+            </CardTitle>
+            <CardDescription>
+              Start a new code snippet with syntax highlighting
+            </CardDescription>
+          </CardHeader>
+        </Card>
+
+        <Card className="hover:shadow-md transition-shadow cursor-pointer">
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              <Folder className="h-5 w-5" />
+              <span>New Collection</span>
+            </CardTitle>
+            <CardDescription>
+              Organize your snippets into collections
+            </CardDescription>
+          </CardHeader>
+        </Card>
+
+        <Card className="hover:shadow-md transition-shadow cursor-pointer">
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              <Users className="h-5 w-5" />
+              <span>Invite Team</span>
+            </CardTitle>
+            <CardDescription>
+              Collaborate with your team members
+            </CardDescription>
+          </CardHeader>
+        </Card>
       </div>
 
       {/* Recent Snippets */}
@@ -176,45 +215,6 @@ const DashboardPage = () => {
           </div>
         </CardContent>
       </Card>
-
-      {/* Quick Actions */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="hover:shadow-md transition-shadow cursor-pointer">
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Plus className="h-5 w-5" />
-              <span>Create Snippet</span>
-            </CardTitle>
-            <CardDescription>
-              Start a new code snippet with syntax highlighting
-            </CardDescription>
-          </CardHeader>
-        </Card>
-
-        <Card className="hover:shadow-md transition-shadow cursor-pointer">
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Folder className="h-5 w-5" />
-              <span>New Collection</span>
-            </CardTitle>
-            <CardDescription>
-              Organize your snippets into collections
-            </CardDescription>
-          </CardHeader>
-        </Card>
-
-        <Card className="hover:shadow-md transition-shadow cursor-pointer">
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Users className="h-5 w-5" />
-              <span>Invite Team</span>
-            </CardTitle>
-            <CardDescription>
-              Collaborate with your team members
-            </CardDescription>
-          </CardHeader>
-        </Card>
-      </div>
     </div>
   );
 };
