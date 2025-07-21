@@ -36,7 +36,9 @@ const data = {
 const AppSidebar = ({
   session,
   ...props
-}: React.ComponentProps<typeof Sidebar> & { session: Session }) => {
+}: React.ComponentProps<typeof Sidebar> & {
+  session: Session;
+}) => {
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -49,6 +51,7 @@ const AppSidebar = ({
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
+        {/* <WorkspaceSelector workspaces={workspaces} /> */}
         <NavMain items={data.navMain} />
         <Separator className="mb-4" />
         <UpgradeToProCard variant="small" />

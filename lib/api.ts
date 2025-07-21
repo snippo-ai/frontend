@@ -1,7 +1,7 @@
-import axios from "axios";
 import type { AxiosRequestConfig } from "axios";
-import { isProduction } from "./config";
+import axios from "axios";
 import { Session } from "next-auth";
+import { isProduction } from "./config";
 
 /**
  * Universal data fetcher using Axios that works on both server and client.
@@ -16,20 +16,20 @@ export async function fetcher(
   let token;
 
   // If session is provided (server), use it
-  if (session && session?.user?.token) {
-    token = session.user.token;
+  if (session && session?.token) {
+    token = session.token;
   } else {
     // Try to get session on client
     if (typeof window !== "undefined") {
       const { getSession } = await import("next-auth/react");
       const clientSession = await getSession();
-      token = clientSession?.user?.token;
+      token = clientSession?.token;
     } else {
       // On server, try to use auth() if available
       try {
         const { auth } = await import("@/auth");
         const serverSession = await auth();
-        token = serverSession?.user?.token;
+        token = serverSession?.token;
       } catch {
         // Fallback: no token
         token = undefined;
