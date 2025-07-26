@@ -1,35 +1,23 @@
 import { auth } from "@/auth";
+import { isAuthRoute, isProtectedRoute } from "@/lib/helpers/routing";
 import { NextResponse } from "next/server";
-
-const PROTECTED_ROUTES = ["/platform"];
-
-const AUTH_ROUTES = [
-  "/login",
-  "/sign-up",
-  "/forgot-password",
-  "/reset-password",
-];
 
 export default auth((req) => {
   const { nextUrl } = req;
+  const { pathname, origin } = nextUrl;
   const isLoggedIn = !!req.auth;
 
-  const isProtectedRoute = PROTECTED_ROUTES.some((route) =>
-    nextUrl.pathname.startsWith(route)
-  );
+  const isProtectedRouteBool = isProtectedRoute(pathname);
+  const isAuthRouteBool = isAuthRoute(pathname);
 
-  const isAuthRoute = AUTH_ROUTES.some((route) =>
-    nextUrl.pathname.startsWith(route)
-  );
-
-  if (isProtectedRoute && !isLoggedIn) {
-    const loginUrl = new URL("/login", nextUrl.origin);
-    loginUrl.searchParams.set("redirectUrl", nextUrl.pathname);
+  if (isProtectedRouteBool && !isLoggedIn) {
+    const loginUrl = new URL("/login", origin);
+    loginUrl.searchParams.set("redirectUrl", pathname);
     return NextResponse.redirect(loginUrl);
   }
 
-  if (isAuthRoute && isLoggedIn) {
-    return NextResponse.redirect(new URL("/", nextUrl.origin));
+  if (isAuthRouteBool && isLoggedIn) {
+    return NextResponse.redirect(new URL("/", origin));
   }
 
   return NextResponse.next();

@@ -1,4 +1,3 @@
-import { signOut } from "@/auth";
 import Logo from "@/components/shared/logo";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -53,16 +52,16 @@ const AuthButtons = ({
         href="/platform/overview"
         className={cn(
           buttonVariants({
-            variant: "ghost",
+            variant: "default",
             size: "sm",
             className: `px-4 ${fullWidth ? "w-full" : ""}`,
           })
         )}
-        aria-label="Go to your dashboard"
+        aria-label="Go to platform"
       >
-        Dashboard
+        Platform
       </Link>
-      <form
+      {/* <form
         action={async () => {
           "use server";
           await signOut();
@@ -75,9 +74,9 @@ const AuthButtons = ({
           className={`px-4 ${fullWidth ? "w-full" : ""}`}
           aria-label="Logout from your account"
         >
-          Sign Out
+          Logout
         </Button>
-      </form>
+      </form> */}
     </>
   ) : (
     <Link
