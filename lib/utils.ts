@@ -43,3 +43,31 @@ export function maskEmail(
   const masked = "*".repeat(local.length - visibleCharacters) + visible;
   return masked + "@" + domain;
 }
+
+/**
+ * Generates a properly formatted URL string with query parameters.
+ *
+ * @param {string} path - The base path of the URL (e.g., "/signup").
+ * @param {Record<string, string | number | boolean>} params - An object containing query parameters as key-value pairs.
+ * @returns {string} - A properly formatted URL with encoded query parameters.
+ *
+ * @example
+ * const redirectUrl = "https://example.com/dashboard";
+ * const signupLink = generateLink("/signup", { redirect: redirectUrl });
+ * console.log(signupLink);
+ * Output: "/signup?redirect=https%3A%2F%2Fexample.com%2Fdashboard"
+ */
+export function generateLink(
+  path: string,
+  params: Record<string, string | number | boolean>
+): string {
+  const searchParams = new URLSearchParams(); // Creates an instance to handle query parameters
+
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) {
+      searchParams.append(key, String(value));
+    }
+  });
+
+  return `${path}?${searchParams.toString()}`;
+}

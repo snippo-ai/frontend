@@ -10,7 +10,7 @@ export const DEFAULT_RESET_PASSWORD_ROUTE = "/reset-password";
 export const DEFAULT_REDIRECT_AFTER_LOGOUT = "/";
 
 // Dashboard and main app routes
-export const DEFAULT_DASHBOARD_ROUTE = "/platform";
+export const DEFAULT_DASHBOARD_ROUTE = "/platform/overview";
 export const DEFAULT_ONBOARDING_ROUTE = "/onboarding";
 
 // Protected route prefixes

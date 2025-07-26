@@ -7,7 +7,8 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
+import { cn, generateLink } from "@/lib/utils";
+import { REDIRECT_ROUTES } from "@/routes";
 import { Menu } from "lucide-react";
 import { Session } from "next-auth";
 import Link from "next/link";
@@ -80,7 +81,9 @@ const AuthButtons = ({
     </>
   ) : (
     <Link
-      href="/login?redirectUrl=%2Fdashboard"
+      href={generateLink("/login", {
+        redirectUrl: REDIRECT_ROUTES.AFTER_LOGIN,
+      })}
       className={cn(
         buttonVariants({
           variant: "default",
