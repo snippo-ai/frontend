@@ -5,13 +5,17 @@ import Spinner from "@/components/shared/spinner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowRight, GithubIcon, Lock, Mail } from "lucide-react";
+import { icons } from "@/lib/icons";
+import { ArrowRight, Lock, Mail } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
+import SocialLogin from "./social-login";
 
-type LoginFormProps = React.ComponentProps<"div"> & { redirectTo: string };
+type LoginFormProps = React.ComponentProps<"div"> & {
+  redirectTo?: string;
+};
 
 const LoginForm: React.FC<LoginFormProps> = ({
   className = "",
@@ -19,17 +23,19 @@ const LoginForm: React.FC<LoginFormProps> = ({
   ...props
 }) => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [state, formAction] = useActionState(login, null);
-  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setLoading(false);
-    if (state?.error) toast.error(state.error);
-    else if (state?.success) {
+    if (!state) return;
+
+    if (state.error) {
+      toast.error(state.error);
+    } else if (state.success) {
       router.push(redirectTo);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state]);
+  }, [state, router, redirectTo]);
 
   return (
     <div className={className} {...props}>
@@ -43,34 +49,11 @@ const LoginForm: React.FC<LoginFormProps> = ({
       </div>
 
       <form action={formAction} autoComplete="off" className="space-y-6">
-        {/* Social login buttons */}
         <div className="grid grid-cols-2 gap-3">
-          <Button
-            variant="outline"
-            className="h-12 bg-card/50 backdrop-blur-sm border-border/50 hover:bg-card/80 transition-all duration-300 group"
-          >
-            <GithubIcon className="size-5 mr-2 group-hover:scale-110 transition-transform" />
-            Github
-          </Button>
-          <Button
-            variant="outline"
-            className="h-12 bg-card/50 backdrop-blur-sm border-border/50 hover:bg-card/80 transition-all duration-300 group"
-          >
-            <svg
-              className="size-5 mr-2 group-hover:scale-110 transition-transform"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
-                fill="currentColor"
-              />
-            </svg>
-            Google
-          </Button>
+          <SocialLogin Icon={icons.github} label="GitHub" />
+          <SocialLogin Icon={icons.google} label="Google" />
         </div>
 
-        {/* Divider */}
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-border/30"></div>
@@ -82,7 +65,6 @@ const LoginForm: React.FC<LoginFormProps> = ({
           </div>
         </div>
 
-        {/* Email field */}
         <div className="space-y-2">
           <Label
             htmlFor="email"
@@ -96,13 +78,15 @@ const LoginForm: React.FC<LoginFormProps> = ({
               id="email"
               name="email"
               type="email"
+              required
               placeholder="Enter your email"
               className="pl-10 h-12 bg-card/30 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
+              aria-required="true"
+              aria-describedby="email-helper"
             />
           </div>
         </div>
 
-        {/* Password field */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <Label
@@ -124,17 +108,21 @@ const LoginForm: React.FC<LoginFormProps> = ({
               id="password"
               name="password"
               type="password"
+              required
               placeholder="Enter your password"
               className="pl-10 h-12 bg-card/30 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
+              aria-required="true"
+              aria-describedby="password-helper"
             />
           </div>
         </div>
 
-        {/* Submit button */}
         <Button
           type="submit"
           className="w-full h-12 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-medium transition-all duration-300 group"
           onClick={() => setLoading(true)}
+          disabled={loading}
+          aria-busy={loading}
         >
           {loading ? (
             <Spinner className="size-5" />
@@ -146,7 +134,6 @@ const LoginForm: React.FC<LoginFormProps> = ({
           )}
         </Button>
 
-        {/* Sign up link */}
         <div className="text-center">
           <p className="text-sm text-muted-foreground">
             Don&apos;t have an account?{" "}
