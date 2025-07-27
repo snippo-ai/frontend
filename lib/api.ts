@@ -39,7 +39,7 @@ export async function fetcher(
 
   const axiosConfig = {
     baseURL: isProduction ? "" : "http://localhost:8080",
-    timeout: 15000,
+    timeout: 30000,
     headers: {
       "Content-Type": "application/json",
       ...(token ? { Authorization: `Bearer ${token}` } : {}),

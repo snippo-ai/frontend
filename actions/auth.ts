@@ -65,9 +65,6 @@ const login = async (
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
 
-  if (!email || !password) {
-    return { error: "Please fill out all required fields." };
-  }
   try {
     const response = await signIn("credentials", {
       email,

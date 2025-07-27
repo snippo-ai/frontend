@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,7 +15,6 @@ import {
   Plus,
   Search,
   Star,
-  TrendingUp,
   Users,
 } from "lucide-react";
 import { Metadata } from "next";
@@ -24,38 +24,7 @@ export const metadata: Metadata = {
   title: "Dashboard",
 };
 
-const DashboardPage = () => {
-  const stats = [
-    {
-      title: "Total Snippets",
-      value: "1,234",
-      change: "+12%",
-      icon: FileText,
-      description: "From last month",
-    },
-    {
-      title: "Collections",
-      value: "56",
-      change: "+8%",
-      icon: Folder,
-      description: "From last month",
-    },
-    {
-      title: "Team Members",
-      value: "12",
-      change: "+2",
-      icon: Users,
-      description: "Active members",
-    },
-    {
-      title: "Views",
-      value: "89.2K",
-      change: "+23%",
-      icon: TrendingUp,
-      description: "From last month",
-    },
-  ];
-
+const DashboardPage = async () => {
   const recentSnippets = [
     {
       id: 1,
@@ -85,6 +54,8 @@ const DashboardPage = () => {
       updatedAt: "3 days ago",
     },
   ];
+
+  const session = await auth();
 
   return (
     <div className="space-y-6">

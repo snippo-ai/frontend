@@ -2,7 +2,7 @@
 
 "use client";
 
-import { PreviousStateType, signUp } from "@/actions/user";
+import { PreviousStateType, signUp } from "@/actions/auth";
 import Spinner from "@/components/shared/spinner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import axios from "axios";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 import { fetcher } from "./lib/api";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -16,18 +18,43 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           const response = await fetcher({
             url: "/auth/login",
             method: "POST",
-            data: JSON.stringify({ email, password }),
+            data: { email, password },
           });
 
           const { data } = response;
+          console.log("AUTH.TS --->", { data });
           if (response.status <= 301) {
             return data.data;
           }
 
           return null;
         } catch (error: any) {
-          console.log(`Auth Error ----> ${error?.response?.data}`);
+          console.error(`Auth Error ----> ${error?.response?.data}`);
           return null;
+        }
+      },
+    }),
+    GoogleProvider({
+      clientId: process.env.AUTH_GOOGLE_ID,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET,
+      authorization: {
+        params: {
+          prompt: "select_account", // Forces account selection every time
+        },
+      },
+      profile: async (profile, tokens) => {
+        const { id_token = "" } = tokens;
+        const response = await axios.post(
+          "http://localhost:8080/auth/login/oauth",
+          {
+            provider: "google",
+            token: id_token,
+          }
+        );
+        const { data } = response;
+        console.log("AUTH.TS --->", { data });
+        if (response.status <= 301) {
+          return data.data;
         }
       },
     }),

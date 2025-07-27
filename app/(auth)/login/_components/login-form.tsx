@@ -1,15 +1,17 @@
 "use client";
 
-import { login } from "@/actions/user";
+import { login } from "@/actions/auth";
 import Spinner from "@/components/shared/spinner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { icons } from "@/lib/icons";
+import { REDIRECT_ROUTES } from "@/routes";
 import { ArrowRight, Lock, Mail } from "lucide-react";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect, useTransition } from "react";
 import { toast } from "sonner";
 import SocialLogin from "./social-login";
 
@@ -23,19 +25,27 @@ const LoginForm: React.FC<LoginFormProps> = ({
   ...props
 }) => {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [state, formAction] = useActionState(login, null);
+  const [state, formAction, isPending] = useActionState(login, null);
+
+  const [isGoogleSignInPending, startGoogleTransition] = useTransition();
+
+  const handleOAuthClick = async (name: string) => {
+    if (name === "google") {
+      startGoogleTransition(() =>
+        signIn(name, {
+          callbackUrl: REDIRECT_ROUTES.AFTER_LOGIN,
+        })
+      );
+    }
+  };
 
   useEffect(() => {
-    setLoading(false);
-    if (!state) return;
-
-    if (state.error) {
-      toast.error(state.error);
-    } else if (state.success) {
+    if (state?.error) toast.error(state.error);
+    else if (state?.success) {
       router.push(redirectTo);
     }
-  }, [state, router, redirectTo]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state]);
 
   return (
     <div className={className} {...props}>
@@ -50,8 +60,17 @@ const LoginForm: React.FC<LoginFormProps> = ({
 
       <form action={formAction} autoComplete="off" className="space-y-6">
         <div className="grid grid-cols-2 gap-3">
-          <SocialLogin Icon={icons.github} label="GitHub" />
-          <SocialLogin Icon={icons.google} label="Google" />
+          {/* <SocialLogin
+            Icon={icons.github}
+            label="GitHub"
+            onClick={() => handleOAuthClick("github")}
+          /> */}
+          <SocialLogin
+            Icon={icons.google}
+            label="Google"
+            onClick={() => handleOAuthClick("google")}
+            loading={isGoogleSignInPending}
+          />
         </div>
 
         <div className="relative">
@@ -120,28 +139,28 @@ const LoginForm: React.FC<LoginFormProps> = ({
         <Button
           type="submit"
           className="w-full h-12 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-medium transition-all duration-300 group"
-          onClick={() => setLoading(true)}
-          disabled={loading}
-          aria-busy={loading}
+          disabled={isPending}
+          aria-busy={isPending}
         >
-          {loading ? (
+          {isPending ? (
             <Spinner className="size-5" />
           ) : (
             <>
-              Sign in
-              <ArrowRight className="ml-2 size-4 group-hover:translate-x-1 transition-transform" />
+              Login
+              <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
             </>
           )}
         </Button>
 
         <div className="text-center">
           <p className="text-sm text-muted-foreground">
-            Don&apos;t have an account?{" "}
+            Don&apos;t have an account?
+            <br />
             <Link
               href="/sign-up"
-              className="text-chart-2 hover:text-chart-3 font-medium underline-offset-4 hover:underline transition-colors"
+              className="text-chart-2 hover:text-chart-3 font-medium underline-offset-4 underline transition-colors"
             >
-              Create one
+              Create One
             </Link>
           </p>
         </div>
