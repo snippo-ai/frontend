@@ -2,7 +2,8 @@
 import axios from "axios";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
+import Github from "next-auth/providers/github";
+import Google from "next-auth/providers/google";
 import { fetcher } from "./lib/api";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -22,11 +23,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           });
 
           const { data } = response;
-          console.log("AUTH.TS --->", { data });
           if (response.status <= 301) {
             return data.data;
           }
-
           return null;
         } catch (error: any) {
           console.error(`Auth Error ----> ${error?.response?.data}`);
@@ -34,7 +33,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }
       },
     }),
-    GoogleProvider({
+    Google({
       clientId: process.env.AUTH_GOOGLE_ID,
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
       authorization: {
@@ -52,10 +51,34 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           }
         );
         const { data } = response;
-        console.log("AUTH.TS --->", { data });
         if (response.status <= 301) {
           return data.data;
         }
+        return null;
+      },
+    }),
+    Github({
+      clientId: process.env.AUTH_GITHUB_ID,
+      clientSecret: process.env.AUTH_GITHUB_SECRET,
+      authorization: {
+        params: {
+          prompt: "select_account", // Forces account selection every time
+        },
+      },
+      profile: async (profile, tokens) => {
+        const { access_token = "" } = tokens;
+        const response = await axios.post(
+          "http://localhost:8080/auth/login/oauth",
+          {
+            provider: "github",
+            token: access_token,
+          }
+        );
+        const { data } = response;
+        if (response.status <= 301) {
+          return data.data;
+        }
+        return null;
       },
     }),
   ],

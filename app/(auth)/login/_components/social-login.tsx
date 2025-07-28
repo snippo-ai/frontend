@@ -9,12 +9,14 @@ const SocialLogin = ({
   onClick,
   children,
   loading = false,
+  disabled = false,
 }: {
   Icon: LucideIcon | React.FC<SVGProps<SVGSVGElement>>;
   label: string;
   onClick?: () => void;
   children?: React.ReactNode;
   loading?: boolean;
+  disabled?: boolean;
 }) => (
   <Button
     type="button"
@@ -22,6 +24,8 @@ const SocialLogin = ({
     className="h-12 bg-card/50 backdrop-blur-sm border-border/50 hover:bg-card/80 transition-all duration-300 group"
     aria-label={`Sign in with ${label}`}
     onClick={onClick}
+    disabled={disabled}
+    aria-busy={loading}
   >
     {loading ? (
       <Spinner />

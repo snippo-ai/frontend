@@ -28,16 +28,27 @@ const LoginForm: React.FC<LoginFormProps> = ({
   const [state, formAction, isPending] = useActionState(login, null);
 
   const [isGoogleSignInPending, startGoogleTransition] = useTransition();
+  const [isGithubSignInPending, startGithubTransition] = useTransition();
 
   const handleOAuthClick = async (name: string) => {
+    if (name === "github") {
+      startGithubTransition(() =>
+        signIn("github", {
+          callbackUrl: REDIRECT_ROUTES.AFTER_LOGIN,
+        })
+      );
+    }
     if (name === "google") {
       startGoogleTransition(() =>
-        signIn(name, {
+        signIn("google", {
           callbackUrl: REDIRECT_ROUTES.AFTER_LOGIN,
         })
       );
     }
   };
+
+  const isDisabled =
+    isPending || isGoogleSignInPending || isGithubSignInPending;
 
   useEffect(() => {
     if (state?.error) toast.error(state.error);
@@ -60,16 +71,19 @@ const LoginForm: React.FC<LoginFormProps> = ({
 
       <form action={formAction} autoComplete="off" className="space-y-6">
         <div className="grid grid-cols-2 gap-3">
-          {/* <SocialLogin
+          <SocialLogin
             Icon={icons.github}
             label="GitHub"
             onClick={() => handleOAuthClick("github")}
-          /> */}
+            loading={isGithubSignInPending}
+            disabled={isDisabled}
+          />
           <SocialLogin
             Icon={icons.google}
             label="Google"
             onClick={() => handleOAuthClick("google")}
             loading={isGoogleSignInPending}
+            disabled={isDisabled}
           />
         </div>
 
@@ -102,6 +116,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
               className="pl-10 h-12 bg-card/30 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
               aria-required="true"
               aria-describedby="email-helper"
+              readOnly={isDisabled}
             />
           </div>
         </div>
@@ -132,6 +147,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
               className="pl-10 h-12 bg-card/30 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
               aria-required="true"
               aria-describedby="password-helper"
+              readOnly={isDisabled}
             />
           </div>
         </div>
@@ -139,7 +155,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
         <Button
           type="submit"
           className="w-full h-12 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-medium transition-all duration-300 group"
-          disabled={isPending}
+          disabled={isDisabled}
           aria-busy={isPending}
         >
           {isPending ? (
