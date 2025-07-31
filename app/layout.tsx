@@ -28,7 +28,7 @@ export default function RootLayout({
         <SessionProvider>
           <ThemeProvider>
             {children}
-            <Toaster theme="dark" richColors />
+            <Toaster theme="dark" position="bottom-center" />
           </ThemeProvider>
         </SessionProvider>
         <script

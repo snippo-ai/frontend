@@ -71,3 +71,14 @@ export function generateLink(
 
   return `${path}?${searchParams.toString()}`;
 }
+
+/**
+ * Checks if a string is a valid email address.
+ *
+ * @param email - The email address to validate.
+ * @returns Returns true if the email is valid, false otherwise.
+ */
+export function isValidEmail(email: string): boolean {
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailPattern.test(email);
+}

@@ -1,6 +1,7 @@
 "use server";
 
 import { signIn } from "@/auth";
+import { isValidEmail } from "../lib/utils";
 
 export type PreviousStateType = {
   success?: boolean;
@@ -9,6 +10,7 @@ export type PreviousStateType = {
     firstName?: string;
     lastName?: string;
     email?: string;
+    password?: string;
   };
 };
 
@@ -20,9 +22,21 @@ const signUp = async (
   const lastName = formData.get("lastName") as string;
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
+  const values = { firstName, lastName, email, password };
 
   if (!firstName || !email || !password) {
-    return { error: "Please fill out all required fields." };
+    return {
+      error: "Please fill out all required fields.",
+      values,
+    };
+  }
+
+  const isValidEmailFormat = isValidEmail(email);
+  if (!isValidEmailFormat) {
+    return {
+      error: "Please enter a valid email address.",
+      values,
+    };
   }
 
   const response = await fetch("http://localhost:8080/auth/signup", {
@@ -35,7 +49,6 @@ const signUp = async (
   const data = await response.json();
 
   if (!response.ok) {
-    const values = { firstName, lastName, email };
     return { error: data?.message || "Something went wrong", values };
   }
 
@@ -64,6 +77,11 @@ const login = async (
 }> => {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
+
+  const isValidEmailFormat = isValidEmail(email);
+  if (!isValidEmailFormat) {
+    return { error: "Please enter a valid email address." };
+  }
 
   try {
     const response = await signIn("credentials", {

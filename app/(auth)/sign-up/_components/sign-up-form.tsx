@@ -62,7 +62,17 @@ const SignUpForm = ({ className = "", ...props }) => {
         </p>
       </div>
 
-      <form action={formAction} autoComplete="off" className="space-y-6">
+      <form
+        action={formAction}
+        onSubmit={(e) => {
+          if (!e.currentTarget.checkValidity()) {
+            return;
+          }
+          setLoading(true);
+        }}
+        autoComplete="off"
+        className="space-y-6"
+      >
         {/* Name fields */}
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -70,7 +80,7 @@ const SignUpForm = ({ className = "", ...props }) => {
               htmlFor="firstName"
               className="text-sm font-medium text-foreground"
             >
-              First name
+              First name *
             </Label>
             <div className="relative">
               <User className="absolute left-3 top-1/2 transform -translate-y-1/2 size-4 text-muted-foreground" />
@@ -80,7 +90,6 @@ const SignUpForm = ({ className = "", ...props }) => {
                 placeholder="John"
                 defaultValue={state?.values?.firstName ?? ""}
                 className="pl-10 h-12 bg-card/30 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
-                required
               />
             </div>
           </div>
@@ -89,7 +98,7 @@ const SignUpForm = ({ className = "", ...props }) => {
               htmlFor="lastName"
               className="text-sm font-medium text-foreground"
             >
-              Last name
+              Last name *
             </Label>
             <div className="relative">
               <User className="absolute left-3 top-1/2 transform -translate-y-1/2 size-4 text-muted-foreground" />
@@ -110,7 +119,7 @@ const SignUpForm = ({ className = "", ...props }) => {
             htmlFor="email"
             className="text-sm font-medium text-foreground"
           >
-            Email address
+            Email address *
           </Label>
           <div className="relative">
             <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 size-4 text-muted-foreground" />
@@ -121,7 +130,6 @@ const SignUpForm = ({ className = "", ...props }) => {
               placeholder="john@example.com"
               defaultValue={state?.values?.email ?? ""}
               className="pl-10 h-12 bg-card/30 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
-              required
             />
           </div>
         </div>
@@ -132,7 +140,7 @@ const SignUpForm = ({ className = "", ...props }) => {
             htmlFor="password"
             className="text-sm font-medium text-foreground"
           >
-            Password
+            Password *
           </Label>
           <div className="relative">
             <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 size-4 text-muted-foreground" />
@@ -141,8 +149,8 @@ const SignUpForm = ({ className = "", ...props }) => {
               name="password"
               type="password"
               placeholder="Create a strong password"
+              defaultValue={state?.values?.password ?? ""}
               className="pl-10 h-12 bg-card/30 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
-              required
             />
           </div>
         </div>
@@ -151,14 +159,13 @@ const SignUpForm = ({ className = "", ...props }) => {
         <Button
           type="submit"
           className="w-full h-12 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-medium transition-all duration-300 group"
-          onClick={() => setLoading(true)}
         >
           {loading ? (
             <Spinner className="size-5" />
           ) : (
             <>
               Create account
-              <ArrowRight className="ml-2 size-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
             </>
           )}
         </Button>
@@ -166,19 +173,20 @@ const SignUpForm = ({ className = "", ...props }) => {
         {/* Login link */}
         <div className="text-center">
           <p className="text-sm text-muted-foreground">
-            Already have an account?{" "}
+            Already have an account?
+            <br />
             <Link
               href="/login"
-              className="text-chart-2 hover:text-chart-3 font-medium underline-offset-4 hover:underline transition-colors"
+              className="text-chart-2 hover:text-chart-3 font-medium underline-offset-4 underline transition-colors"
             >
-              Sign in
+              Sign In
             </Link>
           </p>
         </div>
       </form>
 
       {/* Terms and privacy */}
-      <div className="text-center">
+      {/* <div className="text-center">
         <p className="text-xs text-muted-foreground leading-relaxed text-balance">
           By creating an account, you agree to our{" "}
           <Link
@@ -196,7 +204,7 @@ const SignUpForm = ({ className = "", ...props }) => {
           </Link>
           .
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };
