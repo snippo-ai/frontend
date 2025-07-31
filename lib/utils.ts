@@ -82,3 +82,21 @@ export function isValidEmail(email: string): boolean {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailPattern.test(email);
 }
+
+/**
+ * Returns the initial letters from a name string.
+ *
+ * @param name - A full name (one or more words).
+ * @returns The concatenated initials in uppercase.
+ */
+export function getInitials(name: string): string {
+  if (!name) return "";
+
+  const initials = name
+    .split(" ")
+    .filter((part) => part.length > 0)
+    .map((part) => part[0].toUpperCase())
+    .join("");
+
+  return initials;
+}

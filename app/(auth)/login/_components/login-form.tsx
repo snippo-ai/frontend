@@ -116,7 +116,6 @@ const LoginForm: React.FC<LoginFormProps> = ({
               className="pl-10 h-12 bg-card/30 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
               aria-required="true"
               aria-describedby="email-helper"
-              readOnly={isDisabled}
             />
           </div>
         </div>
@@ -147,7 +146,6 @@ const LoginForm: React.FC<LoginFormProps> = ({
               className="pl-10 h-12 bg-card/30 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
               aria-required="true"
               aria-describedby="password-helper"
-              readOnly={isDisabled}
             />
           </div>
         </div>

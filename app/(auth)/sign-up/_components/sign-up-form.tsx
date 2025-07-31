@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 import { useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
 
-export const initialState: PreviousStateType = {
+const initialState: PreviousStateType = {
   success: false,
   error: null,
   values: {},
@@ -34,10 +34,14 @@ const SignUpForm = ({ className = "", ...props }) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.onboardingComplete) {
-            toast.success("Account created!");
+            toast.success("Account created!", {
+              description: "Redirecting...",
+            });
             router.push("/platform");
           } else {
-            toast.success("Account created!");
+            toast.success("Account created!", {
+              description: "Redirecting...",
+            });
             router.push("/onboarding");
           }
         })

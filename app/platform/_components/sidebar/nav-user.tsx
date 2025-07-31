@@ -14,6 +14,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { getInitials } from "@/lib/utils";
 import { ChevronsUpDown, LogOut, SettingsIcon } from "lucide-react";
 import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
@@ -25,7 +26,9 @@ type NavUserProps = {
 
 const NavUser = ({ session }: NavUserProps) => {
   const { user } = session;
+  const fullName = `${user.firstName} ${user.lastName}`;
   const { isMobile } = useSidebar();
+  console.log({ userImage: user.userImage });
 
   return (
     <SidebarMenu>
@@ -37,12 +40,25 @@ const NavUser = ({ session }: NavUserProps) => {
                 size="lg"
                 className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
               >
-                <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.userImage} alt={user.firstName} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <Avatar className="size-8 rounded-lg">
+                  <AvatarImage
+                    src={user?.userImage}
+                    alt={fullName}
+                    className="object-cover"
+                  />
+                  <AvatarFallback className="rounded-lg">
+                    {getInitials(fullName)}
+                  </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.firstName}</span>
+                  <div className="flex items-center gap-1">
+                    <span className="truncate font-medium">
+                      {user.firstName}
+                    </span>
+                    {/* <span className="border-2 border-sky-500 text-[10px] px-2 rounded-lg">
+                      Pro
+                    </span> */}
+                  </div>
                   <span className="truncate text-xs">{user.email}</span>
                 </div>
                 <ChevronsUpDown className="ml-auto size-4" />

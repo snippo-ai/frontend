@@ -60,7 +60,7 @@ const DashboardPage = async () => {
   return (
     <div className="space-y-6">
       <PageHeader
-        title="Overview"
+        title={`👋 Hi ${session?.user?.firstName}, Welcome!`}
         description="Here's what's happening with your snippets."
         actions={[
           <Button
