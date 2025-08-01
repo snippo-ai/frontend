@@ -6,12 +6,10 @@ import {
   Plug,
   Shield,
   Sliders,
-  UserCircleIcon,
   UserCogIcon,
 } from "lucide-react";
 
 export enum SECTIONS_ENUM {
-  PROFILE = "profile",
   ACCOUNT = "account",
   SECURITY = "security",
   BILLING = "billing",
@@ -22,7 +20,6 @@ export enum SECTIONS_ENUM {
 }
 
 export const SectionIconMap: Record<SECTIONS_ENUM, LucideIcon> = {
-  [SECTIONS_ENUM.PROFILE]: UserCircleIcon,
   [SECTIONS_ENUM.ACCOUNT]: UserCogIcon,
   [SECTIONS_ENUM.SECURITY]: Shield,
   [SECTIONS_ENUM.BILLING]: CreditCard,
@@ -33,7 +30,6 @@ export const SectionIconMap: Record<SECTIONS_ENUM, LucideIcon> = {
 };
 
 export const sectionList = [
-  { value: SECTIONS_ENUM.PROFILE, label: "Profile" },
   { value: SECTIONS_ENUM.ACCOUNT, label: "Account" },
   { value: SECTIONS_ENUM.SECURITY, label: "Security" },
   { value: SECTIONS_ENUM.BILLING, label: "Billing" },

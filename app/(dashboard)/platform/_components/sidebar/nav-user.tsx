@@ -97,12 +97,6 @@ const NavUser = ({ session }: NavUserProps) => {
                     Account
                   </DropdownMenuItem>
                 </Link>
-                <Link href="/account/profile">
-                  <DropdownMenuItem>
-                    <SectionIconMap.profile />
-                    Profile
-                  </DropdownMenuItem>
-                </Link>
                 <Link href="/account/security">
                   <DropdownMenuItem>
                     <SectionIconMap.security />

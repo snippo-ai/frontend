@@ -74,11 +74,6 @@ const sidebarNavData: Record<
           icon: SectionIconMap["account"],
         },
         {
-          title: "Profile",
-          url: "/account/profile",
-          icon: SectionIconMap["profile"],
-        },
-        {
           title: "Security",
           url: "/account/security",
           icon: SectionIconMap["security"],

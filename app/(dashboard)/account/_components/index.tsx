@@ -5,13 +5,15 @@ import {
   sectionList,
 } from "@/lib/mocks/account-settings-sidebar-data";
 import { Session } from "next-auth";
-import AccountSection from "./account-section";
+import {
+  default as AccountSection,
+  default as ProfileSection,
+} from "./account-section";
 import ApiKeysSection from "./api-keys-section";
 import { BillingForm } from "./billing-section";
 import IntegrationsSection from "./integrations-section";
 import NotificationsSection from "./notifications-section";
 import PreferencesSection from "./preferences-section";
-import ProfileSection from "./profile-section";
 import SecuritySection from "./security-section";
 
 type SettingsProps = {
