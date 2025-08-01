@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/sidebar";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
-import AppSidebar from "../platform/_components/sidebar";
+import AppSidebar from "../../platform/_components/sidebar";
 
 interface AccountSettingsLayoutProps {
   children: ReactNode;
