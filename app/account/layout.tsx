@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import CustomBreadcrumb from "@/components/shared/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -7,14 +8,15 @@ import {
 } from "@/components/ui/sidebar";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
-import DashboardBreadcrumb from "../../components/shared/breadcrumb";
-import AppSidebar from "./_components/sidebar";
+import AppSidebar from "../platform/_components/sidebar";
 
-interface DashboardLayoutProps {
+interface AccountSettingsLayoutProps {
   children: ReactNode;
 }
 
-const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
+const AccountSettingsLayout = async ({
+  children,
+}: AccountSettingsLayoutProps) => {
   const session = await auth();
 
   if (!session) {
@@ -23,7 +25,7 @@ const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
 
   return (
     <SidebarProvider>
-      <AppSidebar session={session} page="platform" />
+      <AppSidebar session={session} page="account" />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
           <div className="flex items-center gap-2 px-4">
@@ -32,12 +34,7 @@ const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
             />
-            <DashboardBreadcrumb
-              routes={[
-                { label: "Platform", icon: null, href: "" },
-                { label: "Overview", icon: null, href: "/overview" },
-              ]}
-            />
+            <CustomBreadcrumb />
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</div>
@@ -46,4 +43,4 @@ const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
   );
 };
 
-export default DashboardLayout;
+export default AccountSettingsLayout;

@@ -1,5 +1,6 @@
 "use client";
 
+import MaxWidthContainer from "@/components/shared/max-width-container";
 import Typography from "@/components/shared/typography";
 import {
   AlertDialog,
@@ -18,9 +19,13 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { fetcher } from "@/lib/api";
-import { SectionIconMap, SECTIONS_ENUM } from "@/lib/mocks/settings";
+import {
+  SectionIconMap,
+  SECTIONS_ENUM,
+} from "@/lib/mocks/account-settings-sidebar-data";
 import { maskEmail } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -130,12 +135,13 @@ const ProfileSection = ({ session }: Props) => {
   }, [otp, showOtp]);
 
   return (
-    <>
+    <MaxWidthContainer>
       <MainContentHeader
         title="Profile"
         description="Manage your account settings and profile information."
         icon={SectionIconMap[SECTIONS_ENUM.PROFILE]}
       />
+      <Separator className="my-4 mb-6" />
       <div className="grid gap-6">
         {/* User Names */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -442,7 +448,7 @@ const ProfileSection = ({ session }: Props) => {
           </div>
         </div>
       </div>
-    </>
+    </MaxWidthContainer>
   );
 };
 

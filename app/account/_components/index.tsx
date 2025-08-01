@@ -1,6 +1,9 @@
 import Typography from "@/components/shared/typography";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { SectionIconMap, sectionList } from "@/lib/mocks/settings";
+import {
+  SectionIconMap,
+  sectionList,
+} from "@/lib/mocks/account-settings-sidebar-data";
 import { Session } from "next-auth";
 import AccountSection from "./account-section";
 import ApiKeysSection from "./api-keys-section";

@@ -1,4 +1,7 @@
-import { SectionIconMap, SECTIONS_ENUM } from "@/lib/mocks/settings";
+import {
+  SectionIconMap,
+  SECTIONS_ENUM,
+} from "@/lib/mocks/account-settings-sidebar-data";
 import { Fragment } from "react";
 import ComingSoon from "./coming-soon";
 import MainContentHeader from "./main-content-header";

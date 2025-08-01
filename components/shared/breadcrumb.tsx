@@ -15,12 +15,12 @@ interface Route {
   href?: string | null;
 }
 
-interface DashboardBreadcrumb {
-  routes: Route[];
+interface CustomBreadcrumb {
+  routes?: Route[];
   className?: string;
 }
 
-const DashboardBreadcrumb: React.FC<DashboardBreadcrumb> = ({
+const CustomBreadcrumb: React.FC<CustomBreadcrumb> = ({
   routes = [],
   className,
 }) => {
@@ -59,4 +59,4 @@ const DashboardBreadcrumb: React.FC<DashboardBreadcrumb> = ({
   );
 };
 
-export default DashboardBreadcrumb;
+export default CustomBreadcrumb;

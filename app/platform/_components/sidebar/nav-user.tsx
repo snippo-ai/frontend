@@ -18,7 +18,7 @@ import { getInitials } from "@/lib/utils";
 import { ChevronsUpDown, LogOut, SettingsIcon } from "lucide-react";
 import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
-import Settings from "./settings";
+import Settings from "../../../account/_components";
 
 type NavUserProps = {
   session: Session;
@@ -73,7 +73,7 @@ const NavUser = ({ session }: NavUserProps) => {
               <DialogTrigger asChild>
                 <DropdownMenuItem>
                   <SettingsIcon />
-                  Settings
+                  Account Settings
                 </DropdownMenuItem>
               </DialogTrigger>
               <DropdownMenuItem onClick={() => signOut({ callbackUrl: "/" })}>
