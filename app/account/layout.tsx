@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import CustomBreadcrumb from "@/components/shared/breadcrumb";
+import MaxWidthContainer from "@/components/shared/max-width-container";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -37,7 +38,9 @@ const AccountSettingsLayout = async ({
             <CustomBreadcrumb />
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</div>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+          <MaxWidthContainer>{children}</MaxWidthContainer>
+        </div>
       </SidebarInset>
     </SidebarProvider>
   );

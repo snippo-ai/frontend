@@ -1,6 +1,5 @@
 "use client";
 
-import MaxWidthContainer from "@/components/shared/max-width-container";
 import Typography from "@/components/shared/typography";
 import {
   AlertDialog,
@@ -135,7 +134,7 @@ const ProfileSection = ({ session }: Props) => {
   }, [otp, showOtp]);
 
   return (
-    <MaxWidthContainer>
+    <>
       <MainContentHeader
         title="Profile"
         description="Manage your account settings and profile information."
@@ -448,7 +447,7 @@ const ProfileSection = ({ session }: Props) => {
           </div>
         </div>
       </div>
-    </MaxWidthContainer>
+    </>
   );
 };
 

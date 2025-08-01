@@ -1,11 +1,13 @@
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog } from "@/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -14,11 +16,13 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { SectionIconMap } from "@/lib/mocks/account-settings-sidebar-data";
 import { getInitials } from "@/lib/utils";
-import { ChevronsUpDown, LogOut, SettingsIcon } from "lucide-react";
+import { AUTH_ROUTES } from "@/routes";
+import { ChevronsUpDown, LogOut } from "lucide-react";
 import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
-import Settings from "../../../account/_components";
+import Link from "next/link";
 
 type NavUserProps = {
   session: Session;
@@ -28,7 +32,6 @@ const NavUser = ({ session }: NavUserProps) => {
   const { user } = session;
   const fullName = `${user.firstName} ${user.lastName}`;
   const { isMobile } = useSidebar();
-  console.log({ userImage: user.userImage });
 
   return (
     <SidebarMenu>
@@ -70,24 +73,41 @@ const NavUser = ({ session }: NavUserProps) => {
               align="end"
               sideOffset={4}
             >
-              <DialogTrigger asChild>
-                <DropdownMenuItem>
-                  <SettingsIcon />
-                  Account Settings
-                </DropdownMenuItem>
-              </DialogTrigger>
-              <DropdownMenuItem onClick={() => signOut({ callbackUrl: "/" })}>
+              <DropdownMenuGroup>
+                <Link href="/account">
+                  <DropdownMenuItem>
+                    <SectionIconMap.account />
+                    Account
+                  </DropdownMenuItem>
+                </Link>
+                <Link href="/profile">
+                  <DropdownMenuItem>
+                    <SectionIconMap.profile />
+                    Profile
+                  </DropdownMenuItem>
+                </Link>
+                <Link href="/account/security">
+                  <DropdownMenuItem>
+                    <SectionIconMap.security />
+                    Security
+                  </DropdownMenuItem>
+                </Link>
+                <Link href="/account/billing">
+                  <DropdownMenuItem>
+                    <SectionIconMap.billing />
+                    Billing
+                  </DropdownMenuItem>
+                </Link>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                onClick={() => signOut({ callbackUrl: AUTH_ROUTES.LOGIN })}
+              >
                 <LogOut />
                 Log out
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <DialogContent
-            className="max-w-3xl sm:max-w-4xl md:max-w-5xl lg:max-w-6xl w-full p-0"
-            overlayBlur
-          >
-            <Settings session={session} />
-          </DialogContent>
         </Dialog>
       </SidebarMenuItem>
     </SidebarMenu>
