@@ -50,8 +50,8 @@ export function NavMain({
                 asChild
                 tooltip={item.title}
                 className={cn(
-                  "hover:bg-muted-foreground/25 hover:text-foreground transition-200 active:bg-muted-foreground/25 active:text-foreground active:scale-95 rounded-sm",
-                  item.url === pathname ? "bg-muted-foreground/25" : ""
+                  "hover:bg-muted-foreground/20 hover:text-foreground transition-200 active:bg-muted-foreground/20 active:text-foreground active:scale-95 rounded-sm",
+                  item.url === pathname ? "bg-muted-foreground/20" : ""
                 )}
               >
                 <Link href={item.url}>

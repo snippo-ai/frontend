@@ -144,7 +144,7 @@ const AppSidebar = ({
               window.location.href = REDIRECT_ROUTES.AFTER_LOGIN;
             }}
           >
-            <ChevronLeftIcon /> Back
+            <ChevronLeftIcon /> Platform
           </Button>
         ) : (
           <SidebarMenu>

@@ -17,6 +17,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { SectionIconMap } from "@/lib/mocks/account-settings-sidebar-data";
+import { useConfirmDialog } from "@/lib/providers/confirm-dialog-provider";
 import { getInitials } from "@/lib/utils";
 import { AUTH_ROUTES } from "@/routes";
 import { ChevronsUpDown, LogOut } from "lucide-react";
@@ -32,6 +33,22 @@ const NavUser = ({ session }: NavUserProps) => {
   const { user } = session;
   const fullName = `${user.firstName} ${user.lastName}`;
   const { isMobile } = useSidebar();
+  const confirm = useConfirmDialog();
+
+  const handleLogout = async () => {
+    const ok = await confirm({
+      title: "Confirm Logout",
+      description:
+        "You will be signed out and need to log in again to access your account.",
+      confirmText: "Log out",
+      cancelText: "Cancel",
+      danger: true,
+    });
+
+    if (ok) {
+      await signOut({ callbackUrl: AUTH_ROUTES.LOGIN });
+    }
+  };
 
   return (
     <SidebarMenu>
@@ -80,7 +97,7 @@ const NavUser = ({ session }: NavUserProps) => {
                     Account
                   </DropdownMenuItem>
                 </Link>
-                <Link href="/profile">
+                <Link href="/account/profile">
                   <DropdownMenuItem>
                     <SectionIconMap.profile />
                     Profile
@@ -100,9 +117,7 @@ const NavUser = ({ session }: NavUserProps) => {
                 </Link>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
-              <DropdownMenuItem
-                onClick={() => signOut({ callbackUrl: AUTH_ROUTES.LOGIN })}
-              >
+              <DropdownMenuItem onClick={handleLogout}>
                 <LogOut />
                 Log out
               </DropdownMenuItem>

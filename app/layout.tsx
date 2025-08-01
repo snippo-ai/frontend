@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ConfirmDialogProvider } from "@/lib/providers/confirm-dialog-provider";
 
 const font = Inter({
   subsets: ["latin"],
@@ -27,8 +28,10 @@ export default function RootLayout({
       >
         <SessionProvider>
           <ThemeProvider>
-            {children}
-            <Toaster theme="dark" position="bottom-center" />
+            <ConfirmDialogProvider>
+              {children}
+              <Toaster theme="dark" position="bottom-center" />
+            </ConfirmDialogProvider>
           </ThemeProvider>
         </SessionProvider>
         <script
