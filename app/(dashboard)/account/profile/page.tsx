@@ -1,6 +1,12 @@
 import { auth } from "@/auth";
-import ProfileSection from "../_components/profile-section";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import ProfileSection from "../_components/profile-section";
+
+export const metadata: Metadata = {
+  title: "Profile",
+  description: "Manage your profile information.",
+};
 
 const ProfilePage = async () => {
   const session = await auth();

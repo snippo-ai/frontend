@@ -7,6 +7,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
 import AppSidebar from "../platform/_components/sidebar";
@@ -14,6 +15,11 @@ import AppSidebar from "../platform/_components/sidebar";
 interface AccountSettingsLayoutProps {
   children: ReactNode;
 }
+
+export const metadata: Metadata = {
+  description:
+    "Update your profile, configure preferences, manage billing, integrations, and other settings for your Snippo account.",
+};
 
 const AccountSettingsLayout = async ({
   children,
