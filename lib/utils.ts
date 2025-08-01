@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { imagekit } from "./config";
 import { VISIBLE_CHARACTERS_IN_MASKING } from "./constants";
 
 /**
@@ -100,3 +101,15 @@ export function getInitials(name: string): string {
 
   return initials;
 }
+
+/**
+ * Returns the URL for the given path, with the Imagekit base URL prepended.
+ *
+ * @param path - The path to generate the URL for.
+ * @returns The generated URL.
+ */
+export const getImagekitUrl = (path: string) => {
+  return path?.startsWith("/")
+    ? imagekit.baseDeliveryUrl + path
+    : imagekit.baseDeliveryUrl + "/" + path;
+};

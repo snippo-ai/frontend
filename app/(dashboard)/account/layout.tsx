@@ -45,7 +45,7 @@ const AccountSettingsLayout = async ({
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <MaxWidthContainer>{children}</MaxWidthContainer>
+          <MaxWidthContainer maxWidth="2xl">{children}</MaxWidthContainer>
         </div>
       </SidebarInset>
     </SidebarProvider>

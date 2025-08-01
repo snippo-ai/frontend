@@ -5,8 +5,8 @@ import { memo } from "react";
 
 interface MainContentHeaderProps {
   title: string;
-  description: string;
-  icon: LucideIcon;
+  description?: string;
+  icon?: LucideIcon;
   className?: string;
 }
 
@@ -18,17 +18,19 @@ const MainContentHeader = memo<MainContentHeaderProps>(
           className="flex items-center gap-2 text-xl font-semibold"
           id={`${title.toLowerCase().replace(/\s+/g, "-")}-header`}
         >
-          <Icon className="h-5 w-5" aria-hidden="true" role="img" />
+          {Icon && <Icon className="h-5 w-5" aria-hidden="true" role="img" />}
           <span>{title}</span>
         </h2>
-        <Typography
-          className="text-sm text-muted-foreground mt-1"
-          aria-describedby={`${title
-            .toLowerCase()
-            .replace(/\s+/g, "-")}-header`}
-        >
-          {description}
-        </Typography>
+        {description && (
+          <Typography
+            className="text-sm text-muted-foreground mt-1"
+            aria-describedby={`${title
+              .toLowerCase()
+              .replace(/\s+/g, "-")}-header`}
+          >
+            {description}
+          </Typography>
+        )}
       </header>
     );
   }

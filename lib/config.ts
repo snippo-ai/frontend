@@ -6,3 +6,7 @@ export const page = {
   url: "https://snippo.dev",
   email: "snippo.official@gmail.com",
 };
+
+export const imagekit = {
+  baseDeliveryUrl: "https://ik.imagekit.io/snippoai",
+};
