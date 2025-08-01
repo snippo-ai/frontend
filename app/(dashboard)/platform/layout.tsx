@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import CustomBreadcrumb from "@/components/shared/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -7,7 +8,6 @@ import {
 } from "@/components/ui/sidebar";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
-import DashboardBreadcrumb from "../../components/shared/breadcrumb";
 import AppSidebar from "./_components/sidebar";
 
 interface DashboardLayoutProps {
@@ -32,12 +32,7 @@ const DashboardLayout = async ({ children }: DashboardLayoutProps) => {
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
             />
-            <DashboardBreadcrumb
-              routes={[
-                { label: "Platform", icon: null, href: "" },
-                { label: "Overview", icon: null, href: "/overview" },
-              ]}
-            />
+            <CustomBreadcrumb />
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</div>
