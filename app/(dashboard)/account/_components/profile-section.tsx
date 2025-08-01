@@ -124,10 +124,8 @@ const ProfileSection = ({ session }: Props) => {
     setTimeout(() => setOpen(false), 1500);
   };
 
-  // Automatically submit OTP when complete
   useEffect(() => {
     if (showOtp && otp.length === 6) {
-      // Create a fake event to pass to handleOtpSubmit
       const event = { preventDefault: () => {} } as React.FormEvent;
       handleOtpSubmit(event);
     }
