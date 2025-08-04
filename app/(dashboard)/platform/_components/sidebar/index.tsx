@@ -22,6 +22,7 @@ import {
   ShapesIcon,
 } from "lucide-react";
 import { Session } from "next-auth";
+import { useRouter } from "next/navigation";
 import * as React from "react";
 import { NavMain } from "./nav-main";
 import NavUser from "./nav-user";
@@ -122,6 +123,7 @@ const AppSidebar = ({
   page: "platform" | "account";
   showBackButton?: boolean;
 }) => {
+  const router = useRouter();
   const proBadgeVisible = page?.includes("platform");
   const showBackButton = page !== "platform";
 
@@ -133,11 +135,7 @@ const AppSidebar = ({
             size="sm"
             variant="ghost"
             className="text-muted-foreground hover:text-foreground w-fit"
-            onClick={() => {
-              if (typeof window === "undefined") return;
-
-              window.location.href = REDIRECT_ROUTES.AFTER_LOGIN;
-            }}
+            onClick={() => router.push(REDIRECT_ROUTES.AFTER_LOGIN)}
           >
             <ChevronLeftIcon /> Platform
           </Button>

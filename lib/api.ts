@@ -1,6 +1,7 @@
 import type { AxiosRequestConfig } from "axios";
 import axios from "axios";
 import { Session } from "next-auth";
+import { getClientToken } from "./client-token";
 import { isProduction } from "./config";
 
 /**
@@ -15,23 +16,17 @@ export async function fetcher(
 ) {
   let token;
 
-  // If session is provided (server), use it
   if (session && session?.token) {
     token = session.token;
   } else {
-    // Try to get session on client
     if (typeof window !== "undefined") {
-      const { getSession } = await import("next-auth/react");
-      const clientSession = await getSession();
-      token = clientSession?.token;
+      token = await getClientToken();
     } else {
-      // On server, try to use auth() if available
       try {
         const { auth } = await import("@/auth");
         const serverSession = await auth();
         token = serverSession?.token;
       } catch {
-        // Fallback: no token
         token = undefined;
       }
     }

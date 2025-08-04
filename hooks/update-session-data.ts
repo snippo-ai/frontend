@@ -2,6 +2,11 @@
 
 import { useSession } from "next-auth/react";
 
+type SessionUpdateFields = {
+  isEmailVerified?: boolean;
+  name?: string;
+};
+
 /**
  * Client-side hook to update the user's session data using next-auth's update method.
  *
@@ -14,7 +19,7 @@ import { useSession } from "next-auth/react";
 export function useUpdateSession() {
   const { update } = useSession();
 
-  return async (fields: Record<string, any>) => {
+  return async (fields: SessionUpdateFields): Promise<void> => {
     await update(fields);
   };
 }
