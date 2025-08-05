@@ -17,9 +17,9 @@ const SystemSettings = ({ userEmail }: SystemSettingsProps) => {
       <MainContentHeader title="System" className="mt-12" />
       <Separator className="my-4 mb-6" />
 
-      <div className="grid gap-4" aria-label="system-actions">
+      <div className="space-y-4" aria-label="system-actions">
         <LineItem
-          label="Support"
+          label="Get Support"
           action={
             <Button variant="secondary" aria-label="Contact support">
               Contact <ArrowUpRightIcon aria-hidden />
@@ -27,7 +27,8 @@ const SystemSettings = ({ userEmail }: SystemSettingsProps) => {
           }
         />
         <LineItem
-          label={`You are logged in as ${userEmail}`}
+          label="You are logged in as"
+          subLabel={userEmail}
           action={
             <Button
               variant="destructive"
@@ -40,7 +41,7 @@ const SystemSettings = ({ userEmail }: SystemSettingsProps) => {
         />
         <LineItem
           label="Delete account"
-          subLabel="Permanently delete your account and data"
+          subLabel="Permanently delete your account"
           action={
             <Button
               variant="secondary"

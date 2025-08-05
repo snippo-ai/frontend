@@ -1,8 +1,8 @@
 "use client";
 
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { getImagekitUrl } from "@/lib/utils";
+import { getImagekitUrl, getInitials } from "@/lib/utils";
 import { User } from "next-auth";
 
 type UserAvatarProps = {
@@ -10,11 +10,13 @@ type UserAvatarProps = {
 };
 
 const UserAvatar = ({ user }: UserAvatarProps) => {
-  const fallbackImage = getImagekitUrl(
-    "/web/icons/portrait_placeholder.png?updatedAt=1754030075591"
-  );
-
-  const imageSrc = user?.userImage || fallbackImage;
+  const { firstName = "", lastName = "", userImage = "" } = user;
+  const imageSrc =
+    userImage ||
+    getImagekitUrl(
+      "/web/icons/portrait_placeholder.png?updatedAt=1754030075591"
+    );
+  const fullName = [firstName, lastName].filter(Boolean).join(" ") || "—";
 
   return (
     <section
@@ -24,12 +26,15 @@ const UserAvatar = ({ user }: UserAvatarProps) => {
       <h2 id="user-avatar-heading" className="sr-only">
         User Avatar
       </h2>
-      <Avatar className="size-12 rounded-full">
+      <Avatar className="size-12 rounded-lg">
         <AvatarImage
           src={imageSrc}
           alt="User avatar"
           className="bg-transparent"
         />
+        <AvatarFallback className="rounded-lg">
+          {getInitials(fullName)}
+        </AvatarFallback>
       </Avatar>
       <Button
         size="sm"

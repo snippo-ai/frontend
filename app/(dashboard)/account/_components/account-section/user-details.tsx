@@ -1,6 +1,6 @@
-import Typography from "@/components/shared/typography";
 import { Button } from "@/components/ui/button";
 import { User } from "next-auth";
+import LineItem from "../line-item";
 
 type UserDetailsProps = {
   user: User;
@@ -11,71 +11,40 @@ const UserDetails = ({ user }: UserDetailsProps) => {
   const fullName = [firstName, lastName].filter(Boolean).join(" ") || "—";
 
   return (
-    <section
-      className="grid grid-cols-1 md:grid-cols-2 gap-6"
-      aria-labelledby="user-details-heading"
-    >
+    <section aria-labelledby="user-details-heading" className="space-y-4">
       <h2 id="user-details-heading" className="sr-only">
         User account details
       </h2>
-
-      {/* Full Name */}
-      <div className="space-y-1">
-        <Typography
-          as="label"
-          fluidSize="xs"
-          className="block text-muted-foreground/75 font-medium"
-        >
-          Full Name
-        </Typography>
-        <div className="flex items-center gap-3">
-          <Typography
-            fluidSize="sm"
-            className="block text-foreground font-medium"
-          >
-            {fullName}
-          </Typography>
+      <LineItem
+        label="Full Name"
+        subLabel={fullName}
+        action={
           <Button
-            type="button"
             size="sm"
-            variant="link"
-            className="p-0 h-fit text-[12px]"
-            aria-label="Update your full name"
+            type="button"
+            variant="secondary"
+            aria-label="Change your name"
           >
-            Update
+            Change Full Name
           </Button>
-        </div>
-      </div>
-
-      {/* Email */}
-      <div className="space-y-1">
-        <Typography
-          as="label"
-          fluidSize="xs"
-          className="block text-muted-foreground/75 font-medium"
-        >
-          Email
-        </Typography>
-        <div className="flex flex-col gap-1">
-          <Typography
-            fluidSize="sm"
-            className="block text-foreground font-medium"
-          >
-            {email || "—"}
-          </Typography>
-          {!isEmailVerified && (
-            <Typography
-              as="p"
-              role="alert"
-              fluidSize="xs"
-              className="text-warning font-medium text-[12px]"
-              aria-live="polite"
+        }
+      />
+      <LineItem
+        label="Email"
+        subLabel={email}
+        action={
+          !isEmailVerified && (
+            <Button
+              size="sm"
+              type="button"
+              variant="secondary"
+              aria-label="Verify your email"
             >
-              Email not verified
-            </Typography>
-          )}
-        </div>
-      </div>
+              Verify Email
+            </Button>
+          )
+        }
+      />
     </section>
   );
 };
