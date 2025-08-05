@@ -1,16 +1,14 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
   SectionIconMap,
   SECTIONS_ENUM,
 } from "@/lib/mocks/account-settings-sidebar-data";
-import { ArrowUpRightIcon } from "lucide-react";
 import { Session } from "next-auth";
 import { useEffect, useState } from "react";
-import LineItem from "../line-item";
 import MainContentHeader from "../main-content-header";
+import SystemSettings from "./system-settings";
 import UserAvatar from "./user-avatar";
 import UserDetails from "./user-details";
 
@@ -108,7 +106,11 @@ const AccountSection = ({ session }: Props) => {
   // }, [otp, showOtp]);
 
   return (
-    <>
+    <section aria-labelledby="account-section-heading">
+      <h2 id="account-section-heading" className="sr-only">
+        Account Settings
+      </h2>
+
       <MainContentHeader
         title="Account"
         description="Manage your account information, email preferences, and account status."
@@ -116,32 +118,12 @@ const AccountSection = ({ session }: Props) => {
       />
       <Separator className="my-4 mb-6" />
       <div className="grid gap-8">
-        <UserAvatar user={session?.user} />
-        <UserDetails user={session?.user} />
+        <UserAvatar user={session.user} />
+        <UserDetails user={session.user} />
       </div>
 
-      <MainContentHeader title="System" className="mt-12" />
-      <Separator className="my-4 mb-6" />
-      <div className="grid gap-4">
-        <LineItem
-          label="Support"
-          action={
-            <Button variant="secondary">
-              Contact <ArrowUpRightIcon />
-            </Button>
-          }
-        />
-        <LineItem
-          label={`You are logged in as ${session.user.email}`}
-          action={<Button variant="secondary">Logout</Button>}
-        />
-        <LineItem
-          label="Delete account"
-          subLabel="Permanently delete your account and data"
-          action={<Button variant="secondary">Learn More</Button>}
-        />
-      </div>
-    </>
+      <SystemSettings userEmail={session.user.email} />
+    </section>
   );
 };
 

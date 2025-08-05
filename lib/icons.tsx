@@ -12,6 +12,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ChevronUp,
+  CircleAlert,
   Copy,
   Download,
   Edit,
@@ -68,7 +69,7 @@ const GoogleIcon: React.FC<ComponentProps<"svg">> = (props) => (
   </svg>
 );
 
-export const icons: Record<
+export const Icons: Record<
   string,
   LucideIcon | React.FC<ComponentProps<"svg">>
 > = {
@@ -81,6 +82,7 @@ export const icons: Record<
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
   chevronUp: ChevronUp,
+  circleAlert: CircleAlert,
   close: X,
   check: Check,
   plus: Plus,
@@ -118,4 +120,4 @@ export const icons: Record<
 };
 
 // Optional: export type of icon keys for autocompletion
-export type IconName = keyof typeof icons;
+export type IconName = keyof typeof Icons;

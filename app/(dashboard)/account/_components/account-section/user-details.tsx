@@ -7,11 +7,19 @@ type UserDetailsProps = {
 };
 
 const UserDetails = ({ user }: UserDetailsProps) => {
-  const { firstName, lastName, email } = user;
-  const fullName = `${firstName} ${lastName}`;
+  const { firstName = "", lastName = "", email = "", isEmailVerified } = user;
+  const fullName = [firstName, lastName].filter(Boolean).join(" ") || "—";
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <section
+      className="grid grid-cols-1 md:grid-cols-2 gap-6"
+      aria-labelledby="user-details-heading"
+    >
+      <h2 id="user-details-heading" className="sr-only">
+        User account details
+      </h2>
+
+      {/* Full Name */}
       <div className="space-y-1">
         <Typography
           as="label"
@@ -20,18 +28,26 @@ const UserDetails = ({ user }: UserDetailsProps) => {
         >
           Full Name
         </Typography>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-3">
           <Typography
             fluidSize="sm"
             className="block text-foreground font-medium"
           >
             {fullName}
           </Typography>
-          <Button type="button" size="sm" variant="link" className="p-0">
-            Change
+          <Button
+            type="button"
+            size="sm"
+            variant="link"
+            className="p-0 h-fit text-[12px]"
+            aria-label="Update your full name"
+          >
+            Update
           </Button>
         </div>
       </div>
+
+      {/* Email */}
       <div className="space-y-1">
         <Typography
           as="label"
@@ -40,46 +56,32 @@ const UserDetails = ({ user }: UserDetailsProps) => {
         >
           Email
         </Typography>
-        <Typography
-          fluidSize="sm"
-          className="block text-foreground font-medium"
-        >
-          {email}
-        </Typography>
-      </div>
-
-      {/* <div>
-          <Typography as="label" fluidSize="xs" className="block font-medium">
-            Cover photo
+        <div className="flex flex-col gap-1">
+          <Typography
+            fluidSize="sm"
+            className="block text-foreground font-medium"
+          >
+            {email || "—"}
           </Typography>
-          <div className="mt-2 flex flex-col items-center justify-center border-2 border-dashed border-border rounded-lg p-6">
-            <ImageIcon
-              aria-hidden
-              className="size-12 text-muted-foreground mb-2"
-            />
-            <label
-              htmlFor="file-upload"
-              className="cursor-pointer text-primary font-semibold"
-            >
-              <span>Upload a file</span>
-              <input
-                id="file-upload"
-                name="file-upload"
-                type="file"
-                className="sr-only"
-              />
-            </label>
+          {!isEmailVerified && (
             <Typography
               as="p"
+              role="alert"
               fluidSize="xs"
-              className="text-muted-foreground mt-2"
+              className="text-warning font-medium text-[12px]"
+              aria-live="polite"
             >
-              PNG, JPG, GIF up to 10MB
+              Email not verified
             </Typography>
-          </div>
-        </div> */}
-      {/* Email Section */}
-      {/* <div className="md:col-span-2">
+          )}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+{
+  /* <div className="md:col-span-2">
         {!session.user.isEmailVerified && (
           <div
             role="alert"
@@ -287,9 +289,7 @@ const UserDetails = ({ user }: UserDetailsProps) => {
             </AlertDialog>
           </div>
         )}
-      </div> */}
-    </div>
-  );
-};
+      </div> */
+}
 
 export default UserDetails;

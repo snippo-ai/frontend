@@ -16,13 +16,11 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { useLogoutWithConfirm } from "@/hooks/use-logout-with-confirm";
 import { SectionIconMap } from "@/lib/mocks/account-settings-sidebar-data";
-import { useConfirmDialog } from "@/lib/providers/confirm-dialog-provider";
 import { getInitials } from "@/lib/utils";
-import { AUTH_ROUTES } from "@/routes";
 import { ChevronsUpDown, LogOut } from "lucide-react";
 import { Session } from "next-auth";
-import { signOut } from "next-auth/react";
 import Link from "next/link";
 
 type NavUserProps = {
@@ -33,22 +31,7 @@ const NavUser = ({ session }: NavUserProps) => {
   const { user } = session;
   const fullName = `${user.firstName} ${user.lastName}`;
   const { isMobile } = useSidebar();
-  const confirm = useConfirmDialog();
-
-  const handleLogout = async () => {
-    const ok = await confirm({
-      title: "Confirm Logout",
-      description:
-        "You will be signed out and need to log in again to access your account.",
-      confirmText: "Log out",
-      cancelText: "Cancel",
-      danger: true,
-    });
-
-    if (ok) {
-      await signOut({ callbackUrl: AUTH_ROUTES.LOGIN });
-    }
-  };
+  const handleLogout = useLogoutWithConfirm();
 
   return (
     <SidebarMenu>
