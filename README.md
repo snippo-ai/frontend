@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Snippo AI Frontend Documentation
 
-## Getting Started
+Welcome to the Snippo AI frontend documentation. This comprehensive guide covers the architecture, patterns, and implementation details of the Next.js-based frontend application.
 
-First, run the development server:
+## 🚀 Quick Start
 
 ```bash
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🏗️ Project Overview
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Snippo AI is a modern SaaS application built with:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Next.js 15.2.3** with App Router
+- **TypeScript** for type safety
+- **Tailwind CSS** for styling
+- **Radix UI** for accessible components
+- **NextAuth.js** for authentication
+- **Axios** for API communication
 
-## Learn More
+## 📁 Directory Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+frontend/
+├── app/                    # Next.js App Router
+│   ├── (auth)/            # Authentication routes
+│   ├── (dashboard)/       # Protected dashboard
+│   ├── (site)/           # Public marketing pages
+│   └── onboarding/       # User onboarding
+├── components/            # Reusable components
+│   ├── ui/               # UI primitives
+│   └── shared/           # Business components
+├── lib/                  # Utilities and configurations
+│   ├── providers/        # Context providers
+│   ├── types/           # Type definitions
+│   └── helpers/         # Helper functions
+├── hooks/               # Custom React hooks
+├── public/              # Static assets
+└── docs/               # Documentation (this folder)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎯 Key Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Multi-provider Authentication** (Google, GitHub, Credentials)
+- **Route Protection** with middleware
+- **Responsive Design** with mobile-first approach
+- **Dark/Light Theme** support
+- **Type-safe API** integration
+- **Component Library** with Radix UI
+- **Event-driven Architecture** with custom event bus
+- **File Upload** capabilities
+- **Form Validation** with Zod schemas
 
-## Deploy on Vercel
+## 📖 Getting Started
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Read the [Architecture Overview](./architecture.md) to understand the system design
+2. Check the [Development Guide](./development.md) for setup instructions
+3. Explore the [Component System](./components.md) for UI patterns
+4. Review [API Patterns](./api-patterns.md) for data fetching
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contributing
+
+Please refer to the [Development Guide](./development.md) for coding standards and contribution guidelines.
+
+---
+
+**Last Updated**: August 13, 2025  
+**Version**: 0.1.0  
+**Maintainer**: Snippo AI Team
