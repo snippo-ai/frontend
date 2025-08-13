@@ -1,8 +1,7 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { getImagekitUrl, getInitials } from "@/lib/utils";
+import UserAvatarUploader from "@/components/ui/user-avatar-uploader";
+import { getImagekitUrl } from "@/lib/utils";
 import { User } from "next-auth";
 
 type UserAvatarProps = {
@@ -26,7 +25,8 @@ const UserAvatar = ({ user }: UserAvatarProps) => {
       <h2 id="user-avatar-heading" className="sr-only">
         User Avatar
       </h2>
-      <Avatar className="size-12 rounded-lg">
+      <UserAvatarUploader initialUserImage={imageSrc} fullName={fullName} />
+      {/* <Avatar className="size-12 rounded-lg">
         <AvatarImage
           src={imageSrc}
           alt="User avatar"
@@ -35,15 +35,15 @@ const UserAvatar = ({ user }: UserAvatarProps) => {
         <AvatarFallback className="rounded-lg">
           {getInitials(fullName)}
         </AvatarFallback>
-      </Avatar>
-      <Button
+      </Avatar> */}
+      {/* <Button
         size="sm"
         type="button"
         variant="secondary"
         aria-label="Change your avatar"
       >
         Change Avatar
-      </Button>
+      </Button> */}
     </section>
   );
 };
