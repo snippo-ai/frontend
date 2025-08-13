@@ -36,6 +36,18 @@ const SecuritySection = () => {
     e.preventDefault();
     // TODO: Implement password update functionality
     console.log("Password update submitted:", passwordForm);
+    
+    // Announce success to screen readers
+    const announcement = document.createElement("div");
+    announcement.setAttribute("aria-live", "assertive");
+    announcement.setAttribute("aria-atomic", "true");
+    announcement.className = "sr-only";
+    announcement.textContent = "Password update form submitted. Processing your request.";
+    document.body.appendChild(announcement);
+    
+    setTimeout(() => {
+      document.body.removeChild(announcement);
+    }, 1000);
   };
 
   const resetPasswordForm = () => {
@@ -147,129 +159,162 @@ const SecuritySection = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3, delay: 0.2 }}
+                    role="form"
+                    aria-labelledby="password-form-title"
+                    aria-describedby="password-form-description"
+                    noValidate
                   >
-                  {/* Current Password */}
-                  <div className="space-y-2">
-                    <Label htmlFor="current-password">Current Password</Label>
-                    <div className="relative">
-                      <Input
-                        id="current-password"
-                        type={showCurrentPassword ? "text" : "password"}
-                        value={passwordForm.currentPassword}
-                        onChange={(e) =>
-                          handlePasswordFormChange(
-                            "currentPassword",
-                            e.target.value
-                          )
-                        }
-                        placeholder="Enter your current password"
-                        className="pr-10"
-                        required
-                      />
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="icon"
-                        className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                        onClick={() =>
-                          setShowCurrentPassword(!showCurrentPassword)
-                        }
-                        aria-label={
-                          showCurrentPassword
-                            ? "Hide current password"
-                            : "Show current password"
-                        }
-                      >
-                        {showCurrentPassword ? (
-                          <EyeOff className="h-4 w-4" />
-                        ) : (
-                          <Eye className="h-4 w-4" />
-                        )}
-                      </Button>
+                    <div id="password-form-description" className="sr-only">
+                      Complete this form to update your account password. All fields are required for security verification.
                     </div>
-                  </div>
+                    
+                    {/* Current Password */}
+                    <div className="space-y-2">
+                      <Label htmlFor="current-password" className="text-sm font-medium">
+                        Current Password *
+                      </Label>
+                      <div className="relative">
+                        <Input
+                          id="current-password"
+                          type={showCurrentPassword ? "text" : "password"}
+                          value={passwordForm.currentPassword}
+                          onChange={(e) =>
+                            handlePasswordFormChange(
+                              "currentPassword",
+                              e.target.value
+                            )
+                          }
+                          placeholder="Enter your current password"
+                          className="pr-10"
+                          required
+                          aria-describedby="current-password-help"
+                          aria-required="true"
+                          autoComplete="current-password"
+                        />
+                        <div id="current-password-help" className="sr-only">
+                          Enter your existing password to verify your identity before setting a new password
+                        </div>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                          onClick={() =>
+                            setShowCurrentPassword(!showCurrentPassword)
+                          }
+                          aria-label={
+                            showCurrentPassword
+                              ? "Hide current password text"
+                              : "Show current password text"
+                          }
+                          tabIndex={0}
+                        >
+                          {showCurrentPassword ? (
+                            <EyeOff className="h-4 w-4" aria-hidden="true" />
+                          ) : (
+                            <Eye className="h-4 w-4" aria-hidden="true" />
+                          )}
+                        </Button>
+                      </div>
+                    </div>
 
-                  {/* New Password */}
-                  <div className="space-y-2">
-                    <Label htmlFor="new-password">New Password</Label>
-                    <div className="relative">
-                      <Input
-                        id="new-password"
-                        type={showNewPassword ? "text" : "password"}
-                        value={passwordForm.newPassword}
-                        onChange={(e) =>
-                          handlePasswordFormChange(
-                            "newPassword",
-                            e.target.value
-                          )
-                        }
-                        placeholder="Enter your new password"
-                        className="pr-10"
-                        required
-                      />
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="icon"
-                        className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                        onClick={() => setShowNewPassword(!showNewPassword)}
-                        aria-label={
-                          showNewPassword
-                            ? "Hide new password"
-                            : "Show new password"
-                        }
-                      >
-                        {showNewPassword ? (
-                          <EyeOff className="h-4 w-4" />
-                        ) : (
-                          <Eye className="h-4 w-4" />
-                        )}
-                      </Button>
+                    {/* New Password */}
+                    <div className="space-y-2">
+                      <Label htmlFor="new-password" className="text-sm font-medium">
+                        New Password *
+                      </Label>
+                      <div className="relative">
+                        <Input
+                          id="new-password"
+                          type={showNewPassword ? "text" : "password"}
+                          value={passwordForm.newPassword}
+                          onChange={(e) =>
+                            handlePasswordFormChange(
+                              "newPassword",
+                              e.target.value
+                            )
+                          }
+                          placeholder="Enter your new password"
+                          className="pr-10"
+                          required
+                          aria-describedby="new-password-help"
+                          aria-required="true"
+                          autoComplete="new-password"
+                        />
+                        <div id="new-password-help" className="text-xs text-muted-foreground mt-1">
+                          Must be at least 8 characters with uppercase, lowercase, numbers, and special characters
+                        </div>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                          onClick={() => setShowNewPassword(!showNewPassword)}
+                          aria-label={
+                            showNewPassword
+                              ? "Hide new password text"
+                              : "Show new password text"
+                          }
+                          tabIndex={0}
+                        >
+                          {showNewPassword ? (
+                            <EyeOff className="h-4 w-4" aria-hidden="true" />
+                          ) : (
+                            <Eye className="h-4 w-4" aria-hidden="true" />
+                          )}
+                        </Button>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Confirm Password */}
-                  <div className="space-y-2">
-                    <Label htmlFor="confirm-password">
-                      Confirm New Password
-                    </Label>
-                    <div className="relative">
-                      <Input
-                        id="confirm-password"
-                        type={showConfirmPassword ? "text" : "password"}
-                        value={passwordForm.confirmPassword}
-                        onChange={(e) =>
-                          handlePasswordFormChange(
-                            "confirmPassword",
-                            e.target.value
-                          )
-                        }
-                        placeholder="Confirm your new password"
-                        className="pr-10"
-                        required
-                      />
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="icon"
-                        className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                        onClick={() =>
-                          setShowConfirmPassword(!showConfirmPassword)
-                        }
-                        aria-label={
-                          showConfirmPassword
-                            ? "Hide confirm password"
-                            : "Show confirm password"
-                        }
-                      >
-                        {showConfirmPassword ? (
-                          <EyeOff className="h-4 w-4" />
-                        ) : (
-                          <Eye className="h-4 w-4" />
-                        )}
-                      </Button>
+                    {/* Confirm Password */}
+                    <div className="space-y-2">
+                      <Label htmlFor="confirm-password" className="text-sm font-medium">
+                        Confirm New Password *
+                      </Label>
+                      <div className="relative">
+                        <Input
+                          id="confirm-password"
+                          type={showConfirmPassword ? "text" : "password"}
+                          value={passwordForm.confirmPassword}
+                          onChange={(e) =>
+                            handlePasswordFormChange(
+                              "confirmPassword",
+                              e.target.value
+                            )
+                          }
+                          placeholder="Confirm your new password"
+                          className="pr-10"
+                          required
+                          aria-describedby="confirm-password-help"
+                          aria-required="true"
+                          autoComplete="new-password"
+                        />
+                        <div id="confirm-password-help" className="sr-only">
+                          Re-enter your new password to confirm it matches
+                        </div>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                          onClick={() =>
+                            setShowConfirmPassword(!showConfirmPassword)
+                          }
+                          aria-label={
+                            showConfirmPassword
+                              ? "Hide confirm password text"
+                              : "Show confirm password text"
+                          }
+                          tabIndex={0}
+                        >
+                          {showConfirmPassword ? (
+                            <EyeOff className="h-4 w-4" aria-hidden="true" />
+                          ) : (
+                            <Eye className="h-4 w-4" aria-hidden="true" />
+                          )}
+                        </Button>
+                      </div>
                     </div>
-                  </div>
 
                     {/* Form Actions */}
                     <motion.div 

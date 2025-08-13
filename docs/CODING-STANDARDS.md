@@ -522,6 +522,392 @@ const AnimatedCard = ({ children, isVisible }: AnimatedCardProps) => {
 }
 ```
 
+## ♿ Accessibility & SEO Standards
+
+### **Semantic HTML Structure**
+
+```typescript
+// ✅ Good: Proper semantic structure
+const SecurityPage = () => {
+  return (
+    <main role="main" aria-labelledby="page-title">
+      <header>
+        <h1 id="page-title">Security Settings</h1>
+        <p>Manage your account security and privacy settings</p>
+      </header>
+      
+      <section aria-labelledby="password-section">
+        <h2 id="password-section">Password Management</h2>
+        <article>
+          <h3>Update Password</h3>
+          {/* Content */}
+        </article>
+      </section>
+    </main>
+  );
+};
+
+// ❌ Avoid: Generic div structure
+const BadPage = () => {
+  return (
+    <div>
+      <div>Security Settings</div>
+      <div>
+        <div>Password</div>
+      </div>
+    </div>
+  );
+};
+```
+
+### **ARIA Labels and Descriptions**
+
+```typescript
+// ✅ Good: Comprehensive ARIA implementation
+<form 
+  role="form" 
+  aria-labelledby="form-title"
+  aria-describedby="form-description"
+>
+  <h2 id="form-title">Update Password</h2>
+  <p id="form-description">
+    Enter your current password and choose a new secure password
+  </p>
+  
+  <div className="form-group">
+    <Label htmlFor="current-password">Current Password</Label>
+    <Input
+      id="current-password"
+      type="password"
+      aria-describedby="current-password-help"
+      aria-required="true"
+      aria-invalid={hasError ? "true" : "false"}
+    />
+    <div id="current-password-help" className="sr-only">
+      Enter your existing password to verify your identity
+    </div>
+    {hasError && (
+      <div role="alert" aria-live="polite" className="error-message">
+        Current password is incorrect
+      </div>
+    )}
+  </div>
+</form>
+
+// ✅ Good: Button accessibility
+<Button
+  type="submit"
+  aria-label="Update your account password"
+  aria-describedby="update-help"
+>
+  Update Password
+</Button>
+<div id="update-help" className="sr-only">
+  This will change your password and log you out of other devices
+</div>
+```
+
+### **Keyboard Navigation**
+
+```typescript
+// ✅ Good: Keyboard navigation support
+const AccessibleModal = ({ isOpen, onClose }: ModalProps) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    if (isOpen) {
+      // Focus trap implementation
+      const focusableElements = modalRef.current?.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const firstElement = focusableElements?.[0] as HTMLElement;
+      const lastElement = focusableElements?.[focusableElements.length - 1] as HTMLElement;
+      
+      firstElement?.focus();
+      
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          onClose();
+        }
+        
+        if (e.key === "Tab") {
+          if (e.shiftKey && document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement?.focus();
+          } else if (!e.shiftKey && document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement?.focus();
+          }
+        }
+      };
+      
+      document.addEventListener("keydown", handleKeyDown);
+      return () => document.removeEventListener("keydown", handleKeyDown);
+    }
+  }, [isOpen, onClose]);
+  
+  return (
+    <div
+      ref={modalRef}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+      tabIndex={-1}
+    >
+      {/* Modal content */}
+    </div>
+  );
+};
+```
+
+### **Screen Reader Optimization**
+
+```typescript
+// ✅ Good: Screen reader friendly components
+const LoadingButton = ({ isLoading, children, ...props }: ButtonProps) => {
+  return (
+    <Button
+      {...props}
+      aria-busy={isLoading}
+      aria-describedby={isLoading ? "loading-text" : undefined}
+    >
+      {isLoading && (
+        <>
+          <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
+          <span id="loading-text" className="sr-only">
+            Loading, please wait
+          </span>
+        </>
+      )}
+      {children}
+    </Button>
+  );
+};
+
+// ✅ Good: Status announcements
+const useStatusAnnouncement = () => {
+  const announce = useCallback((message: string, priority: "polite" | "assertive" = "polite") => {
+    const announcement = document.createElement("div");
+    announcement.setAttribute("aria-live", priority);
+    announcement.setAttribute("aria-atomic", "true");
+    announcement.className = "sr-only";
+    announcement.textContent = message;
+    
+    document.body.appendChild(announcement);
+    
+    setTimeout(() => {
+      document.body.removeChild(announcement);
+    }, 1000);
+  }, []);
+  
+  return announce;
+};
+```
+
+### **SEO Optimization**
+
+```typescript
+// ✅ Good: Next.js metadata implementation
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Security Settings | Snippo AI",
+  description: "Manage your account security, update passwords, enable two-factor authentication, and review active sessions.",
+  keywords: ["security", "password", "2FA", "account settings", "privacy"],
+  openGraph: {
+    title: "Security Settings | Snippo AI",
+    description: "Secure your account with advanced security features",
+    type: "website",
+    url: "https://snippo.ai/account/security",
+  },
+  twitter: {
+    card: "summary",
+    title: "Security Settings | Snippo AI",
+    description: "Manage your account security settings",
+  },
+  robots: {
+    index: false, // Private user pages should not be indexed
+    follow: false,
+  },
+};
+
+// ✅ Good: Structured data for better SEO
+const SecurityPageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Security Settings",
+  "description": "Account security management page",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Snippo AI",
+    "url": "https://snippo.ai"
+  }
+};
+```
+
+### **Color Contrast and Visual Accessibility**
+
+```css
+/* ✅ Good: WCAG AA compliant color contrast */
+:root {
+  /* Ensure 4.5:1 contrast ratio for normal text */
+  --text-primary: hsl(222.2 84% 4.9%);        /* #0a0a0b */
+  --background: hsl(0 0% 100%);               /* #ffffff */
+  
+  /* 3:1 contrast ratio for large text and UI elements */
+  --text-muted: hsl(215.4 16.3% 46.9%);      /* #6b7280 */
+  --border: hsl(214.3 31.8% 91.4%);          /* #e5e7eb */
+}
+
+/* Dark mode compliance */
+.dark {
+  --text-primary: hsl(210 40% 98%);          /* #fafafa */
+  --background: hsl(222.2 47.4% 11.2%);     /* #1a1a1a */
+  --text-muted: hsl(215 20.2% 65.1%);       /* #9ca3af */
+}
+
+/* ✅ Good: Focus indicators */
+.focus-visible\:outline-none:focus-visible {
+  outline: 2px solid hsl(221.2 83.2% 53.3%); /* Blue focus ring */
+  outline-offset: 2px;
+}
+
+/* ✅ Good: Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+### **Form Accessibility**
+
+```typescript
+// ✅ Good: Accessible form implementation
+const AccessiblePasswordForm = () => {
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const announce = useStatusAnnouncement();
+  
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      await updatePassword(formData);
+      announce("Password updated successfully", "assertive");
+    } catch (error) {
+      announce("Password update failed. Please try again.", "assertive");
+    }
+  };
+  
+  return (
+    <form onSubmit={handleSubmit} noValidate>
+      <fieldset>
+        <legend className="text-lg font-semibold mb-4">
+          Update Your Password
+        </legend>
+        
+        <div className="space-y-4">
+          <div>
+            <Label htmlFor="current-password" className="required">
+              Current Password
+            </Label>
+            <Input
+              id="current-password"
+              type="password"
+              required
+              aria-describedby="current-password-error"
+              aria-invalid={!!errors.currentPassword}
+              autoComplete="current-password"
+            />
+            {errors.currentPassword && (
+              <div
+                id="current-password-error"
+                role="alert"
+                className="text-sm text-red-600 mt-1"
+              >
+                {errors.currentPassword}
+              </div>
+            )}
+          </div>
+          
+          <div>
+            <Label htmlFor="new-password" className="required">
+              New Password
+            </Label>
+            <Input
+              id="new-password"
+              type="password"
+              required
+              aria-describedby="new-password-help new-password-error"
+              aria-invalid={!!errors.newPassword}
+              autoComplete="new-password"
+            />
+            <div id="new-password-help" className="text-sm text-muted-foreground mt-1">
+              Must be at least 8 characters with uppercase, lowercase, and numbers
+            </div>
+            {errors.newPassword && (
+              <div
+                id="new-password-error"
+                role="alert"
+                className="text-sm text-red-600 mt-1"
+              >
+                {errors.newPassword}
+              </div>
+            )}
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  );
+};
+```
+
+### **Accessibility Testing Checklist**
+
+```typescript
+// ✅ Component accessibility checklist
+const AccessibilityChecklist = {
+  semantic: [
+    "Uses proper HTML5 semantic elements (main, section, article, nav, etc.)",
+    "Headings follow logical hierarchy (h1 → h2 → h3)",
+    "Form elements have associated labels",
+    "Interactive elements are keyboard accessible"
+  ],
+  
+  aria: [
+    "ARIA labels provided for complex UI elements",
+    "ARIA live regions for dynamic content updates",
+    "ARIA states (expanded, selected, checked) are updated",
+    "ARIA landmarks identify page regions"
+  ],
+  
+  keyboard: [
+    "All interactive elements are focusable",
+    "Focus order is logical and predictable",
+    "Focus indicators are visible and meet contrast requirements",
+    "Keyboard shortcuts don't conflict with screen readers"
+  ],
+  
+  screenReader: [
+    "Content is announced in logical order",
+    "Images have descriptive alt text",
+    "Form errors are announced to screen readers",
+    "Loading states and changes are communicated"
+  ],
+  
+  visual: [
+    "Color contrast meets WCAG AA standards (4.5:1 for normal text)",
+    "Text can be resized up to 200% without horizontal scrolling",
+    "Content is usable with CSS disabled",
+    "Animations respect prefers-reduced-motion"
+  ]
+};
+```
+
 ## 🔒 Security Standards
 
 ### **Input Validation**
