@@ -46,6 +46,22 @@ This document defines the coding standards and best practices for the Snippo AI 
 - Implement proper memoization strategies
 - Avoid unnecessary re-renders
 
+### 5. **User Experience**
+
+- Use subtle animations for page/component transitions
+- Implement smooth hover and focus states
+- Provide visual feedback for user interactions
+- Ensure animations are performant and accessible
+
+### 6. **Accessibility & SEO**
+
+- Follow WCAG 2.1 AA guidelines for accessibility compliance
+- Implement proper semantic HTML structure
+- Provide comprehensive ARIA labels and descriptions
+- Ensure keyboard navigation and screen reader compatibility
+- Optimize for search engines with proper meta tags and structured data
+- Use descriptive alt text for images and meaningful link text
+
 ## 🔷 TypeScript Guidelines
 
 ### **Strict Type Safety**
@@ -444,6 +460,66 @@ import { format } from "date-fns";
 
 // ✅ Good: Type-only imports
 import type { User } from "@/types/user";
+```
+
+## 🎭 Animation Standards
+
+### **Subtle Transitions**
+
+```typescript
+// ✅ Good: Smooth component transitions
+const AnimatedCard = ({ children, isVisible }: AnimatedCardProps) => {
+  return (
+    <div className="transition-all duration-300 ease-in-out transform">
+      {children}
+    </div>
+  );
+};
+
+// ✅ Good: Form field animations
+<div className="animate-in slide-in-from-top-2 duration-300">
+  <Input placeholder="Enter password" />
+</div>
+
+// ✅ Good: Loading states
+<Button disabled className="transition-opacity duration-200">
+  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+  Loading...
+</Button>
+```
+
+### **Animation Guidelines**
+
+```css
+/* ✅ Good: Standard transition durations */
+.transition-fast { transition-duration: 150ms; }    /* Quick interactions */
+.transition-normal { transition-duration: 300ms; }  /* Standard transitions */
+.transition-slow { transition-duration: 500ms; }    /* Smooth entrances */
+
+/* ✅ Good: Consistent easing functions */
+.ease-smooth { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+.ease-bounce { transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+```
+
+### **Performance Considerations**
+
+```typescript
+// ✅ Good: Use transform and opacity for performance
+.animate-slide-in {
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: transform 300ms ease-out, opacity 300ms ease-out;
+}
+
+.animate-slide-in.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+// ❌ Avoid: Animating layout properties
+.avoid-layout-animation {
+  transition: height 300ms; /* Causes layout thrashing */
+}
 ```
 
 ## 🔒 Security Standards
