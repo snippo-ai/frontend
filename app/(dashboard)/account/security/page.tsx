@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "authentication",
   ],
   robots: {
-    index: false, // Private user pages should not be indexed
+    index: false,
     follow: false,
   },
   openGraph: {

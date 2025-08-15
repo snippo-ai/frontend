@@ -29,13 +29,14 @@ const AccountSection = ({ session }: Props) => {
           icon={SectionIconMap[SECTIONS_ENUM.ACCOUNT]}
         />
         <Separator className="my-4 mb-6" />
+        <div className="grid gap-8">
+          <UserAvatar user={session.user} />
+          <UserDetails user={session.user} />
+        </div>
       </FadeIn>
-      <FadeIn delay={0.4} direction="up" className="grid gap-8">
-        <UserAvatar user={session.user} />
-        <UserDetails user={session.user} />
+      <FadeIn delay={0.4} direction="up">
+        <SystemSettings userEmail={session.user.email} />
       </FadeIn>
-
-      <SystemSettings userEmail={session.user.email} />
     </AnimatedSection>
   );
 };

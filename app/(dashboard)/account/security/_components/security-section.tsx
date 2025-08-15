@@ -19,7 +19,6 @@ const SecuritySection = () => {
         <h2 id="security-section-heading" className="sr-only">
           Security Settings
         </h2>
-
         <FadeIn delay={0.2} direction="up">
           <MainContentHeader
             title="Security Settings"
@@ -27,12 +26,11 @@ const SecuritySection = () => {
             icon={SectionIconMap[SECTIONS_ENUM.SECURITY]}
           />
           <Separator className="my-4 mb-6" />
-        </FadeIn>
-
-        <FadeIn delay={0.4} direction="up" className="grid gap-8">
-          <PasswordSection />
-          <TwoFactorAuthSection />
-          <ActiveSessionsSection />
+          <div className="grid gap-8">
+            <PasswordSection />
+            <TwoFactorAuthSection />
+            <ActiveSessionsSection />
+          </div>
         </FadeIn>
       </AnimatedSection>
     </Fragment>

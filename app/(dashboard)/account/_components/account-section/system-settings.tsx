@@ -1,4 +1,3 @@
-import { FadeIn } from "@/components/animations";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useLogoutWithConfirm } from "@/hooks/use-logout-with-confirm";
@@ -15,16 +14,9 @@ const SystemSettings = ({ userEmail }: SystemSettingsProps) => {
 
   return (
     <>
-      <FadeIn delay={0.6} direction="up">
-        <MainContentHeader title="System" className="mt-12" />
-        <Separator className="my-4 mb-6" />
-      </FadeIn>
-      <FadeIn
-        delay={0.8}
-        direction="up"
-        className="space-y-4"
-        aria-label="system-actions"
-      >
+      <MainContentHeader title="System" className="mt-12" />
+      <Separator className="my-4 mb-6" />
+      <div className="space-y-4" aria-label="system-actions">
         <LineItem
           label="Get Support"
           action={
@@ -58,7 +50,7 @@ const SystemSettings = ({ userEmail }: SystemSettingsProps) => {
             </Button>
           }
         />
-      </FadeIn>
+      </div>
     </>
   );
 };

@@ -7,7 +7,6 @@ import {
   AnimatedIcon,
   AnimatedListItem,
   AnimatedPresenceWrapper,
-  AnimatedSection,
 } from "@/components/animations";
 import { AnimatedIconButton } from "@/components/animations/button-animations";
 import { Button } from "@/components/ui/button";
@@ -74,7 +73,7 @@ const PasswordSection = () => {
   };
 
   return (
-    <AnimatedSection aria-labelledby="password-section-heading" delay={0.2}>
+    <div aria-labelledby="password-section-heading">
       <h3 id="password-section-heading" className="sr-only">
         Password Management
       </h3>
@@ -260,11 +259,7 @@ const PasswordSection = () => {
               {/* Form Actions */}
               <AnimatedFormActions>
                 <Button size="sm">Update Password</Button>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={resetPasswordForm}
-                >
+                <Button size="sm" variant="outline" onClick={resetPasswordForm}>
                   Cancel
                 </Button>
               </AnimatedFormActions>
@@ -272,7 +267,7 @@ const PasswordSection = () => {
           </AnimatedCard>
         )}
       </AnimatedPresenceWrapper>
-    </AnimatedSection>
+    </div>
   );
 };
 
