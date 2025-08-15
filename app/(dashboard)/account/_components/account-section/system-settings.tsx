@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useLogoutWithConfirm } from "@/hooks/use-logout-with-confirm";
 import { ArrowUpRightIcon } from "lucide-react";
-import LineItem from "../line-item";
+import LineItem from "../../../_components/line-item";
 import MainContentHeader from "../main-content-header";
 
 type SystemSettingsProps = {

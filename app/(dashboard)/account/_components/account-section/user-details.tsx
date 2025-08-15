@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { User } from "next-auth";
-import LineItem from "../line-item";
+import LineItem from "../../../_components/line-item";
 
 type UserDetailsProps = {
   user: User;
