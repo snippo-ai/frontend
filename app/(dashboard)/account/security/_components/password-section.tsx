@@ -9,12 +9,8 @@ import {
   AnimatedPresenceWrapper,
   AnimatedSection,
 } from "@/components/animations";
-import {
-  AnimatedCancelButton,
-  AnimatedIconButton,
-  AnimatedSecondaryButton,
-  AnimatedSubmitButton,
-} from "@/components/animations/button-animations";
+import { AnimatedIconButton } from "@/components/animations/button-animations";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Eye, EyeOff, Shield } from "lucide-react";
@@ -90,12 +86,14 @@ const PasswordSection = () => {
               label="Password"
               subLabel="Last updated 30 days ago"
               action={
-                <AnimatedSecondaryButton
+                <Button
+                  size="sm"
+                  variant="secondary"
                   onClick={() => setIsChangingPassword(true)}
                   aria-label="Change password"
                 >
                   Change Password
-                </AnimatedSecondaryButton>
+                </Button>
               }
             />
           </AnimatedListItem>
@@ -261,10 +259,14 @@ const PasswordSection = () => {
 
               {/* Form Actions */}
               <AnimatedFormActions>
-                <AnimatedSubmitButton>Update Password</AnimatedSubmitButton>
-                <AnimatedCancelButton onClick={resetPasswordForm}>
+                <Button size="sm">Update Password</Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={resetPasswordForm}
+                >
                   Cancel
-                </AnimatedCancelButton>
+                </Button>
               </AnimatedFormActions>
             </motion.form>
           </AnimatedCard>
