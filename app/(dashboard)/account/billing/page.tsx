@@ -20,13 +20,9 @@ const BillingPage = () => {
             description="Manage your subscription, payment methods, and billing history."
             icon={CreditCard}
           />
-        </FadeIn>
-        <FadeIn delay={0.3} direction="up">
           <Separator className="my-4 mb-6" />
         </FadeIn>
-        <FadeIn delay={0.4} direction="up">
-          <BillingSection />
-        </FadeIn>
+        <BillingSection />
       </AnimatedSection>
     </Fragment>
   );

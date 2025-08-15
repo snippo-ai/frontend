@@ -22,6 +22,8 @@ import {
   XCircle,
 } from "lucide-react";
 import { useCallback, useMemo, useState } from "react";
+import MainContentHeader from "../../_components/main-content-header";
+import { Separator } from "@/components/ui/separator";
 
 export const BillingHistorySection = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -155,19 +157,13 @@ export const BillingHistorySection = () => {
   );
 
   return (
-    <section aria-labelledby="billing-history-heading">
-      <div className="mb-6">
-        <h2
-          id="billing-history-heading"
-          className="text-xl font-semibold flex items-center gap-2"
-        >
-          <Receipt className="h-5 w-5" aria-hidden="true" />
-          Billing History
-        </h2>
-        <p className="text-sm text-muted-foreground mt-1">
-          View and download your past invoices and receipts.
-        </p>
-      </div>
+    <section aria-labelledby="billing-history-heading" className="mt-4">
+      <MainContentHeader
+        title="Billing History"
+        description="View and download your past invoices and receipts."
+        icon={Receipt}
+      />
+      <Separator className="my-4 mb-6" />
 
       <div className="space-y-4">
         {/* Billing Summary */}

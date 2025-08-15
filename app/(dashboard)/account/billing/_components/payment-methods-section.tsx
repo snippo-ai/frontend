@@ -10,9 +10,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { MOCK_PAYMENT_METHODS } from "@/lib/mocks/billing-data";
 import { Check, CreditCard, MoreVertical, Plus, Shield } from "lucide-react";
 import { useCallback, useMemo, useState } from "react";
+import MainContentHeader from "../../_components/main-content-header";
 
 export const PaymentMethodsSection = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -73,19 +75,13 @@ export const PaymentMethodsSection = () => {
   }, []);
 
   return (
-    <section aria-labelledby="payment-methods-heading">
-      <div className="mb-6">
-        <h2
-          id="payment-methods-heading"
-          className="text-xl font-semibold flex items-center gap-2"
-        >
-          <CreditCard className="h-5 w-5" aria-hidden="true" />
-          Payment Methods
-        </h2>
-        <p className="text-sm text-muted-foreground mt-1">
-          Manage your payment methods and billing preferences.
-        </p>
-      </div>
+    <section aria-labelledby="payment-methods-heading" className="mt-4">
+      <MainContentHeader
+        title="Payment Methods"
+        description="Manage your payment methods and billing preferences."
+        icon={CreditCard}
+      />
+      <Separator className="my-4 mb-6" />
 
       <div className="space-y-4">
         {/* Add Payment Method Button */}

@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { Separator } from "@/components/ui/separator";
 import {
   MOCK_USAGE_METRICS,
   formatUsagePercentage,
@@ -22,6 +23,7 @@ import {
   Users,
 } from "lucide-react";
 import { useCallback, useMemo } from "react";
+import MainContentHeader from "../../_components/main-content-header";
 
 export const UsageMetricsSection = () => {
   // Memoize data to prevent unnecessary re-renders
@@ -77,19 +79,13 @@ export const UsageMetricsSection = () => {
   }, []);
 
   return (
-    <section aria-labelledby="usage-metrics-heading">
-      <div className="mb-6">
-        <h2
-          id="usage-metrics-heading"
-          className="text-xl font-semibold flex items-center gap-2"
-        >
-          <BarChart3 className="h-5 w-5" aria-hidden="true" />
-          Usage Metrics
-        </h2>
-        <p className="text-sm text-muted-foreground mt-1">
-          Monitor your current usage and limits for this billing period.
-        </p>
-      </div>
+    <section aria-labelledby="usage-metrics-heading" className="mt-4">
+      <MainContentHeader
+        title="Usage Metrics"
+        description="Monitor your current usage and limits for this billing period."
+        icon={BarChart3}
+      />
+      <Separator className="my-4 mb-6" />
 
       <div
         className="grid gap-4 md:grid-cols-2"
