@@ -4,7 +4,7 @@ import { FadeIn } from "@/components/animations";
 import { Fragment } from "react";
 import { BillingHistorySection } from "./billing-history-section";
 import { CurrentPlanSection } from "./current-plan-section";
-import { PaymentMethodsSection } from "./payment-methods-section";
+import { SavedCardsSection } from "./saved-cards-section";
 
 export const BillingSection = () => {
   return (
@@ -17,7 +17,7 @@ export const BillingSection = () => {
           <UsageMetricsSection />
         </FadeIn> */}
         <FadeIn delay={0.4}>
-          <PaymentMethodsSection />
+          <SavedCardsSection />
         </FadeIn>
         <FadeIn delay={0.6}>
           <BillingHistorySection />

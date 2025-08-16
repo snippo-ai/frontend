@@ -57,7 +57,7 @@ export interface UsageMetrics {
 export interface PaymentMethod {
   id: string;
   type: "card" | "upi" | "netbanking";
-  last4: string;
+  cardNumber: string;
   brand: string;
   expiryMonth: number;
   expiryYear: number;
@@ -239,22 +239,22 @@ export const MOCK_PAYMENT_METHODS: PaymentMethod[] = [
   {
     id: "pm_1",
     type: "card",
-    last4: "4242",
+    cardNumber: "4242 4242 4242 4242",
     brand: "Visa",
     expiryMonth: 12,
     expiryYear: 2025,
     isDefault: true,
-    holderName: "John Doe",
+    holderName: "Manav Kaushal",
   },
   {
     id: "pm_2",
     type: "card",
-    last4: "5555",
+    cardNumber: "5555 5555 5555 5555",
     brand: "Mastercard",
     expiryMonth: 8,
     expiryYear: 2026,
     isDefault: false,
-    holderName: "John Doe",
+    holderName: "Test User 2",
   },
 ];
 
