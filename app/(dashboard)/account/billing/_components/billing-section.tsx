@@ -5,7 +5,6 @@ import { Fragment } from "react";
 import { BillingHistorySection } from "./billing-history-section";
 import { CurrentPlanSection } from "./current-plan-section";
 import { PaymentMethodsSection } from "./payment-methods-section";
-import { UsageMetricsSection } from "./usage-metrics-section";
 
 export const BillingSection = () => {
   return (
@@ -14,13 +13,13 @@ export const BillingSection = () => {
         <FadeIn delay={0.2}>
           <CurrentPlanSection />
         </FadeIn>
-        <FadeIn delay={0.4}>
+        {/* <FadeIn delay={0.4}>
           <UsageMetricsSection />
-        </FadeIn>
-        <FadeIn delay={0.6}>
+        </FadeIn> */}
+        <FadeIn delay={0.4}>
           <PaymentMethodsSection />
         </FadeIn>
-        <FadeIn delay={0.8}>
+        <FadeIn delay={0.6}>
           <BillingHistorySection />
         </FadeIn>
         {/* <SubscriptionDetailsSection /> */}

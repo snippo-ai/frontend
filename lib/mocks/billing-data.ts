@@ -1,3 +1,5 @@
+export type SubscriptionStatus = "active" | "pending" | "cancelled" | string;
+
 export interface Subscription {
   id: string;
   plan: PlanType;
@@ -103,14 +105,14 @@ export const MOCK_PLANS: PlanType[] = [
       "1 GB storage",
       "1 project",
       "Community support",
-      "Basic analytics"
+      "Basic analytics",
     ],
     limits: {
       apiCalls: 1000,
       storage: 1,
       projects: 1,
-      teamMembers: 1
-    }
+      teamMembers: 1,
+    },
   },
   {
     id: "plan_QkMj84RI3NKDCj",
@@ -127,14 +129,14 @@ export const MOCK_PLANS: PlanType[] = [
       "Priority support",
       "Advanced analytics",
       "Custom integrations",
-      "API rate limiting"
+      "API rate limiting",
     ],
     limits: {
       apiCalls: 50000,
       storage: 10,
       projects: -1, // unlimited
-      teamMembers: 5
-    }
+      teamMembers: 5,
+    },
   },
   {
     id: "plan_yearly_pro",
@@ -152,14 +154,14 @@ export const MOCK_PLANS: PlanType[] = [
       "Advanced analytics",
       "Custom integrations",
       "API rate limiting",
-      "2 months free"
+      "2 months free",
     ],
     limits: {
       apiCalls: 50000,
       storage: 10,
       projects: -1,
-      teamMembers: 5
-    }
+      teamMembers: 5,
+    },
   },
   {
     id: "plan_enterprise",
@@ -178,15 +180,15 @@ export const MOCK_PLANS: PlanType[] = [
       "Custom integrations",
       "SLA guarantee",
       "On-premise deployment",
-      "Custom contracts"
+      "Custom contracts",
     ],
     limits: {
       apiCalls: 500000,
       storage: 100,
       projects: -1,
-      teamMembers: -1
-    }
-  }
+      teamMembers: -1,
+    },
+  },
 ];
 
 // Mock Subscription Data
@@ -201,7 +203,7 @@ export const MOCK_SUBSCRIPTION: Subscription = {
   razorpayCustomerId: "cust_QkMj84RI3NKDCj",
   amount: 249,
   currency: "INR",
-  interval: "monthly"
+  interval: "monthly",
 };
 
 // Mock Usage Metrics
@@ -215,21 +217,21 @@ export const MOCK_USAGE_METRICS: UsageMetrics = {
       { date: new Date("2024-01-02"), count: 15000 },
       { date: new Date("2024-01-03"), count: 18000 },
       { date: new Date("2024-01-04"), count: 21000 },
-      { date: new Date("2024-01-05"), count: 23450 }
-    ]
+      { date: new Date("2024-01-05"), count: 23450 },
+    ],
   },
   storage: {
     used: 3.2,
-    limit: 10
+    limit: 10,
   },
   projects: {
     current: 7,
-    limit: -1 // unlimited
+    limit: -1, // unlimited
   },
   teamMembers: {
     current: 3,
-    limit: 5
-  }
+    limit: 5,
+  },
 };
 
 // Mock Payment Methods
@@ -242,7 +244,7 @@ export const MOCK_PAYMENT_METHODS: PaymentMethod[] = [
     expiryMonth: 12,
     expiryYear: 2025,
     isDefault: true,
-    holderName: "John Doe"
+    holderName: "John Doe",
   },
   {
     id: "pm_2",
@@ -252,8 +254,8 @@ export const MOCK_PAYMENT_METHODS: PaymentMethod[] = [
     expiryMonth: 8,
     expiryYear: 2026,
     isDefault: false,
-    holderName: "John Doe"
-  }
+    holderName: "John Doe",
+  },
 ];
 
 // Mock Invoices
@@ -268,7 +270,7 @@ export const MOCK_INVOICES: Invoice[] = [
     status: "paid",
     description: "Pro Monthly Plan - January 2024",
     downloadUrl: "/api/invoices/inv_1/download",
-    paymentMethod: MOCK_PAYMENT_METHODS[0]
+    paymentMethod: MOCK_PAYMENT_METHODS[0],
   },
   {
     id: "inv_2",
@@ -280,7 +282,7 @@ export const MOCK_INVOICES: Invoice[] = [
     status: "paid",
     description: "Pro Monthly Plan - December 2023",
     downloadUrl: "/api/invoices/inv_2/download",
-    paymentMethod: MOCK_PAYMENT_METHODS[0]
+    paymentMethod: MOCK_PAYMENT_METHODS[0],
   },
   {
     id: "inv_3",
@@ -292,7 +294,7 @@ export const MOCK_INVOICES: Invoice[] = [
     status: "paid",
     description: "Pro Monthly Plan - November 2023",
     downloadUrl: "/api/invoices/inv_3/download",
-    paymentMethod: MOCK_PAYMENT_METHODS[1]
+    paymentMethod: MOCK_PAYMENT_METHODS[1],
   },
   {
     id: "inv_4",
@@ -303,8 +305,8 @@ export const MOCK_INVOICES: Invoice[] = [
     currency: "INR",
     status: "failed",
     description: "Pro Monthly Plan - October 2023",
-    downloadUrl: "/api/invoices/inv_4/download"
-  }
+    downloadUrl: "/api/invoices/inv_4/download",
+  },
 ];
 
 // Mock Billing Address
@@ -318,23 +320,29 @@ export const MOCK_BILLING_ADDRESS: BillingAddress = {
   state: "Karnataka",
   postalCode: "560001",
   country: "India",
-  gstin: "29ABCDE1234F1Z5"
+  gstin: "29ABCDE1234F1Z5",
 };
 
 // Utility functions
 export const getPlanById = (planId: string): PlanType | undefined => {
-  return MOCK_PLANS.find(plan => plan.id === planId);
+  return MOCK_PLANS.find((plan) => plan.id === planId);
 };
 
-export const formatCurrency = (amount: number, currency: "INR" = "INR"): string => {
+export const formatCurrency = (
+  amount: number,
+  currency: "INR" = "INR"
+): string => {
   return new Intl.NumberFormat("en-IN", {
     style: "currency",
     currency: currency,
-    minimumFractionDigits: 0
+    minimumFractionDigits: 0,
   }).format(amount);
 };
 
-export const formatUsagePercentage = (current: number, limit: number): number => {
+export const formatUsagePercentage = (
+  current: number,
+  limit: number
+): number => {
   if (limit === -1) return 0; // unlimited
   return Math.min((current / limit) * 100, 100);
 };

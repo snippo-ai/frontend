@@ -15,13 +15,7 @@ import {
   formatUsagePercentage,
   getUsageColor,
 } from "@/lib/mocks/billing-data";
-import {
-  AlertTriangle,
-  BarChart3,
-  FolderOpen,
-  TrendingUp,
-  Users,
-} from "lucide-react";
+import { AlertTriangle, BarChart3, FolderOpen, TrendingUp } from "lucide-react";
 import { useCallback, useMemo } from "react";
 import MainContentHeader from "../../_components/main-content-header";
 
@@ -155,7 +149,7 @@ export const UsageMetricsSection = () => {
         </Card>
 
         {/* Team Members Usage */}
-        <Card>
+        {/* <Card>
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -218,7 +212,7 @@ export const UsageMetricsSection = () => {
               )}
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
     </section>
   );
