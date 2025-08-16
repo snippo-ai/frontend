@@ -5,7 +5,7 @@ import Spinner from "@/components/shared/spinner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { icons } from "@/lib/icons";
+import { Icons } from "@/lib/icons";
 import { REDIRECT_ROUTES } from "@/routes";
 import { ArrowRight, Lock, Mail } from "lucide-react";
 import { signIn } from "next-auth/react";
@@ -72,14 +72,14 @@ const LoginForm: React.FC<LoginFormProps> = ({
       <form action={formAction} autoComplete="off" className="space-y-6">
         <div className="grid grid-cols-2 gap-3">
           <SocialLogin
-            Icon={icons.github}
+            Icon={Icons.github}
             label="GitHub"
             onClick={() => handleOAuthClick("github")}
             loading={isGithubSignInPending}
             disabled={isDisabled}
           />
           <SocialLogin
-            Icon={icons.google}
+            Icon={Icons.google}
             label="Google"
             onClick={() => handleOAuthClick("google")}
             loading={isGoogleSignInPending}
